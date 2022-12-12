@@ -1,0 +1,15 @@
+#root {
+  max-width: 100vw;
+  max-height: 100vh;
+  text-align: center;
+}
+
+.App {
+  font-size: calc(3vmin + 10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: aquamarine;
+  height: 100vh;
+  width: 100vw;
+}
