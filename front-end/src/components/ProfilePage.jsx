@@ -1,19 +1,14 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 import { FirebaseContext } from "../providers/FirebaseProvider";
 
 const ProfilePage = () => {
-	const fbContext = useContext(FirebaseContext);
-	const app = fbContext.app;
-
+	//const fbContext = useContext(FirebaseContext);
+	//const app = fbContext.app;
+	const authContext = useContext(AuthContext);
+	const user = authContext.user;
 	return (
-		<div>
-			<span>Profile</span>
-			Firebase app info:
-			<br />
-			<br />
-			{JSON.stringify(app)}
-		</div>
+		<div className="App">{user ? "you are logged in" : "not logged in"}</div>
 	);
 };
 
