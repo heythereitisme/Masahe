@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+mongoose.set('strictQuery', false);
+
 mongoose.connect(process.env.MONGODB_URI, {
   dbName: process.env.MONGODB_DBNAME,
   user: process.env.MONGODB_USER,
