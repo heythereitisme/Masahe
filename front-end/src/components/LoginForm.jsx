@@ -23,7 +23,6 @@ export const LoginForm = () => {
 			/>
 			<br />
 			<button onClick={() => loginFn(email, password)}>LOGIN</button>
-			<br /> <button onClick={() => logoutFn()}>LOG OUT</button>
 		</div>
 	);
 };
