@@ -15,6 +15,7 @@ export const AuthProvider = (props) => {
 	const fbContext = useContext(FirebaseContext);
 	const auth = fbContext.auth;
 
+	const [error, setError] = useState(false);
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
@@ -35,6 +36,7 @@ export const AuthProvider = (props) => {
 			}
 		} catch (err) {
 			console.log("AUTH FAILURE!", err.message);
+			setError(true);
 		}
 	};
 
@@ -42,7 +44,7 @@ export const AuthProvider = (props) => {
 		await signOut(auth);
 	};
 
-	const theValues = { user, login, logout };
+	const theValues = { user, login, logout, error };
 
 	return (
 		<AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>
