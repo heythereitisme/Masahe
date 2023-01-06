@@ -8,10 +8,18 @@ const ProfilePage = () => {
 	//const app = fbContext.app;
 	const authContext = useContext(AuthContext);
 	const user = authContext.user;
+	const logoutFn = authContext.logout;
 	return (
 		<div className="App">
-			{user ? "you are logged in" : "not logged in"}
-			<LoginForm />
+			{user ? (
+				<div>
+					{" "}
+					"you are logged in" <br />
+					<button onClick={() => logoutFn()}>LOG OUT</button>{" "}
+				</div>
+			) : (
+				<LoginForm />
+			)}
 		</div>
 	);
 };
