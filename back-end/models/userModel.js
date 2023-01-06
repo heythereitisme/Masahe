@@ -4,7 +4,11 @@ const userSchema = new mongoose.Schema({
     fisrtName: {type: String, required: true},
     lastName: {type: String, required: true},
     permission: {type: Number, required: true},
-    rating: {type: Number, required: true}
+    ratings: {
+        type: mongoose.Schema.objectId,
+        ref: rating,
+        },
+    avgRating: {type: Number}
 })
 
 const User = mongoose.model("Users", userSchema,)
@@ -31,4 +35,12 @@ export const addUser = async(u) => {
     const user = User.create(u)
     console.log(user.fisrtName, "added")
     return user
+}
+
+export const updateRating = async(u, r) => {
+    const uid = u
+    User.findOneAndUpdate({_id: u},
+        {avgRating: r}
+        )
+    console.log("updated rating")
 }
