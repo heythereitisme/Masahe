@@ -54,3 +54,10 @@ export const deleteReview = async(r) => {
     console.log("Rating deleted!")
     return review
 }
+
+export const updateReview = async(r) => {
+    const id = r._id
+    const review = Rating.updateOne({_id: id}, {r})
+    console.log("Updated Review!")
+    return review
+}
