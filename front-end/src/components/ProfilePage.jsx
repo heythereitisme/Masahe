@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { FirebaseContext } from "../providers/FirebaseProvider";
 import { LoginForm } from "./LoginForm";
+import { RegisterForm } from "./RegisterForm";
 
 const ProfilePage = () => {
 	//const fbContext = useContext(FirebaseContext);
@@ -15,10 +16,14 @@ const ProfilePage = () => {
 				<div>
 					{" "}
 					"you are logged in" <br />
-					<button onClick={() => logoutFn()}>LOG OUT</button>{" "}
+					<button onClick={() => logoutFn()}>LOG OUT</button>
 				</div>
 			) : (
-				<LoginForm />
+				<div>
+					<LoginForm />
+					<br />
+					<RegisterForm />
+				</div>
 			)}
 		</div>
 	);

@@ -1,13 +1,12 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
 	const authContext = useContext(AuthContext);
-	const loginFn = authContext.login;
-	const logoutFn = authContext.logout;
+	const registerFn = authContext.register;
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const error = authContext.error;
+	const error = authContext.regError;
 	return (
 		<div>
 			<input
@@ -24,9 +23,9 @@ export const LoginForm = () => {
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<br />
-			<button onClick={() => loginFn(email, password)}>LOGIN</button>
+			<button onClick={() => registerFn(email, password)}>REGSTER</button>
 			<br />
-			{error && <span>Wrong email or password</span>}
+			{error && <span> User already exists</span>}
 		</div>
 	);
 };

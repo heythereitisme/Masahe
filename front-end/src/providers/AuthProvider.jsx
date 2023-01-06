@@ -4,6 +4,7 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 	onAuthStateChanged,
+	createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useEffect } from "react";
 
@@ -16,6 +17,7 @@ export const AuthProvider = (props) => {
 	const auth = fbContext.auth;
 
 	const [error, setError] = useState(false);
+	const [regError, setRegError] = useState(false);
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
@@ -44,7 +46,24 @@ export const AuthProvider = (props) => {
 		await signOut(auth);
 	};
 
-	const theValues = { user, login, logout, error };
+	const register = async (email, password) => {
+		try {
+			let userCred = await createUserWithEmailAndPassword(
+				auth,
+				email,
+				password
+			);
+			if (userCred) {
+				console.log("Registered!!", userCred.user);
+			} else {
+				console.log("Registration failed!");
+			}
+		} catch (err) {
+			console.log("REGISTRATION FAILURE!", err.message);
+			setRegError(true);
+		}
+	};
+	const theValues = { user, login, logout, error, register, regError };
 
 	return (
 		<AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>
