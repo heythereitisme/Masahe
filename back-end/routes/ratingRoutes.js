@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { avgRating, addReview, deleteReview, updateReview } from "../models/ratingModel";
-import { updateRating } from "../models/userModel";
+import { avgRating, addReview, deleteReview, updateReview } from "../models/ratingModel.js";
+import { updateRating } from "../models/userModel.js";
 
 const router = Router()
 
@@ -45,3 +45,5 @@ router.put("/", async(req,res) => {
         res.status(500).send(err);
     }
 })
+
+export default router

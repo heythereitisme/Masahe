@@ -1,6 +1,7 @@
 // server api calls
 import express from "express";
 import userRouter from "./routes/userRoutes.js"
+import ratingRouter from "./routes/ratingRoutes.js"
 
 const PORT = 4000;
 const app = express();
@@ -12,3 +13,4 @@ app.listen(`${PORT}`, () => {
 });
 
 app.use("/api/user", userRouter)
+app.use("/api/rating", ratingRouter)

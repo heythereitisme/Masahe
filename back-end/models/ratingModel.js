@@ -14,8 +14,7 @@ const ratingSchema = new mongoose.Schema({
     rating: {
       type: Number,
       required: true,
-      min: 1,
-      max: 5
+      default: 0
     },
     comments: String
   });
@@ -44,20 +43,20 @@ export const avgRating = async(u) => {
 }
 
 export const addReview = async(r) => {
-    const review = Rating.create(r)
+    const review = await Rating.create(r)
     console.log("Rating added!")
     return review
 }
 
 export const deleteReview = async(r) => {
-    const review = Rating.deleteOne(r)
+    const review = await Rating.deleteOne(r)
     console.log("Rating deleted!")
     return review
 }
 
 export const updateReview = async(r) => {
     const id = r._id
-    const review = Rating.updateOne({_id: id}, {r})
+    const review = await Rating.updateOne({_id: id}, {r})
     console.log("Updated Review!")
     return review
 }

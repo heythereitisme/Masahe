@@ -1,0 +1,18 @@
+.user-creation-form {
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    width: 20%;
+    margin: auto;
+}
+
+.user-creation-form input {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.user-creation-form button {
+    background-color: lightcoral;
+    border: 5px solid brown;
+}
