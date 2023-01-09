@@ -17,7 +17,6 @@ const ReviewPrototype = () => {
   };
 
   const addUser = async () => {
-    console.log(firstname, lastname);
     const req = await fetch("/api/user", {
       method: "POST",
       headers: {
@@ -39,7 +38,17 @@ const ReviewPrototype = () => {
   };
 
   const deleteUser = async(u) => {
-
+    const req = await fetch("/api/user", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: u._id
+      }),
+    });
+    console.log(u.firstName, "deleted")
+    getUsers()
   }
 
   return (
@@ -63,7 +72,7 @@ const ReviewPrototype = () => {
           return(
             <div key={u._id} className="user-box">
               <span>Name: {u.firstName} {u.lastName}</span>
-              <button onClick={deleteUser(u)}>Delete</button>
+              <button onClick={() => deleteUser(u)}>Delete</button>
             </div>
               )
         })}

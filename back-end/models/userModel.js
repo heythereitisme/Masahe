@@ -45,3 +45,9 @@ export const updateRating = async(u, r) => {
         )
     console.log("updated rating")
 }
+
+export const deleteUser = async(u) => {
+    const removedUser = await User.deleteOne(u)
+    console.log("removed user!")
+    return removedUser
+}

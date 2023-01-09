@@ -21,14 +21,20 @@
     background-color: antiquewhite;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: 100px 100px;
+    grid-template-rows: repeat(auto-fill, 100px);
     padding: 1em;
     gap: 1em;
 }
 
 .user-box {
-    background-color: rgb(126, 81, 168);
+    background-color: rgb(165, 112, 214);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 2vmin;
+}
+
+.user-box button {
+    width: 50%;
+    margin: 0 auto;
 }
