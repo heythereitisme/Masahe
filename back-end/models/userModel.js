@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Rating',
         },
-    avgRating: {type: Number}
+    avgRating: {type: Number, default: 0}
 })
 
 const User = mongoose.model("Users", userSchema,)
@@ -43,7 +43,7 @@ export const updateRating = async(u, r) => {
     await User.findOneAndUpdate({_id: u},
         {avgRating: r}
         )
-    console.log("updated rating")
+    // console.log("updated rating")
 }
 
 export const deleteUser = async(u) => {

@@ -8,9 +8,9 @@ router.post("/", async(req,res) => {
     const rating = req.body
     try{
         const review = await addReview(rating)
-        const id = review.ratedUser._id
+        const id = review.ratedUser
         const update = await avgRating(id)
-        const final = updateRating(id, update)
+        const final = await updateRating(id, update)
         res.send(final)
     } catch (err) {
         console.error(err)

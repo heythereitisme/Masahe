@@ -3,30 +3,36 @@ import mongoose from "../mongoose.js";
 const ratingSchema = new mongoose.Schema({
     ratingUser: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'User1',
       required: true
     },
     ratedUser: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'User2',
       required: true
     },
     rating: {
       type: Number,
       required: true,
-      default: 0
     },
     comments: String
   });
 
 ratingSchema.index({ratingUser: 1, ratedUser: 1}, {unique: true})
 
-const Rating = mongoose.model('Rating', ratingSchema);
+const Rating = mongoose.model('Ratings', ratingSchema);
 
-export const avgRating = async(u) => {
+export const avgRating = async(id) => {
+    console.log(id)
+    const avg = await aggregateRating(id)
+    console.log("average:", avg)
+    return avg
+}
+
+const aggregateRating = (id) => {
     Rating.aggregate([
         {
-            $match: {ratedUser: u }
+            $match: {ratedUser: id }
         },
         {
             $group: {
@@ -37,7 +43,8 @@ export const avgRating = async(u) => {
         if (error) {
             console.error(error)
         } else {
-            return result
+            console.log("order test", result[0].avgRating)
+            return result[0].avgRating
         }
     });
 }
@@ -45,7 +52,23 @@ export const avgRating = async(u) => {
 export const addReview = async(r) => {
     const review = await Rating.create(r)
     console.log("Rating added!")
+    // await populateReview(r._id)
     return review
+}
+
+const populateReview = async(id) => {
+    Rating.findOne({_id: id})
+    .populate("ratingUser")
+    .populate("ratedUser")
+    .exec(function (err, results) {
+        if(!err) {
+            console.log("results", results)
+            return results
+        } else {
+            console.log(err)
+            return
+        }
+    })
 }
 
 export const deleteReview = async(r) => {
