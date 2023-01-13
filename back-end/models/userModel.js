@@ -39,11 +39,11 @@ export const addUser = async(u) => {
 }
 
 export const updateRating = async(u, r) => {
-    const uid = u
-    await User.findOneAndUpdate({_id: u},
+    const updatedScore = await User.findOneAndUpdate({_id: u},
         {avgRating: r}
         )
-    // console.log("updated rating")
+    console.log("updated rating:", updatedScore.avgRating)
+    return updatedScore.avgRating
 }
 
 export const deleteUser = async(u) => {

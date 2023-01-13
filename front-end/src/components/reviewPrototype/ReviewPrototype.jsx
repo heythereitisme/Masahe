@@ -73,7 +73,8 @@ const ReviewPrototype = () => {
       }),
     });
     const rate = await req.json()
-    console.log(rate)
+    console.log("Updated average:", rate.message)
+    getUsers()
   };
 
   return (

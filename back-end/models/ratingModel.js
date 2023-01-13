@@ -25,12 +25,12 @@ const Rating = mongoose.model('Ratings', ratingSchema);
 export const avgRating = async(id) => {
     console.log(id)
     const avg = await aggregateRating(id)
-    console.log("average:", avg)
-    return avg
+    console.log("average:", avg[0].avgRating)
+    return avg[0].avgRating
 }
 
-const aggregateRating = (id) => {
-    Rating.aggregate([
+const aggregateRating = async(id) => {
+    return Rating.aggregate([
         {
             $match: {ratedUser: id }
         },
@@ -39,14 +39,7 @@ const aggregateRating = (id) => {
             _id: null,
             avgRating: {$avg: '$rating'}
         }},
-    ]).exec((error, result) => {
-        if (error) {
-            console.error(error)
-        } else {
-            console.log("order test", result[0].avgRating)
-            return result[0].avgRating
-        }
-    });
+    ]).exec();
 }
 
 export const addReview = async(r) => {

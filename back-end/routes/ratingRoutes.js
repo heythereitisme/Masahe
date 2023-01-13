@@ -10,8 +10,10 @@ router.post("/", async(req,res) => {
         const review = await addReview(rating)
         const id = review.ratedUser
         const update = await avgRating(id)
+        console.log("update", update)
         const final = await updateRating(id, update)
-        res.send(final)
+        console.log("final", final)
+        res.send({message: final})
     } catch (err) {
         console.error(err)
         res.status(500).send(err);
