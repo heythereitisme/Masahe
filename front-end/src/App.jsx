@@ -8,6 +8,7 @@ import SpReview from "./pages/SpReview";
 import ProfilePage from "./components/ProfilePage";
 import { FirebaseProvider } from "./providers/FirebaseProvider";
 import { AuthProvider } from "./providers/AuthProvider";
+import UserDetails from "./components/UserDetails";
 function App() {
 	return (
 		<FirebaseProvider>
@@ -19,6 +20,7 @@ function App() {
 					<Route path="/client/review" element={<ClientReview />} />
 					<Route path="/sp/review" element={<SpReview />} />
 					<Route path="/ProfilePage" element={<ProfilePage />} />
+					<Route path="/client/user" element={<UserDetails />} />
 				</Routes>
 			</AuthProvider>
 		</FirebaseProvider>

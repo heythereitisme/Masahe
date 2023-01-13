@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 const ReviewPrototype = () => {
@@ -6,6 +7,7 @@ const ReviewPrototype = () => {
   const [lastname, setLastname] = useState("");
   const [userList, setUserList] = useState([]);
   const [rating, setRating] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     getUsers();
@@ -77,6 +79,10 @@ const ReviewPrototype = () => {
     getUsers()
   };
 
+  const detailPage = (u) => {
+    navigate(`/client/user?id=${u}`)
+  } 
+
   return (
     <div>
       <form onSubmit={formSubmit} className="user-creation-form">
@@ -101,7 +107,10 @@ const ReviewPrototype = () => {
                 Name: {u.firstName} {u.lastName}
               </span>
               <span>Rating: {u.avgRating} </span>
-              <button onClick={() => deleteUser(u)}>Delete</button>
+              <div className="button-holder">
+                <button onClick={() => detailPage(u._id)}>Details</button>
+                <button onClick={() => deleteUser(u)}>Delete</button>
+              </div>
               <form onSubmit={(e) => submitRating(e, u)}>
                 <input
                   type="text"

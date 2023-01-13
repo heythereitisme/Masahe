@@ -53,15 +53,7 @@ const populateReview = async(id) => {
     Rating.findOne({_id: id})
     .populate("ratingUser")
     .populate("ratedUser")
-    .exec(function (err, results) {
-        if(!err) {
-            console.log("results", results)
-            return results
-        } else {
-            console.log(err)
-            return
-        }
-    })
+    .exec()
 }
 
 export const deleteReview = async(r) => {

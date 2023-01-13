@@ -38,3 +38,7 @@
     width: 50%;
     margin: 0 auto;
 }
+
+.button-holder {
+    display: flex;
+}
