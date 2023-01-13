@@ -72,6 +72,7 @@ export const updateReview = async(r) => {
 export const getNotes = async(r) => {
     const id = r
     const notes = await Rating.findOne(id)
+    console.log("sent notes")
     return notes
 }
 
