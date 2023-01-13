@@ -78,14 +78,15 @@ export const updateReview = async(r) => {
 }
 
 export const getNotes = async(r) => {
-    const id = r._id
+    const id = r
     const notes = await Rating.findOne(id)
     return notes
 }
 
 export const updateNotes = async(r) => {
     const id = r._id
-    const notes = await Rating.updateOne({_id: id}, {r})
+    const content = r.notes
+    const notes = await Rating.updateOne({_id: id}, {notes: content})
     console.log("Updated Notes!")
-    return notes
+    return {message: "Updated Notes!"}
 }

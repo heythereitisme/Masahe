@@ -46,4 +46,27 @@ router.put("/", async(req,res) => {
     }
 })
 
+router.get("/notes/:id", async(req, res) => {
+    const id = req.query
+    try{
+        const body = await getNotes(id)
+        const notes = body.notes
+        res.send(notes)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send(err)
+    }
+})
+
+router.post("/notes", async(req, res) => {
+    const user = req.body
+    try{
+        const body = await updateNotes(user)
+        res.send(body)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send(err)
+    }
+})
+
 export default router
