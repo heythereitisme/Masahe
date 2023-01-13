@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { avgRating, addReview, deleteReview, updateReview } from "../models/ratingModel.js";
+import { avgRating, addReview, deleteReview, updateReview, getNotes, updateNotes } from "../models/ratingModel.js";
 import { updateRating } from "../models/userModel.js";
 
 const router = Router()
@@ -10,9 +10,7 @@ router.post("/", async(req,res) => {
         const review = await addReview(rating)
         const id = review.ratedUser
         const update = await avgRating(id)
-        console.log("update", update)
         const final = await updateRating(id, update)
-        console.log("final", final)
         res.send({message: final})
     } catch (err) {
         console.error(err)

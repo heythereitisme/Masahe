@@ -15,7 +15,7 @@ const ratingSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
-    comments: String
+    notes: String
   });
 
 ratingSchema.index({ratingUser: 1, ratedUser: 1}, {unique: true})
@@ -75,4 +75,17 @@ export const updateReview = async(r) => {
     const review = await Rating.updateOne({_id: id}, {r})
     console.log("Updated Review!")
     return review
+}
+
+export const getNotes = async(r) => {
+    const id = r._id
+    const notes = await Rating.findOne(id)
+    return notes
+}
+
+export const updateNotes = async(r) => {
+    const id = r._id
+    const notes = await Rating.updateOne({_id: id}, {r})
+    console.log("Updated Notes!")
+    return notes
 }
