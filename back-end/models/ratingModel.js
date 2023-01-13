@@ -3,12 +3,12 @@ import mongoose from "../mongoose.js";
 const ratingSchema = new mongoose.Schema({
     ratingUser: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User1',
+      ref: 'Users',
       required: true
     },
     ratedUser: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User2',
+      ref: 'Users',
       required: true
     },
     rating: {
@@ -71,8 +71,10 @@ export const updateReview = async(r) => {
 
 export const getNotes = async(r) => {
     const id = r
-    const notes = await Rating.findOne(id)
-    console.log("sent notes")
+    console.log(r)
+    const notes = await Rating.findOne({ratedUser: r})
+    .populate("ratedUser")
+    console.log(notes)
     return notes
 }
 

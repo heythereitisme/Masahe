@@ -47,7 +47,8 @@ router.put("/", async(req,res) => {
 })
 
 router.get("/notes/:id", async(req, res) => {
-    const id = req.query
+    const id = req.params.id
+    console.log("id", id)
     try{
         const body = await getNotes(id)
         res.send(body)
