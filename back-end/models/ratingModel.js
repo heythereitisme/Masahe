@@ -74,14 +74,14 @@ export const getNotes = async(r) => {
     console.log(r)
     const notes = await Rating.findOne({ratedUser: r})
     .populate("ratedUser")
-    console.log(notes)
+    console.log("Sent details!")
     return notes
 }
 
 export const updateNotes = async(r) => {
     const id = r._id
     const content = r.notes
-    const notes = await Rating.updateOne({_id: id}, {notes: content})
+    const notes = await Rating.findOneAndUpdate({_id: id}, {notes: content})
     console.log("Updated Notes!")
-    return {message: "Updated Notes!"}
+    return notes
 }

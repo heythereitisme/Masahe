@@ -1,0 +1,30 @@
+.note-field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.note-box {
+    background-color: rgb(225, 217, 233);
+    height: 15em;
+    width: 70%;
+    margin: auto;
+    font-size: calc(2vmin + 5px);
+    text-align: start;
+}
+
+.note-field button {
+    width: 70%;
+    margin: auto;
+    background-color: rgb(70, 7, 78);
+    color: white;
+}
+
+.note-field span {
+    margin-bottom: 1em;
+}
+
+.back-button {
+    background-color: brown;
+}
