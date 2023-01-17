@@ -21,6 +21,9 @@ const Home = () => {
 				<li>
 					<Link to="ProfilePage"> Profile</Link>
 				</li>
+				<li> 
+					<Link to ="ChatBox"> Chat box </Link>
+			</li>
 			</ul>
 		</div>
 	);
