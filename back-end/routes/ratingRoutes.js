@@ -61,7 +61,6 @@ router.post("/notes", async(req, res) => {
     const user = req.body
     try{
         const body = await updateNotes(user)
-        console.log(body)
         res.send(body)
     } catch (err) {
         console.error(err)

@@ -9,6 +9,7 @@ import ProfilePage from "./components/ProfilePage";
 import { FirebaseProvider } from "./providers/FirebaseProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 import UserDetails from "./components/userDetails/UserDetails";
+
 function App() {
 	return (
 		<FirebaseProvider>
