@@ -67,7 +67,7 @@ const BookingCalendar = () => {
         localizer={myLocalizer}
         dayLayoutAlgorithm={dayLayoutAlgorithm}
         defaultDate={new Date()}
-        defaultView="month"
+        defaultView="week"
         events={myEvents}
         draggableAccessor={(event) => true}
         onEventDrop={moveEvent}
