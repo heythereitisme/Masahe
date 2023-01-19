@@ -11,10 +11,14 @@ import { AuthProvider } from "./providers/AuthProvider";
 import UserDetails from "./components/userDetails/UserDetails";
 import ChatBox from "./pages/ChatBox";
 import Register from "./pages/Register";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 function App() {
 	return (
 		<FirebaseProvider>
 			<AuthProvider>
+				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/client/booking" element={<Booking />} />
@@ -26,6 +30,7 @@ function App() {
 					<Route path="/chatbox" element={<ChatBox/>} />
 					<Route path="/booking" element={<Register/>} />
 				</Routes>
+				<Footer />
 			</AuthProvider>
 		</FirebaseProvider>
 	);
