@@ -1,6 +1,9 @@
 import mongoose from "../mongoose.js";
 
 const eventSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'},
     title: {type: String, required: true},
     start: {type: Date, required: true},
     end: {type: String, required: true},
@@ -11,6 +14,11 @@ const Event = mongoose.model("Events", eventSchema);
 
 export const getEvents = async() => {
     const events = await Event.find()
+    return events
+}
+
+export const getUserEvents = async(id) => {
+    const events = await Event.find({user: id})
     return events
 }
 

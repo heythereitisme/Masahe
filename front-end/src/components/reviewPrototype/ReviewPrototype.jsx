@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./style.css";
 
 const ReviewPrototype = () => {
   const [firstname, setFirstname] = useState("");
@@ -82,34 +81,41 @@ const ReviewPrototype = () => {
   const detailPage = (u) => {
     navigate(`/client/user?id=${u}`)
   } 
+  
+  const bookingPage = (u) => {
+    navigate(`/client/book?id=${u}`)
+  }
 
   return (
-    <div>
-      <form onSubmit={formSubmit} className="user-creation-form">
+    <div className="bg-stone-200 text-center">
+      <form onSubmit={formSubmit} className="flex flex-col bg-red-200 w-80 m-auto">
         <span>Create User</span>
         <input
           type="text"
           placeholder="first name"
           onInput={(e) => setFirstname(e.target.value)}
+          className="p-1 m-1"
         />
         <input
           type="text"
           placeholder="first name"
           onInput={(e) => setLastname(e.target.value)}
+          className="p-1 m-1"
         />
-        <button type="submit">Create</button>
+        <button type="submit" className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl" >Create</button>
       </form>
-      <div className="user-collection">
+      <div className="grid grid-cols-5 gap-2">
         {userList.map((u) => {
           return (
-            <div key={u._id} className="user-box">
+            <div key={u._id} className="bg-purple-200 flex flex-col rounded-lg">
               <span>
                 Name: {u.firstName} {u.lastName}
               </span>
               <span>Rating: {u.avgRating} </span>
               <div className="button-holder">
-                <button onClick={() => detailPage(u._id)}>Details</button>
-                <button onClick={() => deleteUser(u)}>Delete</button>
+                <button onClick={() => detailPage(u._id)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Details</button>
+                <button onClick={() => bookingPage(u._id)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Book</button>
+                <button onClick={() => deleteUser(u)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Delete</button>
               </div>
               <form onSubmit={(e) => submitRating(e, u)}>
                 <input
@@ -117,7 +123,7 @@ const ReviewPrototype = () => {
                   placeholder="enter rating number"
                   onInput={(e) => setRating(e.target.value)}
                 />
-                <button type="submit">Submit Rating</button>
+                <button type="submit" className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Submit Rating</button>
               </form>
             </div>
           );

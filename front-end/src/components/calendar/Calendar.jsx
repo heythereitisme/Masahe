@@ -5,7 +5,7 @@ import moment from 'moment'
 import { createEvent, deleteEvent, listEvents, updateEvent } from './server-functions'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
-import './style.css'
+// import './style.css'
 
 const DnDCalendar = withDragAndDrop(Calendar)
 
@@ -62,7 +62,7 @@ const BookingCalendar = () => {
     }
 
   return (
-    <div className='calendar-holder'>
+    <div className='h-screen bg-stone-400 border-1'>
       <DnDCalendar
         localizer={myLocalizer}
         dayLayoutAlgorithm={dayLayoutAlgorithm}
