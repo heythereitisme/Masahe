@@ -29,25 +29,24 @@ const Home = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
       <li><Link to='/'>Home</Link></li>
-      <li tabIndex={0}>
-	  <Link to="/client/booking"> Booking
-          
-          <svg className="fill-current" 
-		  xmlns="http://www.w3.org/2000/svg" 
-		  width="20" height="20"
-		  viewBox="0 0 24 24">
-		  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-		  </Link>
-        <ul className="p-2">
-          <li><a>Submenu 1</a></li>
-          <li><a>Submenu 2</a></li>
-        </ul>
-      </li>
-      <li><a>Item 3</a></li>
+    
+	 <li> <Link to="/client/booking"> Booking </Link> </li>
+       
+     <li tabIndex={0}>
+          <a className="justify-between">
+            Services
+            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+          </a>
+          <ul className="p-2">
+            <li><a>Relaxation Massage </a></li>
+            <li><a>Deep Tissue Massage </a></li>
+          </ul>
+        </li>
+     
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Get started</a>
+	<Link to="/Booking" className="btn"> Sign up </Link>
   </div>
 </div>
 		// <div className="App">

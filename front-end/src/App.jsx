@@ -10,6 +10,7 @@ import { FirebaseProvider } from "./providers/FirebaseProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 import UserDetails from "./components/userDetails/UserDetails";
 import ChatBox from "./pages/ChatBox";
+import Register from "./pages/Register";
 function App() {
 	return (
 		<FirebaseProvider>
@@ -20,9 +21,10 @@ function App() {
 					<Route path="/client/search" element={<Search />} />
 					<Route path="/client/review" element={<ClientReview />} />
 					<Route path="/sp/review" element={<SpReview />} />
-					<Route path="/ProfilePage" element={<ProfilePage />} />
+					<Route path="/profilepage" element={<ProfilePage />} />
 					<Route path="/client/user" element={<UserDetails />} />
 					<Route path="/chatbox" element={<ChatBox/>} />
+					<Route path="/booking" element={<Register/>} />
 				</Routes>
 			</AuthProvider>
 		</FirebaseProvider>
