@@ -57,7 +57,7 @@ const UserDetails = () => {
       }
 
       const returnPage = () => {
-        navigate("/client/review")
+        navigate("/client/booking")
       }
 
       const bookUser = (u) => {
