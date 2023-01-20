@@ -60,26 +60,30 @@ const UserDetails = () => {
         navigate("/client/review")
       }
 
+      const bookUser = (u) => {
+        console.log(u)
+        navigate(`/client/booking/${u}`)
+      }
+
       if(!user.ratedUser){
           return (
-              <div>Loading user</div>
+              <div className='bg-stone 200 min-h-screen text-center'>Loading user</div>
               )
             } else {
                 return (
-                    <div className='App'>
-                        <div className='h3-holder'>
-                            <h3>User Details:</h3>
-                            <h3>Name: {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
-                        </div>
-                        <span>
+                    <div className='bg-stone-200 min-h-screen text-center flex flex-col'>
+                            <h1 className='text-3xl m-1'>User Details:</h1>
+                            <h3 className='text-5xl m-1'>Name: {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
+                        <span className='text-xl m-1'>
                             Rating: {user.ratedUser.avgRating}   
                         </span>
-                        <form onSubmit={formSubmit} className='note-field'>
+                        <form onSubmit={formSubmit} className='flex flex-col w-screen mb-2'>
                             <span>Notes:</span>
-                            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='note-box'/>
-                            <button type='submit'>Save</button>
+                            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='w-2/3 min-h-[50vh] mx-auto'/>
+                            <button type='submit' className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-2/3 mx-auto'>Save</button>
                         </form>
-                        <button onClick={returnPage} className='back-button'>Back</button>
+                        <button onClick={() => bookUser(user.ratedUser._id)} className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Book</button>
+                        <button onClick={returnPage} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Back</button>
                     </div>
                 )
             }
