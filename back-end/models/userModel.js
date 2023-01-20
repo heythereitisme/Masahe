@@ -4,10 +4,6 @@ const userSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     permission: {type: Number, required: true, default: 1},
-    ratings: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Rating',
-        },
     avgRating: {type: Number, default: 0}
 })
 

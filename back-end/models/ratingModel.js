@@ -23,8 +23,8 @@ ratingSchema.index({ratingUser: 1, ratedUser: 1}, {unique: true})
 const Rating = mongoose.model('Ratings', ratingSchema);
 
 export const avgRating = async(id) => {
-    console.log(id)
     const avg = await aggregateRating(id)
+    console.log(avg)
     console.log("average:", avg[0].avgRating)
     return avg[0].avgRating
 }
