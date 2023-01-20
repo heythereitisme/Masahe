@@ -96,13 +96,13 @@ const ReviewPrototype = () => {
         <span>Create User</span>
         <input
           type="text"
-          placeholder="first name"
+          placeholder="First name"
           onInput={(e) => setFirstName(e.target.value)}
           className="p-1 m-1"
         />
         <input
           type="text"
-          placeholder="first name"
+          placeholder="Last name"
           onInput={(e) => setLastName(e.target.value)}
           className="p-1 m-1"
         />
@@ -125,7 +125,7 @@ const ReviewPrototype = () => {
               <form onSubmit={(e) => submitRating(e, u)} className='container mx-auto'>
                 <input
                   type="text"
-                  placeholder="enter rating number"
+                  placeholder="Enter rating number"
                   onInput={(e) => setRating(e.target.value)}
                   className='w-1/2'
                 />

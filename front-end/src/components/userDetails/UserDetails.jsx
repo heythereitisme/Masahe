@@ -17,7 +17,6 @@ const UserDetails = () => {
       }
     
       useEffect(() => {
-        console.log(params)
             for (const entry of params.entries()) {
                 const [param, value] = entry;
                 setUserValue(value)            
