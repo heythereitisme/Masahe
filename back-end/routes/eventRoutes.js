@@ -2,16 +2,17 @@ import { Router } from "express";
 import {
   addNewEvent,
   deleteEvent,
-  getEvents,
+  getBookingEvents,
   updateEvent,
   getUserEvents
 } from "../models/eventsModel.js";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
+  const id = req.params.id
   try {
-    const events = await getEvents();
+    const events = await getBookingEvents(id);
     res.send(events);
   } catch (error) {
     console.error(error);
@@ -19,10 +20,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/mt/:id", async (req, res) => {
   const id = req.params.id
   try {
-    console.log(id)
     const events = await getUserEvents(id);
     res.send(events);
   } catch (error) {

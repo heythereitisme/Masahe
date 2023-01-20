@@ -1,4 +1,11 @@
 export const listEvents = async(id) => {
+    let serverReq = await fetch(`/api/event/mt/${id}`)
+    let events = await serverReq.json()
+    console.log('events:', events)
+    return events
+  }
+
+  export const listClientEvents = async(id) => {
     let serverReq = await fetch(`/api/event/${id}`)
     let events = await serverReq.json()
     console.log('events:', events)

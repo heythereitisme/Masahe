@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import moment from 'moment'
-import { createEvent, deleteEvent, listEvents, updateEvent } from './server-functions'
+import { createEvent, deleteEvent, listClientEvents, listEvents, updateEvent } from './server-functions'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import { useParams } from 'react-router-dom'
@@ -16,6 +16,20 @@ const BookingCalendar = ({mt}) => {
   const uid = useParams()
 
   const getEvents = async() => {
+    if(mt){
+      console.log("mt route")
+      const events = await listClientEvents(uid.id)
+      if(events[0]){
+        console.log("did we get here")
+        const newEvents = events.map(e => {
+        const newStart = new Date(e.start)
+        const newEnd = new Date(e.end)
+        return({_id: e._id, title: e.title, start: newStart, end: newEnd })
+        })
+        return setMyEvents(newEvents)
+      }
+    }
+    console.log("client route")
     const events = await listEvents(uid.id)
     if(events[0]){
       const newEvents = events.map(e => {
@@ -27,7 +41,7 @@ const BookingCalendar = ({mt}) => {
     }
   }
   
-  useEffect(() => {
+  useEffect(() => {  
     getEvents()
   }, [])
 
@@ -39,7 +53,7 @@ const BookingCalendar = ({mt}) => {
       }
     }
 
-  const deleteEvent = async(event) => {
+  const deleter = async(event) => {
       let selectedEvent = event.title
       let r = window.confirm(`${selectedEvent} \nWould you like to delete this event?`)
     if(r !== false) {
@@ -50,9 +64,11 @@ const BookingCalendar = ({mt}) => {
 
   const bookEvent = async(event) => {
     let selectedEvent = event.title
+    const id = event._id
     let r = window.confirm(`${selectedEvent} \nWould you like to Book this time slot?`)
   if(r !== false) {
-      alert("booked")
+      await updateEvent({id, client: uid})
+      await getEvents()
     }
   }
 
@@ -84,7 +100,7 @@ const BookingCalendar = ({mt}) => {
         draggableAccessor={(event) => true}
         onEventDrop={moveEvent}
         onEventResize={resizeEvent}
-        onSelectEvent={deleteEvent}
+        onSelectEvent={deleter}
         onSelectSlot={handleSelectSlot}
         selectable
         popup
@@ -101,7 +117,7 @@ const BookingCalendar = ({mt}) => {
         defaultView="week"
         events={myEvents}
         onSelectEvent={bookEvent}
- 
+        popup
       />
   </div>
 )}

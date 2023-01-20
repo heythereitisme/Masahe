@@ -8,13 +8,18 @@ const eventSchema = new mongoose.Schema({
     title: {type: String, required: true},
     start: {type: Date, required: true},
     end: {type: String, required: true},
-    isAllDay: Boolean
+    isAllDay: Boolean,
+    client: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+    }
 });
 
 const Event = mongoose.model("Events", eventSchema);
 
-export const getEvents = async() => {
-    const events = await Event.find()
+export const getBookingEvents = async(id) => {
+    const events = await Event.find({user: id, client:{$exists: false}})
+    console.log("Sent client booking options!")
     return events
 }
 
@@ -37,11 +42,12 @@ export const deleteEvent = async(event) => {
 }
 
 export const updateEvent = async(event) => {
+    console.log(event)
     const filter = event.id
     const start = event.start
     const end = event.end
     const update = {start, end}
-    const updatedEvent = await Event.findOneAndUpdate({_id: filter}, update)
+    const updatedEvent = await Event.findOneAndUpdate({_id: filter}, event)
     console.log(`Updated ${updatedEvent.title}`)
     return updatedEvent
 }
