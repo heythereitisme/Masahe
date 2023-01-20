@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ProfilePage from "./components/ProfilePage";
-import Booking from "./pages/Booking";
+import ClientBooking from "./pages/Booking";
 import BookUser from "./pages/BookUser";
 import ChatBox from "./pages/ChatBox";
 import ClientReview from "./pages/ClientReview";
@@ -22,11 +22,12 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/client/booking" element={<Booking />} />
+					<Route path="/client/booking" element={<ClientBooking />} />
 					<Route path="/client/booking/:id" element={<BookUser />} />
+					<Route path="/mt/booking/:id" element={<BookUser mt={true} />} />
 					<Route path="/client/search" element={<Search />} />
 					<Route path="/client/review" element={<ClientReview />} />
-					<Route path="/sp/review" element={<SpReview />} />
+					<Route path="/mt/review" element={<SpReview />} />
 					<Route path="/profilepage" element={<ProfilePage />} />
 					<Route path="/client/user" element={<Details />} />
 					<Route path="/chatbox" element={<ChatBox/>} />

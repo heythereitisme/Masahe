@@ -24,7 +24,6 @@ const Rating = mongoose.model('Ratings', ratingSchema);
 
 export const avgRating = async(id) => {
     const avg = await aggregateRating(id)
-    console.log(avg)
     console.log("average:", avg[0].avgRating)
     return avg[0].avgRating
 }
@@ -49,12 +48,6 @@ export const addReview = async(r) => {
     return review
 }
 
-const populateReview = async(id) => {
-    Rating.findOne({_id: id})
-    .populate("ratingUser")
-    .populate("ratedUser")
-    .exec()
-}
 
 export const deleteReview = async(r) => {
     const review = await Rating.deleteOne(r)
@@ -70,8 +63,6 @@ export const updateReview = async(r) => {
 }
 
 export const getNotes = async(r) => {
-    const id = r
-    console.log(r)
     const notes = await Rating.findOne({ratedUser: r})
     .populate("ratedUser")
     console.log("Sent details!")

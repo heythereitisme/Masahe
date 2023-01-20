@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     permission: {type: Number, required: true, default: 1},
-    avgRating: {type: Number, default: 0}
+    avgRating: {type: Number, default: 0} 
 })
 
 const User = mongoose.model("Users", userSchema,)

@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 
 const DnDCalendar = withDragAndDrop(Calendar)
 
-const BookingCalendar = () => {
+const BookingCalendar = ({mt}) => {
   const myLocalizer = momentLocalizer(moment)
   const dayLayoutAlgorithm = 'no-overlap'
   const [myEvents, setMyEvents] = useState([])
@@ -39,13 +39,21 @@ const BookingCalendar = () => {
       }
     }
 
-  const handleSelectEvent = async(event) => {
+  const deleteEvent = async(event) => {
       let selectedEvent = event.title
       let r = window.confirm(`${selectedEvent} \nWould you like to delete this event?`)
     if(r !== false) {
         await deleteEvent(event)
         await getEvents()
       }
+  }
+
+  const bookEvent = async(event) => {
+    let selectedEvent = event.title
+    let r = window.confirm(`${selectedEvent} \nWould you like to Book this time slot?`)
+  if(r !== false) {
+      alert("booked")
+    }
   }
 
   const moveEvent = async ({ event, start, end, isAllDay: droppedOnAllDaySlot = false }) => {
@@ -64,7 +72,8 @@ const BookingCalendar = () => {
       await getEvents()
     }
 
-  return (
+  if(mt){
+    return (
     <div className='h-screen bg-stone-400 border-1'>
       <DnDCalendar
         localizer={myLocalizer}
@@ -75,14 +84,27 @@ const BookingCalendar = () => {
         draggableAccessor={(event) => true}
         onEventDrop={moveEvent}
         onEventResize={resizeEvent}
-        onSelectEvent={handleSelectEvent}
+        onSelectEvent={deleteEvent}
         onSelectSlot={handleSelectSlot}
         selectable
         popup
         resizable
       />
   </div>
-)
+)} else {
+  return (
+  <div className='h-screen bg-stone-400 border-1'>
+    <Calendar
+        localizer={myLocalizer}
+        dayLayoutAlgorithm={dayLayoutAlgorithm}
+        defaultDate={new Date()}
+        defaultView="week"
+        events={myEvents}
+        onSelectEvent={bookEvent}
+ 
+      />
+  </div>
+)}
 }
 
 export default BookingCalendar

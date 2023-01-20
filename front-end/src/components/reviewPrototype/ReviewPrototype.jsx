@@ -86,6 +86,10 @@ const ReviewPrototype = () => {
     navigate(`/client/booking/${u}`)
   }
 
+  const schedulePage = (u) => {
+    navigate(`/mt/booking/${u}`)
+  }
+
   return (
     <div>
       <form onSubmit={formSubmit} className="flex flex-col bg-red-200 w-80 mx-auto mt-3 rounded-lg">
@@ -115,6 +119,7 @@ const ReviewPrototype = () => {
               <div className="button-holder">
                 <button onClick={() => detailPage(u._id)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Details</button>
                 <button onClick={() => bookingPage(u._id)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Book</button>
+                <button onClick={() => schedulePage(u._id)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Set Schedule</button>
                 <button onClick={() => deleteUser(u)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Delete</button>
               </div>
               <form onSubmit={(e) => submitRating(e, u)} className='container mx-auto'>
