@@ -5,7 +5,7 @@ import moment from 'moment'
 import { createEvent, deleteEvent, listEvents, updateEvent } from './server-functions'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
-// import './style.css'
+import { useParams } from 'react-router-dom'
 
 const DnDCalendar = withDragAndDrop(Calendar)
 
@@ -13,15 +13,18 @@ const BookingCalendar = () => {
   const myLocalizer = momentLocalizer(moment)
   const dayLayoutAlgorithm = 'no-overlap'
   const [myEvents, setMyEvents] = useState([])
+  const uid = useParams()
 
   const getEvents = async() => {
-    const events = await listEvents()
-    const newEvents = events.map(e => {
-      const newStart = new Date(e.start)
-      const newEnd = new Date(e.end)
-      return({_id: e._id, title: e.title, start: newStart, end: newEnd })
-    })
-    setMyEvents(newEvents)
+    const events = await listEvents(uid.id)
+    if(events[0]){
+      const newEvents = events.map(e => {
+        const newStart = new Date(e.start)
+        const newEnd = new Date(e.end)
+        return({_id: e._id, title: e.title, start: newStart, end: newEnd })
+      })
+      setMyEvents(newEvents)
+    }
   }
   
   useEffect(() => {
@@ -31,7 +34,7 @@ const BookingCalendar = () => {
   const handleSelectSlot = async({ start, end }) => {
       const title = window.prompt('New Event name')
       if (title) {
-        await createEvent({ start, end, title })
+        await createEvent({ start, end, title, user: uid.id })
         await getEvents()
       }
     }

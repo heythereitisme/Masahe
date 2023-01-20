@@ -1,5 +1,5 @@
-export const listEvents = async() => {
-    let serverReq = await fetch("/api/event")
+export const listEvents = async(id) => {
+    let serverReq = await fetch(`/api/event/${id}`)
     let events = await serverReq.json()
     console.log('events:', events)
     return events

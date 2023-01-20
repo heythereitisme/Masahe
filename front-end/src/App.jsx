@@ -1,18 +1,19 @@
 
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Booking from "./pages/Booking";
-import Search from "./pages/Search";
-import ClientReview from "./pages/ClientReview";
-import SpReview from "./pages/SpReview";
-import ProfilePage from "./components/ProfilePage";
-import { FirebaseProvider } from "./providers/FirebaseProvider";
-import { AuthProvider } from "./providers/AuthProvider";
-import UserDetails from "./components/userDetails/UserDetails";
-import ChatBox from "./pages/ChatBox";
-import Register from "./pages/Register";
-import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import ProfilePage from "./components/ProfilePage";
+import Booking from "./pages/Booking";
+import BookUser from "./pages/BookUser";
+import ChatBox from "./pages/ChatBox";
+import ClientReview from "./pages/ClientReview";
+import Details from "./pages/Details";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Search from "./pages/Search";
+import SpReview from "./pages/SpReview";
+import { AuthProvider } from "./providers/AuthProvider";
+import { FirebaseProvider } from "./providers/FirebaseProvider";
 
 function App() {
 	return (
@@ -22,11 +23,12 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/client/booking" element={<Booking />} />
+					<Route path="/client/booking/:id" element={<BookUser />} />
 					<Route path="/client/search" element={<Search />} />
 					<Route path="/client/review" element={<ClientReview />} />
 					<Route path="/sp/review" element={<SpReview />} />
 					<Route path="/profilepage" element={<ProfilePage />} />
-					<Route path="/client/user" element={<UserDetails />} />
+					<Route path="/client/user" element={<Details />} />
 					<Route path="/chatbox" element={<ChatBox/>} />
 					<Route path="/booking" element={<Register/>} />
 				</Routes>

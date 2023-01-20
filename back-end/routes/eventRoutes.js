@@ -4,6 +4,7 @@ import {
   deleteEvent,
   getEvents,
   updateEvent,
+  getUserEvents
 } from "../models/eventsModel.js";
 
 const router = Router();
@@ -21,7 +22,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
-    const events = await getEvents(id);
+    console.log(id)
+    const events = await getUserEvents(id);
     res.send(events);
   } catch (error) {
     console.error(error);

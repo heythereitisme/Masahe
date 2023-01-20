@@ -83,12 +83,12 @@ const ReviewPrototype = () => {
   } 
   
   const bookingPage = (u) => {
-    navigate(`/client/book?id=${u}`)
+    navigate(`/client/booking/${u}`)
   }
 
   return (
-    <div className="bg-stone-200 text-center">
-      <form onSubmit={formSubmit} className="flex flex-col bg-red-200 w-80 m-auto">
+    <div>
+      <form onSubmit={formSubmit} className="flex flex-col bg-red-200 w-80 m-auto rounded-lg">
         <span>Create User</span>
         <input
           type="text"
@@ -104,7 +104,7 @@ const ReviewPrototype = () => {
         />
         <button type="submit" className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl" >Create</button>
       </form>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-4 gap-2">
         {userList.map((u) => {
           return (
             <div key={u._id} className="bg-purple-200 flex flex-col rounded-lg">
@@ -117,11 +117,12 @@ const ReviewPrototype = () => {
                 <button onClick={() => bookingPage(u._id)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Book</button>
                 <button onClick={() => deleteUser(u)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Delete</button>
               </div>
-              <form onSubmit={(e) => submitRating(e, u)}>
+              <form onSubmit={(e) => submitRating(e, u)} className='container mx-auto'>
                 <input
                   type="text"
                   placeholder="enter rating number"
                   onInput={(e) => setRating(e.target.value)}
+                  className='w-1/2'
                 />
                 <button type="submit" className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Submit Rating</button>
               </form>

@@ -3,7 +3,8 @@ import mongoose from "../mongoose.js";
 const eventSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users'},
+        ref: 'Users',
+        required: true},
     title: {type: String, required: true},
     start: {type: Date, required: true},
     end: {type: String, required: true},
@@ -19,6 +20,7 @@ export const getEvents = async() => {
 
 export const getUserEvents = async(id) => {
     const events = await Event.find({user: id})
+    console.log("sent users events!")
     return events
 }
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import './style.css'
 
 const UserDetails = () => {
     const [params, setParams] = useSearchParams()
@@ -63,7 +62,7 @@ const UserDetails = () => {
 
       if(!user.ratedUser){
           return (
-              <div className='App'>Loading user</div>
+              <div>Loading user</div>
               )
             } else {
                 return (

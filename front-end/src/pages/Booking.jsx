@@ -1,9 +1,11 @@
 import React from 'react'
-import BookingCalendar from '../components/calendar/Calendar'
-import Navbar from '../components/Navbar'
+import ReviewPrototype from '../components/reviewPrototype/ReviewPrototype'
+
 const Booking = () => {
   return (
-      <div> <BookingCalendar /> </div>
+      <div className="bg-stone-200 text-center min-h-screen p-1"> 
+        <ReviewPrototype /> 
+      </div>
   )
 }
 
