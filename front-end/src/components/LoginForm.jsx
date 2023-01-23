@@ -9,6 +9,9 @@ export const LoginForm = () => {
 	const [password, setPassword] = useState("");
 	const error = authContext.error;
 	return (
+		<div  className=" bg-white min-h-screen p-1 text-center align-middle">
+
+		
 		<div>
 			<input
 				name="email"
@@ -27,6 +30,7 @@ export const LoginForm = () => {
 			<button onClick={() => loginFn(email, password)}>LOGIN</button>
 			<br />
 			{error && <span>Wrong email or password</span>}
+		</div>
 		</div>
 	);
 };

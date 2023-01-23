@@ -9,6 +9,7 @@ import ChatBox from "./pages/ChatBox";
 import ClientReview from "./pages/ClientReview";
 import Details from "./pages/Details";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Search from "./pages/Search";
 import SpReview from "./pages/SpReview";
@@ -31,7 +32,8 @@ function App() {
 					<Route path="/profilepage" element={<ProfilePage />} />
 					<Route path="/client/user" element={<Details />} />
 					<Route path="/chatbox" element={<ChatBox/>} />
-					<Route path="/booking" element={<Register/>} />
+					<Route path="/register" element={<Register/>} />
+					<Route path="/login" element={<Login/>} />
 				</Routes>
 				<Footer />
 			</AuthProvider>
