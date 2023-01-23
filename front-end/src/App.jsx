@@ -31,7 +31,6 @@ function App() {
 					<Route path="/mt/review" element={<SpReview />} />
 					<Route path="/profilepage" element={<ProfilePage />} />
 					<Route path="/client/user" element={<Details />} />
-					<Route path="/chatbox" element={<ChatBox/>} />
 					<Route path="/register" element={<Register/>} />
 					<Route path="/login" element={<Login/>} />
 				</Routes>
