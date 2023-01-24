@@ -6,10 +6,10 @@ module.exports = {
     themes: [
       {
         light: {
-          primary: "#f1a104",
-          secondary: "#00743f",
-          accent: "#70ced0",
-          neutral: "#25b396",
+          primary: "#14186F",
+          secondary: "#D7084E",
+          accent: "#D3B037",
+          neutral: "#FF6E00",
           "base-100": "#ffff",
           info: "#ffff",
           success: "#16a34a",
@@ -19,12 +19,12 @@ module.exports = {
       },
       {
         dark: {
-          primary: "#1e65a7",
-          secondary: "#00743f",
-          accent: "#1e65a7",
-          neutral: "#25b396",
+          primary: "#14186F",
+          secondary: "#D7084E",
+          accent: "#D3B037",
+          neutral: "#FF6E00",
           "base-100": "#192e5b",
-          info: "#ffff",
+          info: "#313131",
           success: "#16a34a",
           warning: "#F8DA63",
           error: "#E23D32",
