@@ -4,7 +4,9 @@ const userSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     permission: {type: Number, required: true, default: 1},
-    avgRating: {type: Number, default: 0} 
+    avgRating: {type: Number, default: 0},
+    username: {type: String, required: true, unique: true},
+    token: {type: String}
 })
 
 const User = mongoose.model("Users", userSchema,)
@@ -28,7 +30,6 @@ export const getAllSPs = async() => {
 }
 
 export const addUser = async(u) => {
-    console.log("U =", u)
     const user = await User.create(u)
     console.log(user.firstName, "added")
     return user

@@ -5,6 +5,7 @@ import {
 	signOut,
 	onAuthStateChanged,
 	createUserWithEmailAndPassword,
+	updateProfile,
 } from "firebase/auth";
 import { useEffect } from "react";
 
@@ -20,9 +21,21 @@ export const AuthProvider = (props) => {
 	const [regError, setRegError] = useState(false);
 	const [user, setUser] = useState(null);
 
+	const addUser = async ({permission, firstName, lastName, username}) => {
+		const req = await fetch("/api/user", {
+		  method: "POST",
+		  headers: {
+			"Content-Type": "application/json",
+		  },
+		  body: JSON.stringify({permission, firstName, lastName, username}),
+		});
+		const newUser = await req.json();
+		console.log(newUser.firstName, "added");
+		getUsers();
+	  };
+
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
-			console.log("onAuthStateChanged() - new User!!", user);
 			setUser(user);
 		});
 		return unsub; // to shut down onAuthStateChanged listener
@@ -32,7 +45,7 @@ export const AuthProvider = (props) => {
 		try {
 			let userCred = await signInWithEmailAndPassword(auth, email, password);
 			if (userCred) {
-				console.log("Logged in!!", userCred.user);
+				
 			} else {
 				console.log("Login failed!");
 			}
@@ -46,22 +59,26 @@ export const AuthProvider = (props) => {
 		await signOut(auth);
 	};
 
-	const register = async (email, password) => {
-		try {
-			let userCred = await createUserWithEmailAndPassword(
-				auth,
-				email,
-				password
-			);
-			if (userCred) {
-				console.log("Registered!!", userCred.user);
-			} else {
-				console.log("Registration failed!");
+	const register = async (email, password, username, firstName, lastName, permission) => {
+			try {
+				let userCred = await createUserWithEmailAndPassword(
+					auth,
+					email,
+					password
+				);
+				if (userCred) {
+					const user = userCred.user
+					await updateProfile(user, {
+						displayName: username,
+					})
+					await addUser({permission, firstName, lastName, username})
+				} else {
+					console.log("Registration failed!");
+				}
+			} catch (err) {
+				console.log("REGISTRATION FAILURE!", err.message);
+				setRegError(true);
 			}
-		} catch (err) {
-			console.log("REGISTRATION FAILURE!", err.message);
-			setRegError(true);
-		}
 	};
 	const theValues = { user, login, logout, error, register, regError };
 

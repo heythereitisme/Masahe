@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useEffect } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { FirebaseContext } from "../providers/FirebaseProvider";
 import { LoginForm } from "./LoginForm";
@@ -10,6 +11,7 @@ const ProfilePage = () => {
 	const authContext = useContext(AuthContext);
 	const user = authContext.user;
 	const logoutFn = authContext.logout;
+	
 	return (
 		<div className=" bg-white min-h-screen p-1 text-center align-middle flex flex-col">
 			{user ? (
@@ -17,12 +19,13 @@ const ProfilePage = () => {
 					{" "}
 					"you are logged in" <br />
 					<button onClick={() => logoutFn()}>LOG OUT</button>
+					{console.log(user)}
 				</div>
 			) : (
 				<div>
 					<LoginForm />
 					<br />
-					<RegisterForm />
+					<RegisterForm permission={1}/>
 				</div>
 			)}
 		</div>
