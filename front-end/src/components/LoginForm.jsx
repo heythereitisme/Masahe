@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 export const LoginForm = () => {
@@ -9,29 +10,33 @@ export const LoginForm = () => {
 	const [password, setPassword] = useState("");
 	const error = authContext.error;
 	return (
-		<div className="flex flex-col gap-2 mt-2 mb-2 bg-neutral w-64 mx-auto">
-			<input
-				className="w-48 border border-black mx-auto mt-2"
+		<div  className=" bg-white min-h-screen ">
+
+		
+		<div className="text-center relative top-52">
+			<h1 className=" text-xl mb-5">Sign in</h1>
+			<input className=" drop-shadow-md mt-5 mb-5 w-3/5 h-8 rounded-sm p-2"
+				name="email"
 				placeholder="Email"
 				value={email}
 				type={email}
 				onChange={(e) => setEmail(e.target.value)}
 			/>
-			<input
-				className="w-48 border border-black mx-auto"
+			<br />
+			<input className="drop-shadow-md mb-2 w-3/5 h-8 rounded-sm p-2"
+				name="password"
 				placeholder="Password"
 				value={password}
 				type={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<button 
-			className="bg-secondary text-white mb-2 w-48 mx-auto rounded-lg"
-			onClick={() => loginFn(email, password)}
-			>
-				LOGIN
-			</button>
+			<div className="w-3/5"> <Link to="/register" className="mt-2">Register</Link> </div>
+			<br />
+			<button onClick={() => loginFn(email, password)} className=" rounded-xl bg-primary p-3 mb m-5">LOGIN</button>
+			<br />
 			{error && <span>Wrong email or password</span>}
-		
+
+		</div>
 		</div>
 	);
 };

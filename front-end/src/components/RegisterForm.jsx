@@ -11,17 +11,18 @@ export const RegisterForm = ({permission}) => {
 	const [lastName, setLastName] = useState("");
 	const error = authContext.regError;
 	return (
-		<div className="flex flex-col gap-2 mt-2 mb-2 bg-neutral w-64 mx-auto">
-			<input
-			className="w-48 border border-black mx-auto mt-2"
-				placeholder="Email"
+		<div className="bg-white min-h-screen">
+		<div className="text-center relative top-52 bg-secondary rounded-md shadow-xl ml-10 mr-10 p-6 ">
+		<h1 className=" text-xl mb-5">Sign up</h1>
+			<input className=" drop-shadow-md mt-5 mb-5 w-4/5 h-8 rounded-md p-2"
+				name="email"
 				value={email}
 				type={email}
 				onChange={(e) => setEmail(e.target.value)}
 			/>
-			<input
-			className="w-48 border border-black mx-auto"
-				placeholder="Password"
+			<br />
+			<input className="drop-shadow-md mb-2 w-4/5 h-8 rounded-md p-2"
+				name="password"
 				value={password}
 				type={password}
 				onChange={(e) => setPassword(e.target.value)}
@@ -54,6 +55,7 @@ export const RegisterForm = ({permission}) => {
 				REGISTER
 			</button>
 			{error && <span> User already exists</span>}
+		</div>
 		</div>
 	);
 };
