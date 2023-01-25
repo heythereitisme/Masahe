@@ -9,28 +9,29 @@ export const LoginForm = () => {
 	const [password, setPassword] = useState("");
 	const error = authContext.error;
 	return (
-		<div  className=" bg-white min-h-screen p-1 text-center align-middle">
-
-		
-		<div>
+		<div className="flex flex-col gap-2 mt-2 mb-2 bg-neutral w-64 mx-auto">
 			<input
-				name="email"
+				className="w-48 border border-black mx-auto mt-2"
+				placeholder="Email"
 				value={email}
 				type={email}
 				onChange={(e) => setEmail(e.target.value)}
 			/>
-			<br />
 			<input
-				name="password"
+				className="w-48 border border-black mx-auto"
+				placeholder="Password"
 				value={password}
 				type={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<br />
-			<button onClick={() => loginFn(email, password)}>LOGIN</button>
-			<br />
+			<button 
+			className="bg-secondary text-white mb-2 w-48 mx-auto rounded-lg"
+			onClick={() => loginFn(email, password)}
+			>
+				LOGIN
+			</button>
 			{error && <span>Wrong email or password</span>}
-		</div>
+		
 		</div>
 	);
 };

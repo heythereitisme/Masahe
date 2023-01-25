@@ -6,25 +6,37 @@ export const RegisterForm = () => {
 	const registerFn = authContext.register;
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [displayName, setDisplayName] =useState("");
 	const error = authContext.regError;
 	return (
-		<div>
+		<div className="flex flex-col gap-2 mt-2 mb-2 bg-neutral w-64 mx-auto">
 			<input
-				name="email"
+			className="w-48 border border-black mx-auto mt-2"
+				placeholder="Email"
 				value={email}
 				type={email}
 				onChange={(e) => setEmail(e.target.value)}
 			/>
-			<br />
 			<input
-				name="password"
+			className="w-48 border border-black mx-auto"
+				placeholder="Password"
 				value={password}
 				type={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<br />
-			<button onClick={() => registerFn(email, password)}>REGSTER</button>
-			<br />
+			<input
+			className="w-48 border border-black mx-auto"
+				placeholder="Username"
+				value={displayName}
+				type={displayName}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<button 
+			className="bg-secondary text-white mb-2 w-48 mx-auto rounded-lg"
+			onClick={() => registerFn(email, password, displayName)}
+			>
+				REGISTER
+			</button>
 			{error && <span> User already exists</span>}
 		</div>
 	);

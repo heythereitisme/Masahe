@@ -11,7 +11,7 @@ const ProfilePage = () => {
 	const user = authContext.user;
 	const logoutFn = authContext.logout;
 	return (
-		<div className="App">
+		<div className=" bg-white min-h-screen p-1 text-center align-middle flex flex-col">
 			{user ? (
 				<div>
 					{" "}
