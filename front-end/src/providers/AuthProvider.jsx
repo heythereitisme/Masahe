@@ -86,7 +86,6 @@ export const AuthProvider = (props) => {
 						displayName: username,
 					})
 					await addUser({permission, firstName, lastName, username})
-					await signOut(auth)
 					alert("Registration Successful! Please log in again.")
 				} else {
 					console.log("Registration failed!");
@@ -95,6 +94,8 @@ export const AuthProvider = (props) => {
 				alert("REGISTRATION FAILURE!", err.message);
 				setRegError(true);
 			}
+
+			logout()
 	};
 	const theValues = { user, login, logout, error, register, regError };
 

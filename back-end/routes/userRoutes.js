@@ -58,7 +58,6 @@ router.delete("/", async(req, res) => {
 router.put("/", async(req,res) => {
    const user = req.body
    const username = user.username
-   console.log(user)
   try {
     const deletedUser = await updateUser(username, user)
     res.send(deletedUser)

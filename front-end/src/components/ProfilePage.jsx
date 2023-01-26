@@ -15,11 +15,9 @@ const ProfilePage = () => {
 	return (
 		<div className=" bg-white min-h-screen p-1 text-center align-middle flex flex-col">
 			{user ? (
-				<div>
-					{" "}
-					"you are logged in" <br />
+				<div className="flex flex-col m-auto">
+					<span>"you are logged in" </span> 
 					<button onClick={() => logoutFn()}>LOG OUT</button>
-					{console.log(user)}
 				</div>
 			) : (
 				<div>
