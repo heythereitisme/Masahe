@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, getAllClients, getAllSPs, addUser, deleteUser } from "../models/userModel.js";
+import { getAllUsers, getAllClients, getAllSPs, addUser, deleteUser, updateUser } from "../models/userModel.js";
 
 const router = Router()
 
@@ -48,6 +48,19 @@ router.delete("/", async(req, res) => {
   const user = req.body
   try {
     const deletedUser = await deleteUser(user)
+    res.send(deletedUser)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+}
+})
+
+router.put("/", async(req,res) => {
+   const user = req.body
+   const username = user.username
+   console.log(user)
+  try {
+    const deletedUser = await updateUser(username, user)
     res.send(deletedUser)
   } catch (error) {
     console.error(error)

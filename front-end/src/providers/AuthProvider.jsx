@@ -31,7 +31,19 @@ export const AuthProvider = (props) => {
 		});
 		const newUser = await req.json();
 		console.log(newUser.firstName, "added");
-		getUsers();
+		
+	  };
+
+	  const updateUser = async ({username, token}) => {
+		const req = await fetch("/api/user", {
+		  method: "PUT",
+		  headers: {
+			"Content-Type": "application/json",
+		  },
+		  body: JSON.stringify({username, token}),
+		});
+		const updatedUser = await req.json();
+		console.log(updatedUser.firstName, "updated");
 	  };
 
 	useEffect(() => {
@@ -45,7 +57,9 @@ export const AuthProvider = (props) => {
 		try {
 			let userCred = await signInWithEmailAndPassword(auth, email, password);
 			if (userCred) {
-				
+				const username = userCred.user.displayName
+				const token = userCred.user.accessToken
+				updateUser({username, token})
 			} else {
 				console.log("Login failed!");
 			}
@@ -72,11 +86,13 @@ export const AuthProvider = (props) => {
 						displayName: username,
 					})
 					await addUser({permission, firstName, lastName, username})
+					await signOut(auth)
+					alert("Registration Successful! Please log in again.")
 				} else {
 					console.log("Registration failed!");
 				}
 			} catch (err) {
-				console.log("REGISTRATION FAILURE!", err.message);
+				alert("REGISTRATION FAILURE!", err.message);
 				setRegError(true);
 			}
 	};
