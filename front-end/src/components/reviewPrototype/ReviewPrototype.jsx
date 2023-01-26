@@ -91,23 +91,6 @@ const ReviewPrototype = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={formSubmit} className="flex flex-col bg-red-200 w-80 mx-auto mt-3 rounded-lg">
-        <span>Create User</span>
-        <input
-          type="text"
-          placeholder="First name"
-          onInput={(e) => setFirstName(e.target.value)}
-          className="p-1 m-1"
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          onInput={(e) => setLastName(e.target.value)}
-          className="p-1 m-1"
-        />
-        <button type="submit" className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl" >Create</button>
-      </form>
       <div className="grid grid-cols-4 gap-2 mt-5">
         {userList.map((u) => {
           return (
@@ -135,7 +118,7 @@ const ReviewPrototype = () => {
           );
         })}
       </div>
-    </div>
+  
   );
 };
 
