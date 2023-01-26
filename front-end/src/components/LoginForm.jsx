@@ -10,33 +10,25 @@ export const LoginForm = () => {
 	const [password, setPassword] = useState("");
 	const error = authContext.error;
 	return (
-		<div  className=" bg-white min-h-screen ">
-
-		
-		<div className="text-center relative top-52">
-			<h1 className=" text-xl mb-5">Sign in</h1>
-			<input className=" drop-shadow-md mt-5 mb-5 w-3/5 h-8 rounded-sm p-2"
+		<div className="text-center bg-secondary rounded-md shadow-xl ml-10 mr-10 p-6 flex flex-col gap-10 mt-5">
+			<h1 className=" text-xl">Sign in</h1>
+			<input className=" drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto"
 				name="email"
 				placeholder="Email"
 				value={email}
 				type={email}
 				onChange={(e) => setEmail(e.target.value)}
 			/>
-			<br />
-			<input className="drop-shadow-md mb-2 w-3/5 h-8 rounded-sm p-2"
+			<input className=" drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto"
 				name="password"
 				placeholder="Password"
 				value={password}
 				type={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<div className="w-3/5"> <Link to="/register" className="mt-2">Register</Link> </div>
-			<br />
-			<button onClick={() => loginFn(email, password)} className=" rounded-xl bg-primary p-3 mb m-5">LOGIN</button>
-			<br />
+			<button onClick={() => loginFn(email, password)} className=" rounded-xl bg-primary p-3 mb-5 text-white mx-auto">LOGIN</button>
 			{error && <span>Wrong email or password</span>}
 
-		</div>
 		</div>
 	);
 };
