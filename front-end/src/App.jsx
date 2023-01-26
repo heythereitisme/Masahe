@@ -23,6 +23,8 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="/client/login" element={<Login permission={1}/>} />
+					<Route path="/mt/login" element={<Login permission={2}/>} />
 					<Route path="/client/booking" element={<ClientBooking />} />
 					<Route path="/client/booking/:id" element={<BookUser />} />
 					<Route path="/mt/booking/:id" element={<BookUser mt={true} />} />
@@ -31,8 +33,6 @@ function App() {
 					<Route path="/mt/review" element={<SpReview />} />
 					<Route path="/profilepage" element={<ProfilePage />} />
 					<Route path="/client/user" element={<Details />} />
-					<Route path="/register" element={<Register/>} />
-					<Route path="/login" element={<Login/>} />
 				</Routes>
 				<Footer />
 			</AuthProvider>

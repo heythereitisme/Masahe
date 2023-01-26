@@ -1,13 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Hero() {
   return (
     // style={{ backgroundImage: `url("https://placeimg.com/1000/800/arch")` } img for hero if we need it
     <div className="min-h-screen bg-white">
-     
-
-   
-     
         <div className=' w-[4.5rem] absolute  top-28 left-3 md:w-[8rem] md:top-32 md:left-44'>
         <img src="https://placeimg.com/192/192/people" className=' rounded-full drop-shadow-sm' />
         </div>
@@ -44,8 +41,8 @@ function Hero() {
             <h1 className='mb-10 text-3xl font-bold'>Find your massage therapist</h1>
             <p className="mb-10">Masahe is a safety practice management system that allows cleints receiving mobile services by massage therapists safely by reviewing the rating of their massage therapists prior to arriving at their location.</p>
            <span className='flex flex-col gap-4 items-center md:flex md:flex-row justify-center md:mt-4'> 
-            <button className="btn btn-primary p-2 text-xs w-42 md:p-3 md:text-sm"> Massage Client</button>
-            <button className='btn btn-primary p-2 text-xs w-42 md:p-3 md:text-sm items-center'> Massage Therapist </button>
+            <button className="btn btn-primary p-2 text-xs w-42 md:p-3 md:text-sm"><Link to={"/client/login"}> Sign in as Massage Client</Link></button>
+            <button className='btn btn-primary p-2 text-xs w-42 md:p-3 md:text-sm items-center'><Link to={"/mt/login"}> Sign in as Massage Therapist </Link></button>
             </span>
             </div>
           </div>

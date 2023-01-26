@@ -46,9 +46,9 @@ function Navbar() {
        
       </ul>
     </div>
-    <div className="navbar-end">
-      <Link to="/profilepage" className="btn"> Sign in </Link>
-    </div>
+    {/* <div className="navbar-end">
+      <Link to="/login" className="btn"> Sign in </Link>
+    </div> */}
     
   </div>
   )
