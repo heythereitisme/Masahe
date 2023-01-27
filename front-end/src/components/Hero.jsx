@@ -5,31 +5,31 @@ function Hero() {
   return (
     // style={{ backgroundImage: `url("https://placeimg.com/1000/800/arch")` } img for hero if we need it
     <div className="min-h-screen bg-white">
-        <div className=' w-[4.5rem] absolute  top-28 left-3 md:w-[8rem] md:top-32 md:left-44'>
+        <div className=' w-[6rem] absolute  top-28 left-3 md:w-[12rem] md:top-32 md:left-44'>
         <img src="https://placeimg.com/192/192/people" className=' rounded-full drop-shadow-sm' />
         </div>
        
-       <div>
-        <div className='w-[5.5rem] absolute left-3 bottom-2 md:w-[7rem] md:bottom-6 md:left-48'>
+       
+        {/* <div className='w-[5.5rem] absolute left-3 bottom-2 md:w-[7rem] md:bottom-6 md:left-48'>
         <img src="https://placeimg.com/192/192/people" className='rounded-full' />
-        </div>
+        </div> */}
 
-        </div>
-        <div className='w-[5rem] absolute top-28 right-3 md:w-[7.5rem] md:top-36 md:right-44'>
+        
+        {/* <div className='w-[5rem] absolute top-28 right-3 md:w-[7.5rem] md:top-36 md:right-44'>
         <img src="https://placeimg.com/192/192/people" className=' rounded-full' />
-        </div>
+        </div> */}
        
-       <div>
-        <div className='w-[6rem] absolute right-3 bottom-1   md:w-[8.5 rem] md:right-48 md:bottom-8'>
+       
+        <div className='w-[6rem] absolute right-3 bottom-1 md:w-[12rem] md:right-36 md:bottom-8 md:ml-5'>
         <img src="https://placeimg.com/192/192/people" className='rounded-full' />
         </div>
-        </div>
+        
        
-     <div className=' absolute top-32 left-24 md:top-40 md:left-80 text-lg'>
-      <p className='text-black w-[10rem] md:w-[11rem] italic'> "testimonial by a massage therpaist"</p>
+     <div className=' absolute top-32 left-28 md:top-48 md:left-96 md:text-2xl '>
+      <p className='text-black w-[10rem] md:w-[13rem] italic'> "testimonial by a massage therpaist"</p>
       </div>
-      <div className=' absolute bottom-6 right-24 md:bottom-14 md:right-64 md:text-lg'>
-      <p className='text-black w-[9rem] md:w-[11rem] italic'> "testimonial by a massage client"</p>
+      <div className=' absolute bottom-6 right-24 md:bottom-20 md:right-80 md:text-2xl'>
+      <p className='text-black w-[9rem] md:w-[13rem] italic'> "testimonial by a massage client"</p>
       </div>
       
     
