@@ -23,6 +23,12 @@ export const getAllClients = async() => {
     return users
 }
 
+export const getUserByUserName = async(u) => {
+    const user = await User.find({username: u})
+    console.log("Client sent")
+    return user
+}
+
 export const getAllSPs = async() => {
     const users = await User.find({permission: 2})
     console.log("SP Users sent")

@@ -21,13 +21,13 @@ export const AuthProvider = (props) => {
 	const [regError, setRegError] = useState(false);
 	const [user, setUser] = useState(null);
 
-	const addUser = async ({permission, firstName, lastName, username}) => {
+	const addUser = async ({permission, firstName, lastName, username, token}) => {
 		const req = await fetch("/api/user", {
 		  method: "POST",
 		  headers: {
 			"Content-Type": "application/json",
 		  },
-		  body: JSON.stringify({permission, firstName, lastName, username}),
+		  body: JSON.stringify({permission, firstName, lastName, username, token}),
 		});
 		const newUser = await req.json();
 		console.log(newUser.firstName, "added");
@@ -57,9 +57,7 @@ export const AuthProvider = (props) => {
 		try {
 			let userCred = await signInWithEmailAndPassword(auth, email, password);
 			if (userCred) {
-				const username = userCred.user.displayName
-				const token = userCred.user.accessToken
-				updateUser({username, token})
+				console.log("Login Successful!")
 			} else {
 				console.log("Login failed!");
 			}
@@ -82,11 +80,12 @@ export const AuthProvider = (props) => {
 				);
 				if (userCred) {
 					const user = userCred.user
+					const token = user.accessToken
 					await updateProfile(user, {
 						displayName: username,
 					})
-					addUser({permission, firstName, lastName, username})
-					alert("Registration Successful! Please log in again.")
+					addUser({permission, firstName, lastName, username, token})
+					alert("Registration Successful! Please Sign in again!")
 				} else {
 					console.log("Registration failed!");
 				}
@@ -94,8 +93,9 @@ export const AuthProvider = (props) => {
 				alert("REGISTRATION FAILURE!", err.message);
 				setRegError(true);
 			}
-
+			
 			logout()
+
 	};
 	const theValues = { user, login, logout, error, register, regError };
 
