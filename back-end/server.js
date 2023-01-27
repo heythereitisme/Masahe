@@ -20,7 +20,7 @@ const firebaseConfig = {
 const PORT = 4000;
 const app = express();
 const fb = initializeApp(firebaseConfig);
-const auth = getAuth(fb)
+export const auth = getAuth(fb)
 
 app.use(express.json());
 
@@ -37,18 +37,19 @@ app.post("/api/auth", async (req, res) => {
 	const key = req.body.key
 	const un = req.body.username
 	const user = await getUserByUserName(un)
-	const key2 = user[0].token
-	const verify1 = await auth.verifyIdToken(key)
-	const verify2 = await auth.verifyIdToken(key2)
-	const permission = user[0].permission
-	if(verify1.uid === verify2.uid){
+	const key2 = user.uid
+	const permission = user.permission
+	const verify = await auth.verifyIdToken(key)
+	if(verify.uid === key2){
 		console.log("Authenticated user! Permission level:", permission)
 		res.send({message: "Success!", permission})
 	} else {
 		console.log("Authentication failed!")
-		res.status(401).send({message: "Failure!"})
+		res.status(401).send({message: "Failure!", permission: 0})
 	}
 	} catch(err) {
-		res.status(500).send(err)
+		console.log(err)
+		res.status(500).send({message: err, permission: 0})
 	}
 })
+

@@ -7,6 +7,6 @@ const ClientBooking = () => {
       <ReviewPrototype /> 
       </div>
       )
-    }
+  }
   
 export default ClientBooking

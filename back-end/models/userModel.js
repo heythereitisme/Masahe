@@ -1,4 +1,5 @@
 import mongoose from "../mongoose.js";
+import { auth } from "../server.js";
 
 const userSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
@@ -6,7 +7,7 @@ const userSchema = new mongoose.Schema({
     permission: {type: Number, required: true, default: 1},
     avgRating: {type: Number, default: 0},
     username: {type: String, required: true, unique: true},
-    token: {type: String}
+    uid: {type: String, required: true, unique: true}
 })
 
 const User = mongoose.model("Users", userSchema,)
@@ -24,8 +25,8 @@ export const getAllClients = async() => {
 }
 
 export const getUserByUserName = async(u) => {
-    const user = await User.find({username: u})
-    console.log("Found user")
+    const user = await User.findOne({username: u})
+    console.log("Found user", user.username)
     return user
 }
 
@@ -35,7 +36,10 @@ export const getAllSPs = async() => {
     return users
 }
 
-export const addUser = async(u) => {
+export const addUser = async({permission, firstName, lastName, username, token}) => {
+    const verify = await auth.verifyIdToken(token)
+    const uid = verify.uid
+    const u = {permission, firstName, lastName, username, uid}
     const user = await User.create(u)
     console.log(user.firstName, "added")
     return user

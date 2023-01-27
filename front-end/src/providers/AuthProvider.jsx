@@ -43,15 +43,22 @@ export const AuthProvider = (props) => {
 		  },
 		  body: JSON.stringify({key, username}),
 		});
-		const tester = await req.json();
-		console.log(tester, "testing");
-		setPermission(tester.permission)
+		const perm = await req.json();
+		console.log("perm", perm)
+		if(perm.permission){
+			setPermission(perm.permission)
+		}
 	  };
 
 	useEffect(() => {
-		const unsub = onAuthStateChanged(auth, async(user) => {
-			setUser(user);
-			await permissionChecker(user.accessToken, user.displayName)
+		const unsub = onAuthStateChanged(auth, (user) => {
+				setUser(user);
+					if(user){
+						console.log(user)
+					permissionChecker(user.accessToken, user.displayName)
+		} else {
+			setPermission(0)
+		}
 		});
 		return unsub; // to shut down onAuthStateChanged listener
 	}, [auth]);
@@ -72,6 +79,7 @@ export const AuthProvider = (props) => {
 
 	const logout = async () => {
 		await signOut(auth);
+		setPermission(0)
 	};
 
 	const register = async (email, password, username, firstName, lastName, permission) => {
