@@ -20,6 +20,7 @@ export const AuthProvider = (props) => {
 	const [error, setError] = useState(false);
 	const [regError, setRegError] = useState(false);
 	const [user, setUser] = useState(null);
+	const [permission, setPermission] = useState(0)
 
 	const addUser = async ({permission, firstName, lastName, username, token}) => {
 		const req = await fetch("/api/user", {
@@ -34,21 +35,23 @@ export const AuthProvider = (props) => {
 		
 	  };
 
-	  const updateUser = async ({username, token}) => {
-		const req = await fetch("/api/user", {
-		  method: "PUT",
+	  const permissionChecker = async (key, username) => {
+		const req = await fetch("/api/auth", {
+		  method: "POST",
 		  headers: {
 			"Content-Type": "application/json",
 		  },
-		  body: JSON.stringify({username, token}),
+		  body: JSON.stringify({key, username}),
 		});
-		const updatedUser = await req.json();
-		console.log(updatedUser.firstName, "updated");
+		const tester = await req.json();
+		console.log(tester, "testing");
+		setPermission(tester.permission)
 	  };
 
 	useEffect(() => {
-		const unsub = onAuthStateChanged(auth, (user) => {
+		const unsub = onAuthStateChanged(auth, async(user) => {
 			setUser(user);
+			await permissionChecker(user.accessToken, user.displayName)
 		});
 		return unsub; // to shut down onAuthStateChanged listener
 	}, [auth]);
@@ -57,7 +60,7 @@ export const AuthProvider = (props) => {
 		try {
 			let userCred = await signInWithEmailAndPassword(auth, email, password);
 			if (userCred) {
-				console.log("Login Successful!")
+				await permissionChecker(userCred.user.accessToken, userCred.user.displayName)
 			} else {
 				console.log("Login failed!");
 			}
@@ -97,7 +100,7 @@ export const AuthProvider = (props) => {
 			logout()
 
 	};
-	const theValues = { user, login, logout, error, register, regError };
+	const theValues = { user, login, logout, error, register, regError, permission };
 
 	return (
 		<AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>

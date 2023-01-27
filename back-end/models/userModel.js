@@ -25,7 +25,7 @@ export const getAllClients = async() => {
 
 export const getUserByUserName = async(u) => {
     const user = await User.find({username: u})
-    console.log("Client sent")
+    console.log("Found user")
     return user
 }
 
