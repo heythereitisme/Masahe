@@ -44,7 +44,6 @@ export const AuthProvider = (props) => {
 		  body: JSON.stringify({key, username}),
 		});
 		const perm = await req.json();
-		console.log("perm", perm)
 		if(perm.permission){
 			setPermission(perm.permission)
 		}
@@ -54,8 +53,7 @@ export const AuthProvider = (props) => {
 		const unsub = onAuthStateChanged(auth, (user) => {
 				setUser(user);
 					if(user){
-						console.log(user)
-					permissionChecker(user.accessToken, user.displayName)
+						permissionChecker(user.accessToken, user.displayName)
 		} else {
 			setPermission(0)
 		}
