@@ -8,6 +8,11 @@ module.exports = {
       lg: "976px",
       xl: "1440px",
     },
+    fontFamily: {
+      heading: ["Century Gothic", "sans-serif"],
+      title: ["Montserrat", "sans-serif"],
+      body: ["Roboto", "sans-serif"],
+    },
   },
   daisyui: {
     themes: [

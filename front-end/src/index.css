@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+@import url('https://fonts.cdnfonts.com/css/century-gothic');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
