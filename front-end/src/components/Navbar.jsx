@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className="navbar bg-primary drop-shadow-lg">
     <div className="navbar-start">
-      <div className="dropdown">
+      <div className="dropdown z-10">
         <label tabIndex={0} className="btn btn-ghost lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
         </label>
@@ -13,7 +13,7 @@ function Navbar() {
           <li><Link to='/'>Home</Link></li>
           <li><Link to="/client/booking"> Booking </Link> </li>
           <li tabIndex={0}>
-            <a className="justify-between z-1">
+            <a className="justify-between">
             Services
               <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
             </a>
@@ -25,7 +25,8 @@ function Navbar() {
         
         </ul>
       </div>
-      <a className="btn btn-ghost normal-case text-xl">Masahe</a>
+      <img src="/Logo-H.svg" className='w-36 m-1 rounded-lg' alt="" />
+     
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
@@ -46,9 +47,9 @@ function Navbar() {
        
       </ul>
     </div>
-    {/* <div className="navbar-end">
-      <Link to="/login" className="btn"> Sign in </Link>
-    </div> */}
+    <div className="navbar-end">
+    
+    </div>
     
   </div>
   )
