@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../providers/AuthProvider'
+import AuthFailure from '../AuthFailure'
 
 const UserDetails = () => {
     const [params, setParams] = useSearchParams()
@@ -8,12 +10,13 @@ const UserDetails = () => {
     const [userValue, setUserValue] = useState('')
     const [notes, setNotes] = useState('')
     const navigate = useNavigate()
+    const auth = useContext(AuthContext)
+    const permission = auth.permission
     
     const getUserDetails = async() => {
         const serverReq = await fetch(`/api/rating/notes/${userValue}`)
         const userDetails = await serverReq.json()
         setUser(userDetails)
-        console.log(userDetails)
       }
     
       useEffect(() => {
@@ -56,7 +59,7 @@ const UserDetails = () => {
       }
 
       const returnPage = () => {
-        navigate("/client/booking")
+        navigate(-1)
       }
 
       const bookUser = (u) => {
@@ -69,22 +72,42 @@ const UserDetails = () => {
               <div className='bg-stone 200 min-h-screen text-center'>Loading user</div>
               )
             } else {
+              if(user.ratedUser.permission === permission){
+                return <AuthFailure />
+              }
+              if(user.ratedUser.permission === 1){
                 return (
-                    <div className='bg-stone-200 min-h-screen text-center flex flex-col'>
-                            <h1 className='text-3xl m-1'>User Details:</h1>
-                            <h3 className='text-5xl m-1'>Name: {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
-                        <span className='text-xl m-1'>
-                            Rating: {user.ratedUser.avgRating}   
-                        </span>
-                        <form onSubmit={formSubmit} className='flex flex-col w-screen mb-2'>
-                            <span>Notes:</span>
-                            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='w-2/3 min-h-[50vh] mx-auto'/>
-                            <button type='submit' className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-2/3 mx-auto'>Save</button>
-                        </form>
-                        <button onClick={() => bookUser(user.ratedUser._id)} className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Book</button>
-                        <button onClick={returnPage} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Back</button>
-                    </div>
-                )
+                  <div className='bg-stone-200 min-h-screen text-center flex flex-col'>
+                          <h1 className='text-3xl m-1'>User Details: {user.ratedUser.username}</h1>
+                          <h3 className='text-5xl m-1'>Name: {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
+                      <span className='text-xl m-1'>
+                          Rating: {user.ratedUser.avgRating}   
+                      </span>
+                      <form onSubmit={formSubmit} className='flex flex-col w-screen mb-2'>
+                          <span>Notes:</span>
+                          <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='w-2/3 min-h-[50vh] mx-auto'/>
+                          <button type='submit' className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-2/3 mx-auto'>Save</button>
+                      </form>
+                      <button onClick={returnPage} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Back</button>
+                  </div>
+              )
+              } else if (user.ratedUser.permission === 2) {
+                <div className='bg-stone-200 min-h-screen text-center flex flex-col'>
+                          <h1 className='text-3xl m-1'>User Details: {user.ratedUser.username}</h1>
+                          <h3 className='text-5xl m-1'>Name: {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
+                      <span className='text-xl m-1'>
+                          Rating: {user.ratedUser.avgRating}   
+                      </span>
+                      <form onSubmit={formSubmit} className='flex flex-col w-screen mb-2'>
+                          <span>Notes:</span>
+                          <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='w-2/3 min-h-[50vh] mx-auto'/>
+                          <button type='submit' className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-2/3 mx-auto'>Save</button>
+                      </form>
+                      <button onClick={() => bookUser(user.ratedUser._id)} className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Book</button>
+                      <button onClick={returnPage} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Back</button>
+                  </div>
+              }
+                
             }
 }
 

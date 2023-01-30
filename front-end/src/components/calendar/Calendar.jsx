@@ -12,6 +12,8 @@ import {
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const DnDCalendar = withDragAndDrop(Calendar);
 
@@ -19,12 +21,14 @@ const BookingCalendar = ({ mt }) => {
   const myLocalizer = momentLocalizer(moment);
   const dayLayoutAlgorithm = "no-overlap";
   const [myEvents, setMyEvents] = useState([]);
+  const auth = useContext(AuthContext)
+  const muid = auth.muid
   const uid = useParams();
 
   const getEvents = async () => {
     setMyEvents([]);
     if (mt) {
-      const events = await listEvents(uid.id);
+      const events = await listEvents(muid);
       if (events[0]) {
         const newEvents = events.map((e) => {
           const newStart = new Date(e.start);
@@ -59,7 +63,7 @@ const BookingCalendar = ({ mt }) => {
   const handleSelectSlot = async ({ start, end }) => {
     const title = window.prompt("New Event name");
     if (title) {
-      await createEvent({ start, end, title, resources: { user: uid.id} });
+      await createEvent({ start, end, title, resources: { user: muid} });
       await getEvents();
     }
   };
@@ -97,7 +101,7 @@ const BookingCalendar = ({ mt }) => {
       console.log(uid);
       await updateEvent({
         id,
-        resources: { client: "63bb70be2b36096377a55d54", user: uid.id },
+        resources: { client: muid, user: uid.id },
       });
       await getEvents();
     }

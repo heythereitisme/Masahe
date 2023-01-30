@@ -1,10 +1,10 @@
 import React from 'react'
-import ReviewPrototype from '../components/reviewPrototype/ReviewPrototype'
+import UserList from '../components/reviewPrototype/UserList'
 
 const ClientReview = () => {
   return (
     <div> 
-    <ReviewPrototype />
+    <userList />
     </div>
   )
 }

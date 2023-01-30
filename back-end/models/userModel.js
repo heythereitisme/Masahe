@@ -32,7 +32,7 @@ export const getUserByUserName = async(u) => {
 
 export const getAllSPs = async() => {
     const users = await User.find({permission: 2})
-    console.log("SP Users sent")
+    console.log("MTs sent")
     return users
 }
 

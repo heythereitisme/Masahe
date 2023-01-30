@@ -1,12 +1,12 @@
 import React from 'react'
 import UserList from '../components/reviewPrototype/UserList'
 
-const ClientBooking = () => {
+const MTSchedule = () => {
     return (
       <div className="bg-white text-center min-h-screen p-1"> 
-      <UserList /> 
+      <UserList mt={true}/> 
       </div>
       )
   }
   
-export default ClientBooking
+export default MTSchedule
