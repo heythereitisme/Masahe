@@ -47,14 +47,19 @@ router.post("/", async (req, res) => {
 
 router.patch("/", async (req, res) => {
   try {
- 
-    const id = req.body.id
-    const {client, user} = req.body.resources;
-    const foundUser = await getUserByUserName(user)
-    const uid = foundUser._id
-    const event = {id, resources:{client, user: uid}}
-    const updatedEvent = await updateEvent(event);
-    res.send(updatedEvent);
+    if(req.body.resources){
+      const id = req.body.id
+      const {client, user} = req.body.resources;
+      const foundUser = await getUserByUserName(user)
+      const uid = foundUser._id
+      const event = {id, resources:{client, user: uid}}
+      const updatedEvent = await updateEvent(event);
+      res.send(updatedEvent);
+    } else {
+      const event = req.body
+      const updatedEvent = await updateEvent(event)
+      res.send(updatedEvent)
+    }
     
   } catch (error) {
     console.error(error);
