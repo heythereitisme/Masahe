@@ -7,8 +7,8 @@ function Hero() {
     <div className="min-h-screen bg-white min-w-screen">
       <div className='flex items-center relative top-16 ml-4 md:top-16 md:pl-24'>
         
-        <div className=' w-[6rem] md:w-[12rem]'>
-        <img src="https://placeimg.com/192/192/people" className='rounded-full drop-shadow-sm' />
+        <div>
+        <img src="/masahe-1.jpeg" className=' w-[6rem] h-[6rem] md:h-[12rem] md:w-[12rem] rounded-full shadow-xl' />
         </div> 
      <div className=' md:text-2xl '>
       <p className='text-black w-[10rem] md:w-[13rem] italic font-body ml-5 md:ml-5'> "testimonial by a massage therpaist"</p>
@@ -36,8 +36,8 @@ function Hero() {
          <p className='text-black w-[10rem] md:w-[14rem] italic font-body text-right mr-5'> "testimonial by a massage client"</p>
         </div>
 
-        <div className='w-[6rem] md:w-[12rem]'>
-        <img src="https://placeimg.com/192/192/people" className='rounded-full' />
+        <div>
+        <img src="/masahe-3.avif" className=' w-[6rem] h-[6rem] md:h-[12rem] md:w-[12rem] rounded-full shadow-xl' />
        
       </div>
       
