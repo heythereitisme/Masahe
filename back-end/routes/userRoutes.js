@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, getAllClients, getAllSPs, addUser, deleteUser, updateUser } from "../models/userModel.js";
+import { getAllUsers, getAllClients, getAllSPs, addUser, deleteUser, updateUser, getUserByUserName } from "../models/userModel.js";
 
 const router = Router()
 
@@ -16,17 +16,19 @@ router.get("/", async (req, res) => {
 router.get("/client", async (req, res) => {
     try {
         const clients = await getAllClients();
-        res.send(clients);
+        const filteredClients = clients.map(({_id, firstName, lastName, avgRating, username}) => ({_id, firstName, lastName, avgRating, username}))
+        res.send(filteredClients);
       } catch (error) {
         console.error(error);
         res.status(500).send(error);
       }
 })
 
-router.get("/sp", async (req, res) => {
+router.get("/mt", async (req, res) => {
     try {
-        const sps = await getAllSPs();
-        res.send(sps);
+        const mts = await getAllSPs();
+        const filteredMTs = mts.map(({_id, firstName, lastName, avgRating, username}) => ({_id, firstName, lastName, avgRating, username}))
+        res.send(filteredMTs);
       } catch (error) {
         console.error(error);
         res.status(500).send(error);

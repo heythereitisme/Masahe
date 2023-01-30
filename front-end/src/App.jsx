@@ -10,6 +10,7 @@ import ClientReview from "./pages/ClientReview";
 import Details from "./pages/Details";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import MTSchedule from "./pages/Scheduling";
 import Search from "./pages/Search";
 import SpReview from "./pages/SpReview";
 import { AuthProvider } from "./providers/AuthProvider";
@@ -31,11 +32,12 @@ function App() {
 						<Route path="/client/booking/:id" element={<BookUser />} />
 						<Route path="/client/search" element={<Search />} />
 						<Route path="/client/review" element={<ClientReview />} />
-						<Route path="/client/user" element={<Details />} />
 					</Route>
 					<Route element={<MTPortal />}>
-						<Route path="/mt/booking/:id" element={<BookUser mt={true} />} />
+					<Route path="/mt/schedule" element={<MTSchedule/>} />
+						<Route path="/mt/schedule/:id" element={<BookUser mt={true} />} />
 						<Route path="/mt/review" element={<SpReview />} />
+						<Route path="/client/user" element={<Details />} />
 					</Route>
 				</Routes>
 			</AuthProvider>

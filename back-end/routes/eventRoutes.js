@@ -6,11 +6,14 @@ import {
   updateEvent,
   getUserEvents
 } from "../models/eventsModel.js";
+import { getUserByUserName } from "../models/userModel.js";
 
 const router = Router();
 
 router.get("/:id", async (req, res) => {
-  const id = req.params.id
+  const un = req.params.id
+  const user = await getUserByUserName(un)
+  const id = user._id
   try {
     const events = await getBookingEvents(id);
     res.send(events);
@@ -44,9 +47,15 @@ router.post("/", async (req, res) => {
 
 router.patch("/", async (req, res) => {
   try {
-    const event = req.body;
+ 
+    const id = req.body.id
+    const {client, user} = req.body.resources;
+    const foundUser = await getUserByUserName(user)
+    const uid = foundUser._id
+    const event = {id, resources:{client, user: uid}}
     const updatedEvent = await updateEvent(event);
     res.send(updatedEvent);
+    
   } catch (error) {
     console.error(error);
     res.status(500).send(error);

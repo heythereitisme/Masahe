@@ -21,6 +21,7 @@ export const AuthProvider = (props) => {
 	const [regError, setRegError] = useState(false);
 	const [user, setUser] = useState(null);
 	const [permission, setPermission] = useState(0)
+	const [muid, setMuid] = useState("")
 
 	const addUser = async ({permission, firstName, lastName, username, token}) => {
 		const req = await fetch("/api/user", {
@@ -46,8 +47,11 @@ export const AuthProvider = (props) => {
 		const perm = await req.json();
 		if(perm.permission){
 			setPermission(perm.permission)
+			setMuid(perm.muid)
 		}
 	  };
+
+
 
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
@@ -106,7 +110,7 @@ export const AuthProvider = (props) => {
 			logout()
 
 	};
-	const theValues = { user, login, logout, error, register, regError, permission };
+	const theValues = { user, login, logout, error, register, regError, permission, muid };
 
 	return (
 		<AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>

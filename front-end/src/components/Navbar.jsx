@@ -12,6 +12,7 @@ function Navbar() {
         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52">
           <li><Link to='/'>Home</Link></li>
           <li><Link to="/client/booking"> Booking </Link> </li>
+          <li><Link to="/mt/schedule"> Scheduling </Link> </li>
           <li tabIndex={0}>
             <a className="justify-between z-1">
             Services
@@ -30,8 +31,8 @@ function Navbar() {
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
         <li><Link to='/'>Home</Link></li>
-      
        <li> <Link to="/client/booking"> Booking </Link> </li>
+       <li><Link to="/mt/schedule"> Scheduling </Link> </li>
          
        <li tabIndex={0}>
             <a className="justify-between">
