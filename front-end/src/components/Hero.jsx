@@ -11,7 +11,7 @@ function Hero() {
         <img src="/masahe-1.jpeg" className=' w-[6rem] h-[6rem] md:h-[12rem] md:w-[12rem] rounded-full shadow-xl' />
         </div> 
      <div className=' md:text-2xl '>
-      <p className='text-black w-[10rem] md:w-[20rem] italic font-body ml-5 md:ml-5'> "Easy access to massages servcies near you!"</p>
+      <p className='text-black w-[10rem] md:w-[20rem] italic font-body ml-5 md:ml-5'> Easy access to massage services near you!</p>
       </div>
      </div>
     
@@ -33,11 +33,11 @@ function Hero() {
 
       <div className='flex items-center justify-end relative pb-12 pr-4  md:pr-24 '>
         <div className='md:text-2xl'>
-         <p className='text-black w-[10rem] md:w-[20rem] italic font-body text-right mr-5'> "Conncecting and communicating to clients made easy"</p>
+         <p className='text-black w-[10rem] md:w-[20rem] italic font-body text-right mr-5'> Conncecting and communicating to clients made easy</p>
         </div>
 
         <div>
-        <img src="/masahe-3.avif" className=' w-[6rem] h-[6rem] md:h-[12rem] md:w-[12rem] rounded-full shadow-xl' />
+        <img src="/masahe-2.jpeg" className=' w-[6rem] h-[6rem] md:h-[12rem] md:w-[12rem] rounded-full shadow-xl' />
        
       </div>
       
