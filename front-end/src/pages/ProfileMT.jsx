@@ -1,8 +1,9 @@
 import React from 'react'
+import Profile from '../components/massageTherapist/Profile'
 
 function ProfileMT() {
   return (
-    <div>ProfileMT</div>
+    <Profile/>
   )
 }
 
