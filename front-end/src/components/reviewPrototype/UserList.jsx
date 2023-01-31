@@ -17,7 +17,6 @@ const UserList = ({ mt }) => {
   const muid = auth.muid
   const pages = [];
  
-  
   useEffect(() => {
    getUsers()
   }, [auth])
@@ -34,30 +33,22 @@ const UserList = ({ mt }) => {
 
   useEffect(() => {
     if(userList[0]){
-      const filteredData = userList.filter(item =>
-        item.firstName.toLowerCase().includes(filter.toLowerCase())
-        );
-        const sortedData = filteredData.sort((a, b) => {
-          let fa = a.firstName.toLowerCase(),
-              fb = b.firstName.toLowerCase();
-              if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
-        })
-        setFilteredUsers(sortedData)
-        setMaxPages(Math.ceil(sortedData.length / entriesPerPage) - 1)
+        sorter("firstName")
       }
   }, [userList[0]])
 
+  useEffect(() => {
+      const filteredData = filtered()
+      setFilteredUsers(filteredData)
+  }, [filter])
 
-  for (let i = 0; i < filteredUsers.length; i += entriesPerPage) {
-    pages.push(filteredUsers.slice(i, i + entriesPerPage));
-  }
-
+  const filtered = () => {
+    return userList.filter(item => { 
+      return item.firstName.toLowerCase().includes(filter.toLowerCase()) || 
+      item.lastName.toLowerCase().includes(filter.toLowerCase()) ||
+      item.username.toLowerCase().includes(filter.toLowerCase())})
+}
+    
   const getClients = async () => {
     const req = await fetch("/api/user/client");
     const users = await req.json();
@@ -104,6 +95,32 @@ const UserList = ({ mt }) => {
     }
   }
 
+  const sorter = async(f) => {
+   const filteredData = filtered()
+   setMaxPages(Math.ceil(filteredData.length / entriesPerPage) - 1)
+    if(f === "avgRating"){
+      const sort = filteredData.sort((a, b) => {
+        return b[f] - a[f]
+      })
+      setFilteredUsers(sort)
+    } else {
+        const sort = filteredData.sort((a, b) => {
+          let fa = a[f].toLowerCase(),
+              fb = b[f].toLowerCase();
+              if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        })
+        setFilteredUsers(sort)
+    }
+  }
+
+  
+
   const detailPage = (u) => {
     navigate(`/client/user?id=${u}`)
   } 
@@ -120,14 +137,39 @@ const UserList = ({ mt }) => {
     navigate(`/mt/schedule/${u}`)
   }
 
-  if(!pages[0]){
-    return <span>loading</span>
-  } else {
-  
-    if(mt){
-    return (
+  for (let i = 0; i < filteredUsers.length; i += entriesPerPage) {
+    pages.push(filteredUsers.slice(i, i + entriesPerPage));
+  }
+
+  if(mt){
+    if(!pages[0]){
+      return(
       <div>
-        <button onClick={() => schedulePage(un)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/3 h-24'>Set Schedule</button>
+      <div className="flex flex-col gap-5">
+      <button onClick={() => schedulePage(un)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/3 h-24 mx-auto'>Set Schedule</button>
+      <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Search" className="mx-auto mb-5 border border-black" />
+      </div>
+      <div className="mb-10">
+        <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("avgRating")}>Sort by rating</button>
+        <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("firstName")}>Sort by first name</button>
+        <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("lastName")}>Sort by last name</button>
+      </div>
+      <span className="text-3xl">Not Found</span>
+      </div>
+      ) 
+    } else {
+
+      return (
+        <div>
+        <div className="flex flex-col gap-5">
+        <button onClick={() => schedulePage(un)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/3 h-24 mx-auto'>Set Schedule</button>
+        <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Search" className="mx-auto mb-5 border border-black" />
+        </div>
+        <div>
+          <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("avgRating")}>Sort by rating</button>
+          <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("firstName")}>Sort by first name</button>
+          <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("lastName")}>Sort by last name</button>
+        </div>
       <div className="grid grid-cols-4 gap-2 mt-5">
         {pages[currentPage].map((u) => {
           return (
@@ -159,10 +201,30 @@ const UserList = ({ mt }) => {
       <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-32' onClick={() => changePage(1)}> Next page</button>
   </div>
   );
-  } else {
-    return (
-      <div>
-
+}
+} else {
+  if(!pages[0]){
+    return(
+    <div>
+    <div className="flex flex-col gap-5">
+    <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Search" className="mx-auto mb-5 border border-black" />
+    </div>
+    <div className="mb-10">
+      <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("avgRating")}>Sort by rating</button>
+      <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("firstName")}>Sort by first name</button>
+      <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("lastName")}>Sort by last name</button>
+    </div>
+    <span className="text-3xl">Not Found</span>
+    </div>
+    )} else {
+      return (
+        <div>
+          <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Search" className="mx-auto mb-5 border border-black" />
+          <div className="mb-10">
+      <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("avgRating")}>Sort by rating</button>
+      <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("firstName")}>Sort by first name</button>
+      <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24' onClick={() => sorter("lastName")}>Sort by last name</button>
+    </div>
       <div className="grid grid-cols-4 gap-2 mt-5">
         {pages[currentPage].map((u) => {
           return (
@@ -195,9 +257,10 @@ const UserList = ({ mt }) => {
         <button className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-32' onClick={() => changePage(1)}> Next page</button>
         </div>
   );
-  }
+}
+}
 
 }
-};
+;
 
 export default UserList;
