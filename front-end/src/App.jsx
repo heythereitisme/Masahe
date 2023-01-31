@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import MTSchedule from "./pages/Scheduling";
 import Search from "./pages/Search";
 import SpReview from "./pages/SpReview";
+import ProfileMT from "./pages/ProfileMT"
 import { AuthProvider } from "./providers/AuthProvider";
 import { FirebaseProvider } from "./providers/FirebaseProvider";
 
@@ -38,6 +39,7 @@ function App() {
 						<Route path="/mt/schedule/:id" element={<BookUser mt={true} />} />
 						<Route path="/mt/review" element={<SpReview />} />
 						<Route path="/client/user" element={<Details />} />
+						<Route path="mt/profile" element={<ProfileMT/>} />
 					</Route>
 				</Routes>
 			</AuthProvider>
