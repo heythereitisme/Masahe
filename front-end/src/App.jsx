@@ -16,6 +16,8 @@ import SpReview from "./pages/SpReview";
 import ProfileMT from "./pages/ProfileMT"
 import { AuthProvider } from "./providers/AuthProvider";
 import { FirebaseProvider } from "./providers/FirebaseProvider";
+import Services from "./pages/Services";
+import MTHome from "./components/massageTherapist/MTHome";
 
 function App() {
 	return (
@@ -33,9 +35,12 @@ function App() {
 						<Route path="/client/booking/:id" element={<BookUser />} />
 						<Route path="/client/search" element={<Search />} />
 						<Route path="/client/review" element={<ClientReview />} />
+						<Route path="/client/services" element={<Services />} />
 						<Route path="/mt/user" element={<Details />} />
+
 					</Route>
 					<Route element={<MTPortal />}>
+						<Route path="/mt/home" element={<MTHome/>} />
 						<Route path="/mt/schedule" element={<MTSchedule/>} />
 						<Route path="/mt/schedule/:id" element={<BookUser mt={true} />} />
 						<Route path="/mt/review" element={<SpReview />} />
