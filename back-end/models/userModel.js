@@ -7,7 +7,10 @@ const userSchema = new mongoose.Schema({
     permission: {type: Number, required: true, default: 1},
     avgRating: {type: Number, default: 0},
     username: {type: String, required: true, unique: true},
-    uid: {type: String, required: true, unique: true}
+    uid: {type: String, required: true, unique: true},
+    licensed: Boolean,
+    phoneNumber: String,
+    quadrant: String
 })
 
 const User = mongoose.model("Users", userSchema,)
