@@ -92,7 +92,8 @@ const UserDetails = () => {
                   </div>
               )
               } else if (user.ratedUser.permission === 2) {
-                <div className='bg-stone-200 min-h-screen text-center flex flex-col'>
+                return(
+                  <div className='bg-stone-200 min-h-screen text-center flex flex-col'>
                           <h1 className='text-3xl m-1'>User Details: {user.ratedUser.username}</h1>
                           <h3 className='text-5xl m-1'>Name: {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
                       <span className='text-xl m-1'>
@@ -106,8 +107,9 @@ const UserDetails = () => {
                       <button onClick={() => bookUser(user.ratedUser._id)} className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Book</button>
                       <button onClick={returnPage} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Back</button>
                   </div>
+              )
               }
-                
+              
             }
 }
 

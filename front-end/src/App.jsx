@@ -33,9 +33,10 @@ function App() {
 						<Route path="/client/booking/:id" element={<BookUser />} />
 						<Route path="/client/search" element={<Search />} />
 						<Route path="/client/review" element={<ClientReview />} />
+						<Route path="/mt/user" element={<Details />} />
 					</Route>
 					<Route element={<MTPortal />}>
-					<Route path="/mt/schedule" element={<MTSchedule/>} />
+						<Route path="/mt/schedule" element={<MTSchedule/>} />
 						<Route path="/mt/schedule/:id" element={<BookUser mt={true} />} />
 						<Route path="/mt/review" element={<SpReview />} />
 						<Route path="/client/user" element={<Details />} />

@@ -80,6 +80,10 @@ const UserList = ({ mt }) => {
   const detailPage = (u) => {
     navigate(`/client/user?id=${u}`)
   } 
+
+  const mtDetailPage = (u) => {
+    navigate(`/mt/user?id=${u}`)
+  } 
   
   const bookingPage = (u) => {
     navigate(`/client/booking/${u}`)
@@ -136,7 +140,7 @@ const UserList = ({ mt }) => {
               </span>
               <span>Rating: {u.avgRating} </span>
               <div className="button-holder">
-                <button onClick={() => detailPage(u._id)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24'>Details</button>
+                <button onClick={() => mtDetailPage(u.username)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24'>Details</button>
                 <button onClick={() => bookingPage(u.username)} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24'>Book</button>
               </div>
               <form onSubmit={(e) => submitRating(e, u)} className='container mx-auto'>
