@@ -25,26 +25,22 @@ function Navbar() {
           </li>
         
         </ul>
+      </div >
+      <ul> <Link to='/'>
+      <div className='btn bg-primary btn-primary'>
+      <img src="/Logo-H.svg" className='w-32 m-1 rounded-lg ' alt="" />
       </div>
-      <img src="/Logo-H.svg" className='w-36 m-1 rounded-lg' alt="" />
-     
+      </Link>
+      </ul>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
         <li><Link to='/' className=' font-heading'>Home</Link></li>
        <li> <Link to="/client/booking" className=' font-heading' > Booking </Link> </li>
        <li><Link to="/mt/schedule" className=' font-heading'> Scheduling </Link> </li>
+       <li><Link to="/client/services" className=' font-heading'> Services </Link> </li>
          
-       <li tabIndex={0}>
-            <a className="justify-between font-heading">
-              Services
-              <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
-            </a>
-            <ul className="p-2 z-50">
-              <li><a className=' font-title'>Submenu </a></li>
-              <li><a className=' font-title'>Submenu 2</a></li>
-            </ul>
-          </li>
+      
        
       </ul>
     </div>
