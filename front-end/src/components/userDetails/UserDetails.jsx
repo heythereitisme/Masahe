@@ -14,9 +14,27 @@ const UserDetails = () => {
     const permission = auth.permission
     
     const getUserDetails = async() => {
-        const serverReq = await fetch(`/api/rating/notes/${userValue}`)
-        const userDetails = await serverReq.json()
-        setUser(userDetails)
+        try{
+          const serverReq = await fetch(`/api/rating/notes/${userValue}`)
+          const userDetails = await serverReq.json()
+          setUser(userDetails)
+        } catch{
+          const serverReq = await fetch("/api/rating", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ratingUser: auth.muid,
+              ratedUser: userValue
+            }),
+            
+          });
+          const serverReq2 = await fetch(`/api/rating/notes/${userValue}`)
+          const userDetails = await serverReq2.json()
+          setUser(userDetails)
+        
+        }
       }
     
       useEffect(() => {

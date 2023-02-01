@@ -13,7 +13,6 @@ const ratingSchema = new mongoose.Schema({
     },
     rating: {
       type: Number,
-      required: true,
     },
     notes: String
   });
@@ -42,10 +41,13 @@ const aggregateRating = async(id) => {
 }
 
 export const addReview = async(r) => {
-    const review = await Rating.create(r)
-    console.log("Rating added!")
-    // await populateReview(r._id)
-    return review
+    try{
+        const review = await Rating.create(r)
+        console.log("Rating added!")
+        return review
+    } catch {
+        return await updateReview(r)
+    }
 }
 
 
@@ -56,8 +58,9 @@ export const deleteReview = async(r) => {
 }
 
 export const updateReview = async(r) => {
-    const id = r._id
-    const review = await Rating.updateOne({_id: id}, {r})
+    const ratedUser = r.ratedUser
+    const ratingUser = r.ratingUser
+    const review = await Rating.findOneAndUpdate({ratedUser, ratingUser}, r)
     console.log("Updated Review!")
     return review
 }

@@ -7,11 +7,21 @@ const router = Router()
 router.post("/", async(req,res) => {
     const rating = req.body
     try{
-        const review = await addReview(rating)
-        const id = review.ratedUser
-        const update = await avgRating(id)
-        const final = await updateRating(id, update)
-        res.send({message: final})
+        if(rating.rating){
+            const review = await addReview(rating)
+            const id = review.ratedUser
+            const update = await avgRating(id)
+            const final = await updateRating(id, update)
+            res.send({message: final})
+        } else {
+            const user = await getUserByUserName(rating.ratedUser)
+            const ratedUser = user._id
+            const ratingUser = rating.ratingUser
+            const entry = {ratingUser, ratedUser}
+            const final = await addReview(entry)
+            res.send(final)
+        }
+        
     } catch (err) {
         console.error(err)
         res.status(500).send(err);
