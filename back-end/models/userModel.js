@@ -10,7 +10,10 @@ const userSchema = new mongoose.Schema({
     uid: {type: String, required: true, unique: true},
     licensed: Boolean,
     phoneNumber: String,
-    quadrant: String
+    quadrant: String,
+    about: String,
+    website: String,
+    avatar: String
 })
 
 const User = mongoose.model("Users", userSchema,)
@@ -39,10 +42,10 @@ export const getAllSPs = async() => {
     return users
 }
 
-export const addUser = async({permission, firstName, lastName, username, token}) => {
+export const addUser = async({permission, firstName, lastName, username, token, quadrant}) => {
     const verify = await auth.verifyIdToken(token)
     const uid = verify.uid
-    const u = {permission, firstName, lastName, username, uid}
+    const u = {permission, firstName, lastName, username, uid, quadrant}
     const user = await User.create(u)
     console.log(user.firstName, "added")
     return user

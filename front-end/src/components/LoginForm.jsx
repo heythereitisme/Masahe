@@ -18,14 +18,14 @@ export const LoginForm = () => {
 				name="email"
 				placeholder="Email"
 				value={email}
-				type={email}
+				type="email"
 				onChange={(e) => setEmail(e.target.value)}
 			/>
 			<input className=" drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto md:w-64 font-title"
 				name="password"
 				placeholder="Password"
 				value={password}
-				type={password}
+				type="password"
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<button onClick={() => loginFn(email, password)} className=" rounded-xl bg-primary p-3 mb-5 text-white mx-auto font-title">LOGIN</button>

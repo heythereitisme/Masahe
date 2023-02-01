@@ -9,6 +9,7 @@ export const RegisterForm = ({permission}) => {
 	const [displayName, setDisplayName] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
+	const [quadrant, setQuadrant] = useState("nw")
 	const error = authContext.regError;
 	return (
 		<div className="flex flex-col items-center">
@@ -17,13 +18,13 @@ export const RegisterForm = ({permission}) => {
 		<input className=" drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto md:w-64 font-title"
 				placeholder="Email"
 				value={email}
-				type={email}
+				type="email"
 				onChange={(e) => setEmail(e.target.value)}
 			/>
 			<input className=" drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto md:w-64 font-title"
 				placeholder="Password"
 				value={password}
-				type={password}
+				type="password"
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<input
@@ -47,9 +48,16 @@ export const RegisterForm = ({permission}) => {
 				type={lastName}
 				onChange={(e) => setLastName(e.target.value)}
 			/>
+			<select name="qauadrant" id="quadrant" value={quadrant} onChange={(e) => setQuadrant(e.target.value)} className=" drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto md:w-64 font-title">
+				<option value="nw">NW</option>
+				<option value="ne">NE</option>
+				<option value="se">SE</option>
+				<option value="sw">SW</option>
+			</select>
+
 			<button 
 			className="rounded-xl bg-primary p-3 mb-5 mx-auto text-white font-title"
-			onClick={() => registerFn(email, password, displayName, firstName, lastName, permission)}
+			onClick={() => registerFn(email, password, displayName, firstName, lastName, permission, quadrant)}
 			>
 				REGISTER
 			</button>

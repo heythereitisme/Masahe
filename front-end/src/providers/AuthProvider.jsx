@@ -23,13 +23,13 @@ export const AuthProvider = (props) => {
 	const [permission, setPermission] = useState(0)
 	const [muid, setMuid] = useState("")
 
-	const addUser = async ({permission, firstName, lastName, username, token}) => {
+	const addUser = async ({permission, firstName, lastName, username, token, quadrant}) => {
 		const req = await fetch("/api/user", {
 		  method: "POST",
 		  headers: {
 			"Content-Type": "application/json",
 		  },
-		  body: JSON.stringify({permission, firstName, lastName, username, token}),
+		  body: JSON.stringify({permission, firstName, lastName, username, token, quadrant}),
 		});
 		const newUser = await req.json();
 		console.log(newUser.firstName, "added");
