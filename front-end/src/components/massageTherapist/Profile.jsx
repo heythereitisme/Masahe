@@ -8,18 +8,16 @@ function Profile() {
   return (
     <>
     <div>
-      <div className="md:grid md:grid-cols-3 md:gap-6 rounded-sm bg-slate-50">
-        <div className="md:col-span-1  rounded-sm bg-slate-50 flex flex-col place-content-between">
+      <div className="md:grid md:grid-cols-3 md:gap-6 rounded-sm bg-slate-50 ">
+        <div className="md:col-span-1  rounded-sm bg-slate-50 flex flex-col place-content-between h-48">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <h3 className="text-lg font-title leading-6 p-2 text-gray-900">Profile</h3>
+            <p className="mt-1 text-sm font-body ml-2 text-gray-600">
               This information will be displayed publicly so be careful what you share.
             </p>
           </div>
           
-          <button onClick={logout} 
-            className="mx-auto mb-5 w-24 h-12 rounded-md border border-gray-300 bg-secondary py-2 px-3 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >Log out</button>
+          
          
         </div>
         <div className="mt-5 md:col-span-2 md:mt-0">
@@ -28,21 +26,39 @@ function Profile() {
               <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
                   <div className="col-span-3 sm:col-span-2">
-                    <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
-                      Website
+                    <label htmlFor="company-website" className="block text-md font-title text-gray-700">
+                    Preferred work area
+                    
                     </label>
-                    <div className="mt-1 flex rounded-md shadow-sm">
-                      <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                        http://
-                      </span>
-                      <input
-                        type="text"
-                        name="company-website"
-                        id="company-website"
-                        className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        placeholder="www.example.com" />
-                    </div>
+<div className="form-control">
+  <label className="cursor-pointer label">
+    <span className="label-text font-title">North East</span>
+    <input type="checkbox" checked className="checkbox checkbox-accent" />
+  </label>
+</div>
+
+<div className="form-control">
+  <label className="cursor-pointer label">
+    <span className="label-text font-title">North West</span>
+    <input type="checkbox" checked className="checkbox checkbox-accent" />
+  </label>
+</div>
+
+<div className="form-control">
+  <label className="cursor-pointer label">
+    <span className="label-text font-title">South East</span>
+    <input type="checkbox" checked className="checkbox checkbox-accent" />
+  </label>
+</div>
+
+<div className="form-control">
+  <label className="cursor-pointer label">
+    <span className="label-text font-title">South West</span>
+    <input type="checkbox" checked className="checkbox checkbox-accent" />
+  </label>
+</div>
                   </div>
+                  
                 </div>
 
                 <div>
@@ -143,9 +159,14 @@ function Profile() {
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                  <button
+                
+                <button onClick={logout} 
+                  className="mx-auto mb-5 w-24 h-10 rounded-md border border-gray-300 bg-secondary py-2 px-3 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 "
+                   >Log out</button>
+                   
+                <button
                     type="submit"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ml-5"
                   >
                     Save
                   </button>
