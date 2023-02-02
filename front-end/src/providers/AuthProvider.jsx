@@ -88,7 +88,7 @@ export const AuthProvider = (props) => {
 		navigate("/")
 	};
 
-	const register = async (email, password, username, firstName, lastName, permission) => {
+	const register = async (email, password, username, firstName, lastName, permission, quadrant) => {
 			try {
 				let userCred = await createUserWithEmailAndPassword(
 					auth,
@@ -101,7 +101,7 @@ export const AuthProvider = (props) => {
 					await updateProfile(user, {
 						displayName: username,
 					})
-					addUser({permission, firstName, lastName, username, token})
+					addUser({permission, firstName, lastName, username, token, quadrant})
 					alert("Registration Successful! Please Sign in again!")
 				} else {
 					console.log("Registration failed!");

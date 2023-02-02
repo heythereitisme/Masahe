@@ -38,6 +38,9 @@ router.get("/mt", async (req, res) => {
 router.post("/", async (req, res) => {
     const newUser = req.body
     try {
+      if(newUser.permission > 2) {
+        newUser.permission = 2
+      }
         const createUser = await addUser(newUser);
         res.send(createUser)
     } catch (error) {
