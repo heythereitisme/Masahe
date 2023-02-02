@@ -32,29 +32,29 @@ function Profile() {
                     </label>
 <div className="form-control">
   <label className="cursor-pointer label">
-    <span className="label-text font-title">North East</span>
-    <input type="checkbox" checked className="checkbox checkbox-accent" />
+    <span className="label-text font-title text-neutral">North East</span>
+    <input type="checkbox" checked className="checkbox checkbox-primary" />
+  </label>
+</div>
+
+<div className="form-control">
+  <label className="cursor-pointer label ">
+    <span className="label-text font-title text-neutral">North West</span>
+    <input type="checkbox" checked className="checkbox checkbox-primary" />
   </label>
 </div>
 
 <div className="form-control">
   <label className="cursor-pointer label">
-    <span className="label-text font-title">North West</span>
-    <input type="checkbox" checked className="checkbox checkbox-accent" />
+    <span className="label-text font-title text-neutral">South East</span>
+    <input type="checkbox" checked className="checkbox checkbox-primary" />
   </label>
 </div>
 
 <div className="form-control">
   <label className="cursor-pointer label">
-    <span className="label-text font-title">South East</span>
-    <input type="checkbox" checked className="checkbox checkbox-accent" />
-  </label>
-</div>
-
-<div className="form-control">
-  <label className="cursor-pointer label">
-    <span className="label-text font-title">South West</span>
-    <input type="checkbox" checked className="checkbox checkbox-accent" />
+    <span className="label-text font-title text-neutral">South West</span>
+    <input type="checkbox" checked className="checkbox checkbox-primary" />
   </label>
 </div>
                   </div>
