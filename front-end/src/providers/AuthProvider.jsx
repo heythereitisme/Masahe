@@ -8,11 +8,13 @@ import {
 	updateProfile,
 } from "firebase/auth";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export const AuthContext = React.createContext();
 
 export const AuthProvider = (props) => {
 	const children = props.children;
+	const navigate = useNavigate()
 
 	const fbContext = useContext(FirebaseContext);
 	const auth = fbContext.auth;
@@ -83,6 +85,7 @@ export const AuthProvider = (props) => {
 	const logout = async () => {
 		await signOut(auth);
 		setPermission(0)
+		navigate("/")
 	};
 
 	const register = async (email, password, username, firstName, lastName, permission) => {

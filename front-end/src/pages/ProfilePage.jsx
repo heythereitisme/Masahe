@@ -21,7 +21,6 @@ const ProfilePage = () => {
     return (
     <>
       <Profile/>
-      
     </>
       )
     }
