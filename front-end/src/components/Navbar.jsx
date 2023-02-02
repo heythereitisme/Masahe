@@ -1,7 +1,12 @@
 import React from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../providers/AuthProvider'
 
 function Navbar() {
+  const auth = useContext(AuthContext)
+  const ava = auth.avatar
+
   return (
     <div className="navbar bg-primary drop-shadow-lg">
     <div className="navbar-start">
@@ -34,18 +39,17 @@ function Navbar() {
       </ul>
     </div>
     <div className="navbar-center hidden lg:flex">
-      <ul className="menu menu-horizontal px-1">
+      <ul className="menu menu-horizontal px-1 text-white">
         <li><Link to='/' className=' font-heading'>Home</Link></li>
        <li> <Link to="/client/booking" className=' font-heading' > Booking </Link> </li>
        <li><Link to="/mt/schedule" className=' font-heading'> Scheduling </Link> </li>
        <li><Link to="/client/services" className=' font-heading'> Services </Link> </li>
-         
-      
-       
       </ul>
     </div>
     <div className="navbar-end">
-    
+      <Link to ='/profile' >
+        <img src={ava} alt="avatar" className='h-12 rounded-full'/>
+      </Link>
     </div>
     
   </div>

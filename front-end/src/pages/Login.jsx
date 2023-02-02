@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { FirebaseContext } from "../providers/FirebaseProvider";
 import { LoginForm } from "../components/LoginForm";
 import { RegisterForm } from "../components/RegisterForm";
+import { useNavigate } from "react-router";
 
 const Login = ({permission}) => {
 	//const fbContext = useContext(FirebaseContext);
@@ -11,14 +12,12 @@ const Login = ({permission}) => {
 	const authContext = useContext(AuthContext);
 	const user = authContext.user;
 	const logoutFn = authContext.logout;
+	const navigate = useNavigate()
 	
 	return (
 		<div className=" bg-white min-h-screen p-1 text-center align-middle flex flex-col">
 			{user ? (
-				<div className="flex flex-col m-auto">
-					<span>"you are logged in" </span> 
-					<button onClick={() => logoutFn()}>LOG OUT</button>
-				</div>
+				navigate('/profile')
 			) : (
 				<div>
 					<LoginForm />
