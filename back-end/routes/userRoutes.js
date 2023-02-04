@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/client", async (req, res) => {
     try {
         const clients = await getAllClients();
-        const filteredClients = clients.map(({_id, firstName, lastName, avgRating, username}) => ({_id, firstName, lastName, avgRating, username}))
+        const filteredClients = clients.map(({_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed}) => ({_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed}))
         res.send(filteredClients);
       } catch (error) {
         console.error(error);

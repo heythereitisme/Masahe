@@ -10,9 +10,9 @@ const userSchema = new mongoose.Schema({
     uid: {type: String, required: true, unique: true},
     licensed: Boolean,
     phoneNumber: String,
-    quadrant: String,
+    quadrant: [{ type: String}],
     about: String,
-    website: String,
+    address: String,
     avatar: String
 })
 

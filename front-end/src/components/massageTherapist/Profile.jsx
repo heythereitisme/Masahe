@@ -4,7 +4,13 @@ import { AuthContext } from '../../providers/AuthProvider'
 function Profile() {
   const auth = useContext(AuthContext)
   const logout = auth.logout
+  const user = auth.user
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(user)
+  }
+  
   return (
     <>
     <div>
@@ -16,12 +22,9 @@ function Profile() {
               This information will be displayed publicly so be careful what you share.
             </p>
           </div>
-          
-          
-         
         </div>
         <div className="mt-5 md:col-span-2 md:mt-0">
-          <form action="#" method="POST">
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="shadow sm:overflow-hidden sm:rounded-md">
               <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
@@ -33,28 +36,28 @@ function Profile() {
 <div className="form-control">
   <label className="cursor-pointer label">
     <span className="label-text font-title text-neutral">North East</span>
-    <input type="checkbox" checked className="checkbox checkbox-primary" />
+    <input type="checkbox" className="checkbox checkbox-primary" />
   </label>
 </div>
 
 <div className="form-control">
   <label className="cursor-pointer label ">
     <span className="label-text font-title text-neutral">North West</span>
-    <input type="checkbox" checked className="checkbox checkbox-primary" />
+    <input type="checkbox" className="checkbox checkbox-primary" />
   </label>
 </div>
 
 <div className="form-control">
   <label className="cursor-pointer label">
     <span className="label-text font-title text-neutral">South East</span>
-    <input type="checkbox" checked className="checkbox checkbox-primary" />
+    <input type="checkbox" className="checkbox checkbox-primary" />
   </label>
 </div>
 
 <div className="form-control">
   <label className="cursor-pointer label">
     <span className="label-text font-title text-neutral">South West</span>
-    <input type="checkbox" checked className="checkbox checkbox-primary" />
+    <input type="checkbox" className="checkbox checkbox-primary" />
   </label>
 </div>
                   </div>
@@ -152,7 +155,7 @@ function Profile() {
                         id="phone-number"
                         pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                         autoComplete="phone-number"
-                        placeholder='123-456-789'
+                        placeholder='123-456-7890'
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
                     </div>
 

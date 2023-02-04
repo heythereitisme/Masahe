@@ -38,12 +38,13 @@ app.post("/api/auth", async (req, res) => {
 	const un = req.body.username
 	const user = await getUserByUserName(un)
 	const key2 = user.uid
-	const permission = user.permission
 	const muid = user._id
 	const verify = await auth.verifyIdToken(key)
+	const {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address} = user
+	const filteredUser = {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address}
 	if(verify.uid === key2){
 		console.log("Authenticated user! Permission level:", permission)
-		res.send({message: "Success!", permission, muid})
+		res.send({message: "Success!", user: filteredUser})
 	} else {
 		console.log("Authentication failed!")
 		res.status(401).send({message: "Failure!", permission: 0})
