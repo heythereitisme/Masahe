@@ -1,16 +1,37 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 
 function Profile() {
   const auth = useContext(AuthContext)
   const logout = auth.logout
   const user = auth.user
+  const userInfo = auth.userInfo
+  const [quadrant, setQuadrant] = useState([])
+  const [about, setAbout] = useState("")
+  const [ava, setAva] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+
+  useEffect(() => {
+    if(auth){
+      setFirstName(userInfo.firstName)
+      setLastName(userInfo.lastName)
+      setQuadrant(userInfo.quadrant)
+      setAbout(userInfo.about)
+      setAddress(userInfo.address)
+      setEmail(user.email)
+      setPhoneNumber(userInfo.phoneNumber)
+    }
+  },[auth])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(user)
+    console.log(quadrant, about, firstName, lastName, email, address, phoneNumber)
   }
-  
+
   return (
     <>
     <div>
@@ -60,10 +81,8 @@ function Profile() {
     <input type="checkbox" className="checkbox checkbox-primary" />
   </label>
 </div>
-                  </div>
-                  
+                  </div>                 
                 </div>
-
                 <div>
                   <label htmlFor="about" className="block text-sm font-medium text-gray-700">
                     About
@@ -75,7 +94,8 @@ function Profile() {
                       rows={3}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       placeholder="you@example.com"
-                      defaultValue={''} />
+                      defaultValue={about} 
+                      onChange={(e) => setAbout(e.target.value)}/>
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
                     Brief description for your profile. URLs are hyperlinked.
@@ -109,7 +129,9 @@ function Profile() {
                         name="first-name"
                         id="first-name"
                         autoComplete="given-name"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                        defaultValue={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}/>
                     </div>
                     <div className="col-span-6 sm:col-span-3">
                       <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
@@ -120,7 +142,9 @@ function Profile() {
                         name="last-name"
                         id="last-name"
                         autoComplete="family-name"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                        defaultValue={lastName}
+                        onChange={(e) => setLastName(e.target.value)}/>
                     </div>
 
                     <div className="col-span-6 sm:col-span-4">
@@ -132,7 +156,9 @@ function Profile() {
                         name="email-address"
                         id="email-address"
                         autoComplete="email"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                        defaultValue={email}
+                        onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                     <div className="col-span-6">
                       <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
@@ -143,11 +169,13 @@ function Profile() {
                         name="street-address"
                         id="street-address"
                         autoComplete="street-address"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                        defaultValue={address}
+                        onChange={(e) => setAddress(e.target.value)}/>
                     </div>
                     <div className="col-span-6">
                       <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                        Phone number
+                        Phone number (Format: 000-000-0000)
                       </label>
                       <input
                         type="tel"
@@ -156,7 +184,9 @@ function Profile() {
                         pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                         autoComplete="phone-number"
                         placeholder='123-456-7890'
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                        defaultValue={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}/>
                     </div>
 
                   </div>

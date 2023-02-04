@@ -52,7 +52,7 @@ export const AuthProvider = (props) => {
 		if(perm.user){
 			setPermission(perm.user.permission)
 			setMuid(perm.user.muid)
-			setUserInfo({firstName: perm.user.firstName, lastName: perm.user.lastName, quadrant: perm.user.quadrant, address: perm.user.address})
+			setUserInfo({firstName: perm.user.firstName, lastName: perm.user.lastName, quadrant: perm.user.quadrant, address: perm.user.address, about: perm.user.about, phoneNumber: perm.user.phoneNumber})
 		}
 	  };
 

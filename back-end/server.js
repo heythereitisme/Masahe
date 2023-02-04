@@ -40,8 +40,8 @@ app.post("/api/auth", async (req, res) => {
 	const key2 = user.uid
 	const muid = user._id
 	const verify = await auth.verifyIdToken(key)
-	const {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address} = user
-	const filteredUser = {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address}
+	const {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address, phoneNumber} = user
+	const filteredUser = {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address, phoneNumber}
 	if(verify.uid === key2){
 		console.log("Authenticated user! Permission level:", permission)
 		res.send({message: "Success!", user: filteredUser})
