@@ -17,6 +17,7 @@ import { AuthProvider } from "./providers/AuthProvider";
 import { FirebaseProvider } from "./providers/FirebaseProvider";
 import Services from "./pages/Services";
 import MTHome from "./components/massageTherapist/MTHome";
+import ClientHome from "./pages/ClientHome";
 
 function App() {
 	return (
@@ -36,6 +37,7 @@ function App() {
 						<Route path="/client/review" element={<ClientReview />} />
 						<Route path="/client/services" element={<Services />} />
 						<Route path="/mt/user" element={<Details />} />
+						<Route path="/client/home" element={<ClientHome/>} />
 
 					</Route>
 					<Route element={<MTPortal />}>
