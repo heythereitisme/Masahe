@@ -25,6 +25,7 @@ export const AuthProvider = (props) => {
 	const [permission, setPermission] = useState(0)
 	const [muid, setMuid] = useState("")
 	const [avatar, setAvatar] = useState("/Default_pfp.svg")
+	const [userInfo, setUserInfo] = useState({})
 
 	const addUser = async ({permission, firstName, lastName, username, token, quadrant}) => {
 		const req = await fetch("/api/user", {
@@ -48,9 +49,10 @@ export const AuthProvider = (props) => {
 		  body: JSON.stringify({key, username}),
 		});
 		const perm = await req.json();
-		if(perm.permission){
-			setPermission(perm.permission)
-			setMuid(perm.muid)
+		if(perm.user){
+			setPermission(perm.user.permission)
+			setMuid(perm.user.muid)
+			setUserInfo({firstName: perm.user.firstName, lastName: perm.user.lastName, quadrant: perm.user.quadrant, address: perm.user.address, about: perm.user.about, phoneNumber: perm.user.phoneNumber})
 		}
 	  };
 
@@ -114,7 +116,7 @@ export const AuthProvider = (props) => {
 			logout()
 
 	};
-	const theValues = { user, login, logout, error, register, regError, permission, muid, avatar };
+	const theValues = { user, login, logout, error, register, regError, permission, muid, avatar, userInfo };
 
 	return (
 		<AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>
