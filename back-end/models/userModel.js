@@ -68,5 +68,5 @@ export const deleteUser = async(u) => {
 export const updateUser = async(username, u) => {
     const updatedUser = await User.findOneAndUpdate({username: username}, u)
     console.log("Updated user!")
-    return updatedUser
+    return {message: `${updatedUser.username} updated!`}
 }

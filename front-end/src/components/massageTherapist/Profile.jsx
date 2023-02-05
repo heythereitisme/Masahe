@@ -25,21 +25,43 @@ const Profile = ({ value }) => {
       setAddress(userInfo.address);
       setEmail(user.email);
       setPhoneNumber(userInfo.phoneNumber);
+      setClientQuadrant(userInfo.quadrant[0])
     }
   }, [auth]);
 
+  const checkbox = (e) => {
+    const value = e.target.value
+    if (quadrant.includes(value)) {
+      setQuadrant(quadrant.filter((v) => v !== value))
+    } else {
+      setQuadrant([...quadrant, value])
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      quadrant,
-      about,
-      firstName,
-      lastName,
-      email,
-      address,
-      phoneNumber
-    );
+    const username = user.displayName
+    if(value === 1){  
+      const updatedUser = { quadrant: clientQuadrant, about, firstName, lastName, email, address, phoneNumber, username}
+      updateUser(updatedUser)
+    } else if(value === 2){
+      const updatedUser = { quadrant, about, firstName, lastName, email, address, phoneNumber, username}
+      updateUser(updatedUser)
+    }
+   
   };
+
+  const updateUser = async(u) => {
+    const req = await fetch("/api/user", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(u)
+    })
+    const updated = await req.json()
+    console.log(updated.message)
+  }
 
   if (value >= 2) {
     return (
@@ -77,6 +99,9 @@ const Profile = ({ value }) => {
                             <input
                               type="checkbox"
                               className="checkbox checkbox-primary"
+                              value="NE"
+                              onChange={checkbox}
+                              checked={quadrant.includes("NE")}
                             />
                           </label>
                         </div>
@@ -89,6 +114,9 @@ const Profile = ({ value }) => {
                             <input
                               type="checkbox"
                               className="checkbox checkbox-primary"
+                              value="NW"
+                              onChange={checkbox}
+                              checked={quadrant.includes("NW")}
                             />
                           </label>
                         </div>
@@ -101,6 +129,9 @@ const Profile = ({ value }) => {
                             <input
                               type="checkbox"
                               className="checkbox checkbox-primary"
+                              value="SE"
+                              onChange={checkbox}
+                              checked={quadrant.includes("SE")}
                             />
                           </label>
                         </div>
@@ -113,6 +144,9 @@ const Profile = ({ value }) => {
                             <input
                               type="checkbox"
                               className="checkbox checkbox-primary"
+                              value="SW"
+                              onChange={checkbox}
+                              checked={quadrant.includes("SW")}
                             />
                           </label>
                         </div>

@@ -38,7 +38,6 @@ app.post("/api/auth", async (req, res) => {
 	const un = req.body.username
 	const user = await getUserByUserName(un)
 	const key2 = user.uid
-	const muid = user._id
 	const verify = await auth.verifyIdToken(key)
 	const {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address, phoneNumber} = user
 	const filteredUser = {_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed, permission, address, phoneNumber}
