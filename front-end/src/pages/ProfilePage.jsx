@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { LoginForm } from '../components/LoginForm';
+import ClientProfile from '../components/massageClients/ClientProfile';
 import Profile from '../components/massageTherapist/Profile'
 import { AuthContext } from '../providers/AuthProvider';
 
 const ProfilePage = () => {
   const authContext = useContext(AuthContext);
 	const user = authContext.user;
-	const logoutFn = authContext.logout;
+  const permission = authContext.permission
   
   if(!user){
     return(
@@ -18,11 +19,15 @@ const ProfilePage = () => {
 </div>
       )
   } else {
-    return (
-    <>
-      <Profile/>
-    </>
+    if(permission >= 2){
+      return (
+          <Profile value={2}/>
       )
+    } else if (permission === 1) {
+      return(
+        <Profile value={1} />
+      )
+    }
     }
 }
 
