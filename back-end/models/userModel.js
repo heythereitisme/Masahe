@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     quadrant: [{ type: String}],
     about: String,
     address: String,
-    avatar: String
+    avatar: {type: String, default: "/Default_pfp.svg"}
 })
 
 const User = mongoose.model("Users", userSchema,)
