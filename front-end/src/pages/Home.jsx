@@ -6,7 +6,7 @@ const LandingPage = () => {
 	const authContext = useContext(AuthContext)
 	const permission = authContext.permission
 	  useEffect(() => {
-		console.log("Current permission level:", permission, authContext)
+		console.log("Current permission level:", permission)
 	  }, [authContext])
 
 	return (

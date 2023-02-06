@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import AvatarEditor from "react-avatar-editor";
 
 const Profile = ({ value }) => {
   const auth = useContext(AuthContext);
@@ -15,6 +16,7 @@ const Profile = ({ value }) => {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [clientQuadrant, setClientQuadrant] = useState(["NE"]);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
     if (auth) {
@@ -25,50 +27,72 @@ const Profile = ({ value }) => {
       setAddress(userInfo.address);
       setEmail(user.email);
       setPhoneNumber(userInfo.phoneNumber);
-      setClientQuadrant(userInfo.quadrant[0])
-      setAva(userInfo.avatar)
+      setClientQuadrant(userInfo.quadrant[0]);
+      setAva(userInfo.avatar);
     }
   }, [auth]);
 
   const checkbox = (e) => {
-    const value = e.target.value
+    const value = e.target.value;
     if (quadrant.includes(value)) {
-      setQuadrant(quadrant.filter((v) => v !== value))
+      setQuadrant(quadrant.filter((v) => v !== value));
     } else {
-      setQuadrant([...quadrant, value])
+      setQuadrant([...quadrant, value]);
     }
-  }
+  };
 
   const fileChange = (e) => {
     const file = e.target.files[0];
     const fileUrl = URL.createObjectURL(file);
     setAva(fileUrl);
-  }
+  };
+
+  const handleScale = (e) => {
+    const scaler = parseFloat(e.target.value);
+    setScale(scaler);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const username = user.displayName
-    if(value === 1){  
-      const updatedUser = { quadrant: clientQuadrant, about, firstName, lastName, email, address, phoneNumber, username}
-      updateUser(updatedUser)
-    } else if(value === 2){
-      const updatedUser = { quadrant, about, firstName, lastName, email, address, phoneNumber, username}
-      updateUser(updatedUser)
+    const username = user.displayName;
+    if (value === 1) {
+      const updatedUser = {
+        quadrant: clientQuadrant,
+        about,
+        firstName,
+        lastName,
+        email,
+        address,
+        phoneNumber,
+        username,
+      };
+      updateUser(updatedUser);
+    } else if (value === 2) {
+      const updatedUser = {
+        quadrant,
+        about,
+        firstName,
+        lastName,
+        email,
+        address,
+        phoneNumber,
+        username,
+      };
+      updateUser(updatedUser);
     }
-   
   };
 
-  const updateUser = async(u) => {
+  const updateUser = async (u) => {
     const req = await fetch("/api/user", {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(u)
-    })
-    const updated = await req.json()
-    alert(updated.message)
-  }
+      body: JSON.stringify(u),
+    });
+    const updated = await req.json();
+    alert(updated.message);
+  };
 
   if (value >= 2) {
     return (
@@ -187,16 +211,43 @@ const Profile = ({ value }) => {
                         Photo
                       </label>
                       <div className="mt-1 flex items-center">
-                        <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                          <img src={ava} alt="Avatar" className="object-contain"/>
-                        </span>
-                        <input type="file" className="ml-3" onChange={fileChange} accept="image/png,image/jpeg,image/gif"/>
+                        <AvatarEditor
+                          image={ava}
+                          width={200}
+                          height={200}
+                          border={50}
+                          borderRadius={200}
+                          color={[255, 255, 255, 0.6]} // RGBA
+                          scale={scale}
+                          rotate={0}
+                        />
+
                         <button
                           type="button"
                           className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                           Change
                         </button>
+                      </div>
+                      <div>
+                        <input
+                          type="file"
+                          className="ml-3"
+                          onChange={fileChange}
+                          accept="image/png,image/jpeg,image/gif"
+                        />
+                      </div>
+                      <div>
+                        Zoom:
+                        <input
+                          name="scale"
+                          type="range"
+                          onChange={handleScale}
+                          min="1"
+                          max="2"
+                          step="0.01"
+                          defaultValue="1"
+                        />
                       </div>
                     </div>
                     <div className="mt-5 md:col-span-2 md:mt-0">
@@ -294,7 +345,7 @@ const Profile = ({ value }) => {
                       </div>
                       <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                         <button
-                        type="button"
+                          type="button"
                           onClick={logout}
                           className="mx-auto mb-5 w-24 h-10 rounded-md border border-gray-300 bg-secondary py-2 px-3 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 "
                         >
@@ -398,20 +449,47 @@ const Profile = ({ value }) => {
                       </p>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-gray-700">
                         Photo
                       </label>
                       <div className="mt-1 flex items-center">
-                        <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                          <img src={ava} alt="Avatar" className="object-contain"/>
-                        </span>
-                        <input type="file" className="ml-3" onChange={fileChange} accept="image/png,image/jpeg,image/gif"/>
+                        <AvatarEditor
+                          image={ava}
+                          width={200}
+                          height={200}
+                          border={50}
+                          borderRadius={200}
+                          color={[255, 255, 255, 0.6]} // RGBA
+                          scale={scale}
+                          rotate={0}
+                        />
+
                         <button
                           type="button"
                           className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                           Change
                         </button>
+                      </div>
+                      <div>
+                        <input
+                          type="file"
+                          className="ml-3"
+                          onChange={fileChange}
+                          accept="image/png,image/jpeg,image/gif"
+                        />
+                      </div>
+                      <div>
+                        Zoom:
+                        <input
+                          name="scale"
+                          type="range"
+                          onChange={handleScale}
+                          min="1"
+                          max="2"
+                          step="0.01"
+                          defaultValue="1"
+                        />
                       </div>
                     </div>
                     <div className="mt-5 md:col-span-2 md:mt-0">
@@ -509,7 +587,7 @@ const Profile = ({ value }) => {
                       </div>
                       <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                         <button
-                        type="button"
+                          type="button"
                           onClick={logout}
                           className="mx-auto mb-5 w-24 h-10 rounded-md border border-gray-300 bg-secondary py-2 px-3 text-sm font-medium leading-4 text-white shadow-sm hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 "
                         >
