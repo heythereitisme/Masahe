@@ -5,6 +5,7 @@ import { AuthContext } from "../providers/AuthProvider";
 function Navbar() {
 	const auth = useContext(AuthContext);
 	const ava = auth.avatar;
+	const logOut = auth.logout;
 
 	return (
 		<div className="navbar bg-primary drop-shadow-lg">
@@ -104,6 +105,9 @@ function Navbar() {
 				<Link to="/profile">
 					<img src={ava} alt="avatar" className="h-12 rounded-full" />
 				</Link>
+			</div>
+			<div>
+				<button onClick={logOut}>Logout</button>
 			</div>
 		</div>
 	);
