@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import io from "socket.io-client";
+import { AuthContext } from "../providers/AuthProvider";
 
 let socket;
 
 const ChatBox = () => {
+	const authContext = useContext(AuthContext);
+	console.log(authContext);
 	const [message, setMessage] = useState();
 	const [handle, setHandle] = useState();
 	const [chatBuddy, setChatBuddy] = useState();
