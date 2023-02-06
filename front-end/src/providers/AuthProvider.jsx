@@ -106,7 +106,7 @@ export const AuthProvider = (props) => {
 					await updateProfile(user, {
 						displayName: username,
 					})
-					addUser({permission, firstName, lastName, username, token, quadrant})
+					await addUser({permission, firstName, lastName, username, token, quadrant})
 					alert("Registration Successful! Please Sign in again!")
 				} else {
 					console.log("Registration failed!");

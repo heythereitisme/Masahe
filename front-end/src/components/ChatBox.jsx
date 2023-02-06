@@ -36,7 +36,6 @@ const ChatBox = () => {
 		};
 	}, []);
 
-	console.log(onlineUsr);
 	// Emit events
 
 	function joinChat(e) {
@@ -68,7 +67,6 @@ const ChatBox = () => {
 
 	return (
 		<div>
-			Home
 			<label htmlFor="my-modal-3" className="btn">
 				Open Chat
 			</label>

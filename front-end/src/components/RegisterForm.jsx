@@ -11,21 +11,24 @@ export const RegisterForm = ({ permission }) => {
   const [lastName, setLastName] = useState("");
   const [quadrant, setQuadrant] = useState("nw");
   const error = authContext.regError;
+  
+  const reg = (e) => {
+    e.preventDefault()
+    registerFn(
+    email,
+    password,
+    displayName,
+    firstName,
+    lastName,
+    permission,
+    quadrant
+  )}
+  
   return (
     <div className='flex flex-col items-center'>
       <form
         className='text-center bg-secondary rounded-md drop-shadow-lg ml-10 mr-10 p-6 flex flex-col gap-10 md:w-96'
-        onSubmit={() =>
-          registerFn(
-            email,
-            password,
-            displayName,
-            firstName,
-            lastName,
-            permission,
-            quadrant
-          )
-        }
+        onSubmit={reg}
       >
         <h1 className=' text-xl font-heading text-accent font-bold'>Sign up</h1>
         <input
@@ -69,7 +72,7 @@ export const RegisterForm = ({ permission }) => {
           required
         />
         <select
-          name='qauadrant'
+          name='quadrant'
           id='quadrant'
           value={quadrant}
           onChange={(e) => setQuadrant(e.target.value)}
