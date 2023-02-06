@@ -260,7 +260,7 @@ const Profile = ({ value }) => {
                           type="range"
                           onChange={handleScale}
                           min="1"
-                          max="2"
+                          max="2.5"
                           step="0.01"
                           defaultValue="1"
                         />
@@ -505,7 +505,7 @@ const Profile = ({ value }) => {
                           type="range"
                           onChange={handleScale}
                           min="1"
-                          max="2"
+                          max="2.5"
                           step="0.01"
                           defaultValue="1"
                         />

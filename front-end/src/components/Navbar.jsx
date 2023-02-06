@@ -1,8 +1,6 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import ChatBox from "../components/ChatBox";
 
 function Navbar() {
 	const auth = useContext(AuthContext);
@@ -106,9 +104,6 @@ function Navbar() {
 				<Link to="/profile">
 					<img src={ava} alt="avatar" className="h-12 rounded-full" />
 				</Link>
-			</div>
-			<div>
-				<ChatBox />
 			</div>
 		</div>
 	);

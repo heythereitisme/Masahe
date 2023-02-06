@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 import AuthFailure from './AuthFailure'
+import ChatBox from './ChatBox'
 import Footer from './Footer'
 import Navbar from './Navbar'
 
@@ -13,6 +14,7 @@ const ClientPortal = () => {
   return (<>
     <Navbar />
     <Outlet />
+    <ChatBox />
     <Footer />
   </>
   )

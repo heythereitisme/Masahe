@@ -38,7 +38,6 @@ function App() {
 						<Route path="/client/services" element={<Services />} />
 						<Route path="/mt/user" element={<Details />} />
 						<Route path="/client/home" element={<ClientHome/>} />
-
 					</Route>
 					<Route element={<MTPortal />}>
 						<Route path="/mt/home" element={<MTHome/>} />
