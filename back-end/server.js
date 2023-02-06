@@ -92,15 +92,15 @@ let conversationObj = [];
 
 app.use(cors());
 //mongo db
-import mongoose from "mongoose";
-import Conversation from "../backend/models/conversationModel.js";
-mongoose.connect(
-	"mongodb+srv://masahe:proj3ChatApp@cluster0.tyjub9p.mongodb.net/test",
-	console.log("Connected to db")
-);
+// import mongoose from "mongoose";
+import Conversation from "./models/conversationModel.js";
+// mongoose.connect(
+// "mongodb+srv://masahe:proj3ChatApp@cluster0.tyjub9p.mongodb.net/test",
+// console.log("Connected to db")
+// );
 
-serverHttp.listen(4000, () => {
-	console.log("listening on *:4000");
+serverHttp.listen(6010, () => {
+	console.log("listening on *:6010");
 });
 
 // Static files
