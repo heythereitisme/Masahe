@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import AvatarEditor from "react-avatar-editor";
 
@@ -7,6 +7,7 @@ const Profile = ({ value }) => {
   const logout = auth.logout;
   const user = auth.user;
   const userInfo = auth.userInfo;
+  let editorRef = useRef(null);
   const [quadrant, setQuadrant] = useState([]);
   const [about, setAbout] = useState("");
   const [ava, setAva] = useState("");
@@ -17,7 +18,9 @@ const Profile = ({ value }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [clientQuadrant, setClientQuadrant] = useState(["NE"]);
   const [scale, setScale] = useState(1);
+  const [preview, setPreview] = useState(null)
 
+  
   useEffect(() => {
     if (auth) {
       setFirstName(userInfo.firstName);
@@ -51,6 +54,16 @@ const Profile = ({ value }) => {
     const scaler = parseFloat(e.target.value);
     setScale(scaler);
   };
+
+  const handlePreview = () => {
+    const canvas = editorRef.getImageScaledToCanvas()
+    const url = canvas.toDataURL()
+    setPreview(url)
+  }
+
+  const setEditorRef = (ed) => {
+    editorRef = ed
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -210,8 +223,9 @@ const Profile = ({ value }) => {
                       <label className="block text-sm font-medium text-gray-700">
                         Photo
                       </label>
-                      <div className="mt-1 flex items-center">
+                      <div className="mt-1 flex items-center gap-5">
                         <AvatarEditor
+                        ref={setEditorRef}
                           image={ava}
                           width={200}
                           height={200}
@@ -224,10 +238,12 @@ const Profile = ({ value }) => {
 
                         <button
                           type="button"
+                          onClick={handlePreview}
                           className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                           Change
                         </button>
+                        {preview && <img src={preview} alt="Preview" className="rounded-full"/>}
                       </div>
                       <div>
                         <input
@@ -452,8 +468,9 @@ const Profile = ({ value }) => {
                     <label className="block text-sm font-medium text-gray-700">
                         Photo
                       </label>
-                      <div className="mt-1 flex items-center">
+                      <div className="mt-1 flex items-center gap-5">
                         <AvatarEditor
+                        ref={setEditorRef}
                           image={ava}
                           width={200}
                           height={200}
@@ -466,10 +483,12 @@ const Profile = ({ value }) => {
 
                         <button
                           type="button"
+                          onClick={handlePreview}
                           className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                           Change
                         </button>
+                        {preview && <img src={preview} alt="Preview" className="rounded-full"/>}
                       </div>
                       <div>
                         <input
