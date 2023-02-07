@@ -5,10 +5,12 @@ import { AuthContext } from "../providers/AuthProvider";
 let socket;
 
 const ChatBox = () => {
-	const authContext = useContext(AuthContext);
-	console.log(authContext);
+	const auth = useContext(AuthContext);
+	const displayName = auth.userInfo.firstName;
+	console.log(displayName);
+	const handle = displayName;
 	const [message, setMessage] = useState();
-	const [handle, setHandle] = useState();
+	//const [handle, setHandle] = useState();
 	const [chatBuddy, setChatBuddy] = useState();
 	const [msgFrmSrvr, setMsgFrmSrvr] = useState([]);
 	const [onlineUsr, setOnlineUsr] = useState([]);
@@ -89,20 +91,18 @@ const ChatBox = () => {
 							<br />
 							<div className="flex flex-col items-center flex-wrap">
 								<form onSubmit={!joined ? joinChat : leaveChat}>
-									<input
-										placeholder="username"
-										className="input input-bordered input-secondary w-full max-w-xs "
-										onChange={(e) => setHandle(e.target.value)}
-										//onInput={(e) => setHandle(e.target.value)}
-									/>
-
+									{/* <input */}
+									{/* placeholder="username" */}
+									{/* className="input input-bordered input-secondary w-full max-w-xs " */}
+									{/* onChange={(e) => setHandle(e.target.value)} */}
+									{/* //onInput={(e) => setHandle(e.target.value)} */}
+									{/* /> */}
 									<br />
 									{/* <button onClick={() => joinFn()}>JOIN</button> */}
 									{/* <input type="submit" value="Join" /> */}
 									{/* <button className="btn btn-primary" type="submit" value="Join"> */}
 									{/* Join */}
 									{/* </button> */}
-
 									<button className="btn btn-primary">
 										{!joined ? "Join Chat " : "Leave Chat"}
 									</button>
