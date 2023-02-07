@@ -7,14 +7,24 @@ import ratingRouter from "./routes/ratingRoutes.js";
 import eventsRouter from "./routes/eventRoutes.js";
 import { getUserByUserName } from "./models/userModel.js";
 
+//const firebaseConfig = {
+//	apiKey: "AIzaSyAuCLlU1mEBDoQiA0mNaOf-XdWebLBW6I0",
+//	authDomain: "safeplace-health.firebaseapp.com",
+//	projectId: "safeplace-health",
+//	storageBucket: "safeplace-health.appspot.com",
+//	messagingSenderId: "734921115811",
+//	appId: "1:734921115811:web:c82494dcec1b8a79535716",
+//	measurementId: "G-CWX8LQY5PC",
+//};
+
 const firebaseConfig = {
-	apiKey: "AIzaSyAuCLlU1mEBDoQiA0mNaOf-XdWebLBW6I0",
-	authDomain: "safeplace-health.firebaseapp.com",
-	projectId: "safeplace-health",
-	storageBucket: "safeplace-health.appspot.com",
-	messagingSenderId: "734921115811",
-	appId: "1:734921115811:web:c82494dcec1b8a79535716",
-	measurementId: "G-CWX8LQY5PC",
+	apiKey: "AIzaSyBKdVi8t2-MASQwftLb11L9Z388ADJsNDA",
+	authDomain: "masahe-c9.firebaseapp.com",
+	projectId: "masahe-c9",
+	storageBucket: "masahe-c9.appspot.com",
+	messagingSenderId: "750119957523",
+	appId: "1:750119957523:web:339f4f2c015cc7790b3be6",
+	measurementId: "G-MM6C4KQF66",
 };
 
 const PORT = 4000;
