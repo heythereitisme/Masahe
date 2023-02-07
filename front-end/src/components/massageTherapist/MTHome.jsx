@@ -1,8 +1,9 @@
 import React from 'react'
+import MTLanding from './MTLanding'
 
 function MTHome() {
   return (
-    <div className='min-h-screen bg-white'></div>
+    <MTLanding />
   )
 }
 

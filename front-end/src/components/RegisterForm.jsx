@@ -78,10 +78,10 @@ export const RegisterForm = ({ permission }) => {
           onChange={(e) => setQuadrant(e.target.value)}
           className=' drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto md:w-64 font-title'
         >
-          <option value='nw'>NW</option>
-          <option value='ne'>NE</option>
-          <option value='se'>SE</option>
-          <option value='sw'>SW</option>
+          <option value='NW'>NW</option>
+          <option value='NE'>NE</option>
+          <option value='SE'>SE</option>
+          <option value='SW'>SW</option>
         </select>
 
         <button

@@ -51,3 +51,10 @@ export const updateEvent = async(event) => {
     console.log(`Updated ${updatedEvent.title}`)
     return updatedEvent
 }
+
+export const showBookedEvents = async(uid) => {
+    console.log(uid)
+    const foundEvents = await Event.find({'resources.user': uid, 'resources.client': {$exists: true, $ne: null}})
+    console.log("Found appointments")
+    return foundEvents
+}
