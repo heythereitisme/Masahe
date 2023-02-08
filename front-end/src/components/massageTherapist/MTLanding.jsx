@@ -11,10 +11,10 @@ const uid = auth.muid
 const navigate = useNavigate()
 const [userList, setUserList] = useState([])
 const options = {
-  year: 'numeric',
   month: 'long',
   day: 'numeric',
-  hour: 'numeric'
+  hour: 'numeric',
+  minute: 'numeric'
 };
 
 useEffect (() => {
@@ -46,7 +46,7 @@ const getAppointments = async() => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
                   return(
-                    <div key={u._id} className="bg-red-400 flex flex-col">
+                    <div key={u._id} className="bg-purple-200 flex flex-col rounded-lg">
                       <span>User: {u.resources.client.username}</span>
                       <span>Name: {u.resources.client.firstName} {u.resources.client.lastName}</span>
                       <span>Rating: {u.resources.client.avgRating}</span>
