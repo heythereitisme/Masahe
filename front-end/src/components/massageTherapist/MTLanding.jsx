@@ -7,9 +7,12 @@ import { AuthContext } from '../../providers/AuthProvider'
 const MTLanding = () => {
 const auth = useContext(AuthContext)
 const un = auth.user.displayName
-const uid = auth.muid
+const muid = auth.muid
 const navigate = useNavigate()
 const [userList, setUserList] = useState([])
+const [rating, setRating] = useState("");
+const upcoming = []
+const past = []
 const options = {
   month: 'long',
   day: 'numeric',
@@ -27,10 +30,35 @@ const detailPage = (u) => {
 
 
 const getAppointments = async() => {
-    const req = await fetch(`/api/event/appointment/${uid}`);
+    const req = await fetch(`/api/event/appointment/${muid}`);
         const users = await req.json();
         setUserList(users);
 }
+
+const submitRating = (e, u) => {
+  e.preventDefault();
+  const uid = u.resources.client._id;
+  rateUser(uid);
+};
+
+const rateUser = async (u) => {
+  const uid1 = muid;
+  const uid2 = u;
+  const req = await fetch("/api/rating", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ratingUser: uid1,
+      ratedUser: uid2,
+      rating: rating,
+    }),
+  });
+  const rate = await req.json();
+  console.log("Updated average:", rate.message);
+  getAppointments();
+};
 
   return (
     <div className='min-h-screen bg-white text-center flex flex-col'>
@@ -39,10 +67,20 @@ const getAppointments = async() => {
               Set Schedule
             </button>
                 </Link>
+                {userList && 
+                userList.forEach((u) => {
+                  const date = new Date(u.start)
+                  if(date > new Date()){
+                    upcoming.push(u)
+                  } else {
+                    past.push(u)
+                  }
+                })}
+                {upcoming[0] && 
+                <>
                 <span className='text-3xl'>Upcoming appointments</span>
                 <div className="grid grid-cols-4 gap-2 mt-5">
-                {userList && 
-                userList.map((u) => {
+                {upcoming.map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
                   return(
@@ -68,11 +106,53 @@ const getAppointments = async() => {
                     </button>
                       </div>
                     </div>
-                  )
-                })
-              }
+                    )
+                  })}
+                  </div>
+                  </>
+                }
+                {past[0] && 
+                <>
+                <span className='text-3xl'>Recent Appointments, leave a rating?</span>
+                <div className="grid grid-cols-4 gap-2 mt-5">
+                {past.map((u) => {
+                  const date = new Date(u.start)
+                  const readableDate = date.toLocaleDateString('en-US', options);
+                  return(
+                    <div key={u._id} className="bg-purple-200 flex flex-col rounded-lg">
+                      <span>User: {u.resources.client.username}</span>
+                      <span>Name: {u.resources.client.firstName} {u.resources.client.lastName}</span>
+                      <span>Rating: {u.resources.client.avgRating}</span>
+                      <span>Quadrant: {u.resources.client.quadrant[0]}</span>
+                      <span>{readableDate}</span>
+                      <div className='flex'>
+                      <form
+                    onSubmit={(e) => submitRating(e, u)}
+                    className="container mx-auto"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Enter rating number"
+                      onInput={(e) => setRating(e.target.value)}
+                      className="w-1/2"
+                    />
+                    <button
+                      type="submit"
+                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl"
+                    >
+                      Submit Rating
+                    </button>
+                  </form>
+                      </div>
+                    </div>
+                    )
+                  })}
+                </div>
+                </>
+                }
+              
               </div>
-    </div>
+    
   )
 }
 

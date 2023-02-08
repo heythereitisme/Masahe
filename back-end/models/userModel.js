@@ -53,7 +53,8 @@ export const addUser = async({permission, firstName, lastName, username, token, 
 
 export const updateRating = async(u, r) => {
     const updatedScore = await User.findOneAndUpdate({_id: u},
-        {avgRating: r}
+        {avgRating: r},
+        {new: true}
         )
     console.log("updated rating:", updatedScore.avgRating)
     return updatedScore.avgRating
