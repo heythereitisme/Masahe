@@ -2,7 +2,7 @@ import React from 'react'
 
 function ServicesList() {
   return (
-   <div className='min-h-screen bg-white grid grid-rows-1'>
+   <div className=' bg-white grid grid-rows-1'>
 
     
 <div className=''>

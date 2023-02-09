@@ -101,15 +101,26 @@ function Navbar() {
 					</li>
 				</ul>
 			</div>
+			
 			<div className="navbar-end">
-				<Link to="/profile">
-					<img src={ava} alt="avatar" className="h-12 rounded-full" />
-				</Link>
+				
+	<div className="dropdown dropdown-end mr-2">
+    <label tabIndex={0} className="btn btn-primary">
+	<img src={ava} alt="avatar" className="h-12 rounded-full " />
+	</label>
+    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-white rounded-box w-52 text-primary">
+    <li><Link to="profile">Profile</Link></li>
+    <li><a><button onClick={logOut}>Logout</button></a></li>
+    </ul>
+    </div>
 			</div>
-			<div>
-				<button onClick={logOut}>Logout</button>
-			</div>
+			
+
+
+
 		</div>
+
+		
 	);
 }
 
