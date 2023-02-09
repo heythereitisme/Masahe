@@ -32,7 +32,7 @@ const UserList = ({ mt }) => {
 
   useEffect(() => {
     if (userList[0]) {
-      sorter("firstName");
+      sorter("open");
     }
   }, [userList[0]]);
 
@@ -105,20 +105,26 @@ const UserList = ({ mt }) => {
         return b[f] - a[f];
       });
       setFilteredUsers(sort);
-    } else {
+    } else if(f === "open"){
       const sort = filteredData.sort((a, b) => {
-        let fa = a[f].toLowerCase(),
-          fb = b[f].toLowerCase();
-        if (fa < fb) {
-          return -1;
-        }
-        if (fa > fb) {
-          return 1;
-        }
-        return 0;
-      });
-      setFilteredUsers(sort);
+        return a[f] - b[f]
+      })
+      setFilteredUsers(sort)
     }
+    // else {
+    //   const sort = filteredData.sort((a, b) => {
+    //     let fa = a[f].toLowerCase(),
+    //       fb = b[f].toLowerCase();
+    //     if (fa < fb) {
+    //       return -1;
+    //     }
+    //     if (fa > fb) {
+    //       return 1;
+    //     }
+    //     return 0;
+    //   });
+    //   setFilteredUsers(sort);
+    // }
   };
 
   const detailPage = (u) => {
@@ -143,7 +149,7 @@ const UserList = ({ mt }) => {
 
   if (mt) {
     if (!pages[0]) {
-      return (
+      return ( // MT none found
         <div className="bg-white">
           <div className="flex flex-col gap-5">
             <button
@@ -183,7 +189,7 @@ const UserList = ({ mt }) => {
           <span className="text-3xl">Not Found</span>
         </div>
       );
-    } else {
+    } else { //MT
       return (
         <div>
           <div className="flex flex-col gap-5">
@@ -279,7 +285,7 @@ const UserList = ({ mt }) => {
         </div>
       );
     }
-  } else {
+  } else { //client no results found
     if (!pages[0]) {
       return (
         <div >
@@ -289,7 +295,7 @@ const UserList = ({ mt }) => {
                     type="text"
                     className="block w-full px-4 py-2 text-accent bg-white border rounded-full focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-10"
                     placeholder="Search..."
-                    onInput={(e) => setFilter(e.targetvalue)}
+                    onInput={(e) => setFilter(e.target.value)}
                 />
                 <button className="px-4 text-white bg-neutral rounded-full ">
                     <svg
@@ -378,9 +384,15 @@ const UserList = ({ mt }) => {
             </button>
             <button
               className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
-              onClick={() => sorter("lastName")}
+              onClick={() => sorter("certification")}
             >
-              Certifcation
+              Certification
+            </button>
+            <button
+              className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
+              onClick={() => sorter("open")}
+            >
+              Available
             </button>
           </div>
           <div className="grid grid-cols-4 gap-2 mt-5">
