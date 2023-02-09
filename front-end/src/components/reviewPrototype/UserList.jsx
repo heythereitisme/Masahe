@@ -388,58 +388,76 @@ const UserList = ({ mt }) => {
               return (
                 <div
                   key={u.username}
-                  className="bg-accent flex flex-col rounded-lg p-4 ml-4"
+                  className=" bg-slate-100 shadow-2xl flex flex-col rounded-lg p-4 ml-4"
                 >
-                  <span className="font-heading text-lg mb-2 text-white">
+                  <span className="font-heading text-lg mb-3 text-primary">
                   {u.firstName} {u.lastName}
                   </span>
-                  <span className="font-title text-white">{u.username}</span>
-                  <span className=" font-title text-white ">Rating: {u.avgRating} </span>
-                  {u.open && <span className="font-bold">Appointments available!</span>}
-                  <div className="button-holder ">
+                  <span className="font-title text-primary">{u.username}</span>
+                  <span className=" font-title text-primary">Rating: {u.avgRating} 
+                  <div className="rating">
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+</div>
+</span>
+                  {u.open && <span className="font-title text-primary font-bold mt-3 mb-1">Appointments available!</span>}
+                  <div className="button-holder flex justify-around ">
                     <button
                       onClick={() => mtDetailPage(u.username)}
-                      className="btn btn-primary rounded-2xl w-24"
+                      className="btn btn-primary font-title bg-white text-primary"
                     >
                       Details
                     </button>
                     <button
                       onClick={() => bookingPage(u.username)}
-                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
+                      className="btn btn-primary ml-4 font-title bg-white text-primary"
                     >
                       Book
                     </button>
+                    <button className=" btn btn-primary ml-4 font-title bg-white text-primary">
+                      Message
+                    </button>
                   </div>
+                  
                   <form
                     onSubmit={(e) => submitRating(e, u)}
-                    className="container mx-auto"
+                    className="flex justify-between m-5 items-center"
                   >
-                    <input
-                      type="text"
-                      placeholder="Enter rating number"
-                      onInput={(e) => setRating(e.target.value)}
-                      className="w-1/2"
-                    />
+                    
+                    <div className="rating">
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+</div>
+     <div>
                     <button
                       type="submit"
-                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl"
+                      className="btn btn-secondary font-title"
                     >
-                      Submit Rating
+                      Submit
                     </button>
+      </div>
                   </form>
+                  
+
                 </div>
               );
             })}
           </div>
           <button
-            className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-32 mt-5"
+            className="btn btn-primary mr-4 font-title"
             onClick={() => changePage(-1)}
           >
             {" "}
             Previous page
           </button>
           <button
-            className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-32"
+            className="btn btn-primary font-title"
             onClick={() => changePage(1)}
           >
             {" "}
