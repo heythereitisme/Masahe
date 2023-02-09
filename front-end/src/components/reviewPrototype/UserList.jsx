@@ -462,7 +462,7 @@ const UserList = ({ mt }) => {
             })}
           </div>
           <button
-            className="btn btn-primary mr-4 font-title"
+            className="btn btn-primary mr-4 font-title mt-5 ml-4"
             onClick={() => changePage(-1)}
           >
             {" "}
