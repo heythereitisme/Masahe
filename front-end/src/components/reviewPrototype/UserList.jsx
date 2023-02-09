@@ -357,6 +357,7 @@ const UserList = ({ mt }) => {
                   </span>
                   <span>{u.username}</span>
                   <span>Rating: {u.avgRating} </span>
+                  {u.open && <span className="font-bold">Appointments available!</span>}
                   <div className="button-holder">
                     <button
                       onClick={() => mtDetailPage(u.username)}

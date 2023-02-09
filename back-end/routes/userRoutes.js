@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/client", async (req, res) => {
     try {
         const clients = await getAllClients();
-        const filteredClients = clients.map(({_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed}) => ({_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed}))
+        const filteredClients = clients.map(({_id, firstName, lastName, avgRating, username, quadrant, about, avatar}) => ({_id, firstName, lastName, avgRating, username, quadrant, about, avatar}))
         res.send(filteredClients);
       } catch (error) {
         console.error(error);
@@ -27,7 +27,7 @@ router.get("/client", async (req, res) => {
 router.get("/mt", async (req, res) => {
     try {
         const mts = await getAllSPs();
-        const filteredMTs = mts.map(({_id, firstName, lastName, avgRating, username}) => ({_id, firstName, lastName, avgRating, username}))
+        const filteredMTs = mts.map(({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed}) => ({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed}))
         res.send(filteredMTs);
       } catch (error) {
         console.error(error);
