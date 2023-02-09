@@ -28,7 +28,6 @@ const detailPage = (u) => {
   navigate(`/client/user?id=${u}`);
 };
 
-
 const getAppointments = async() => {
     const req = await fetch(`/api/event/appointment/${muid}`);
         const users = await req.json();
@@ -89,7 +88,8 @@ const rateUser = async (u) => {
                       <span>Name: {u.resources.client.firstName} {u.resources.client.lastName}</span>
                       <span>Rating: {u.resources.client.avgRating}</span>
                       <span>Quadrant: {u.resources.client.quadrant[0]}</span>
-                      <span>{readableDate}</span>
+                      <span>Address: {u.resources.client.address}</span>
+                      <span>At: {readableDate}</span>
                       <div className='flex'>
 
                       <button
@@ -103,6 +103,12 @@ const rateUser = async (u) => {
                       className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/2"
                       >
                       Reschedule
+                    </button>
+                    <button
+                      onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${u.resources.client.address}`)}
+                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/2"
+                      >
+                      Get Directions
                     </button>
                       </div>
                     </div>
@@ -123,8 +129,7 @@ const rateUser = async (u) => {
                       <span>User: {u.resources.client.username}</span>
                       <span>Name: {u.resources.client.firstName} {u.resources.client.lastName}</span>
                       <span>Rating: {u.resources.client.avgRating}</span>
-                      <span>Quadrant: {u.resources.client.quadrant[0]}</span>
-                      <span>{readableDate}</span>
+                      <span>Was at: {readableDate}</span>
                       <div className='flex'>
                       <form
                     onSubmit={(e) => submitRating(e, u)}
