@@ -11,16 +11,21 @@ export const listEvents = async(id) => {
     return events
   }
   
-  export const createEvent = async(e) => {
-    let serverReq = await fetch("/api/event", {
+  export const createEvent = async(e, open) => {
+    await fetch("/api/event", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(e)
+    }) 
+    await fetch("/api/user", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(open)
     })
-    const newEvent = await serverReq.json()
-    console.log(newEvent)
   }
   
   export const updateEvent = async(e) => {

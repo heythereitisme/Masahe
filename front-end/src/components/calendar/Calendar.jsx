@@ -44,6 +44,8 @@ const BookingCalendar = ({ mt }) => {
           };
         });
         return setMyEvents(newEvents);
+      } else {
+        setClose({username: auth.user.displayName, open: false})
       }
     } else {
       const events = await listClientEvents(uid.id);
@@ -54,6 +56,8 @@ const BookingCalendar = ({ mt }) => {
           return { _id: e._id, title: e.title, start: newStart, end: newEnd };
         });
         setMyEvents(newEvents);
+      } else {
+        setClose({username: uid.id, open: false})
       }
     }
   };
@@ -65,10 +69,20 @@ const BookingCalendar = ({ mt }) => {
   const handleSelectSlot = async ({ start, end }) => {
     const title = window.prompt("New Event name");
     if (title) {
-      await createEvent({ start, end, title, resources: { user: muid} });
+      await createEvent({ start, end, title, resources: { user: muid} }, {username: auth.user.displayName, open:true});
       await getEvents();
     }
   };
+
+  const setClose = async(u) => {
+    await fetch("/api/user", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(u)
+    })
+  }
 
   const deleter = async (event) => {
     let selectedEvent = event.title;

@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/client", async (req, res) => {
     try {
         const clients = await getAllClients();
-        const filteredClients = clients.map(({_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed}) => ({_id, firstName, lastName, avgRating, username, quadrant, about, avatar, licensed}))
+        const filteredClients = clients.map(({_id, firstName, lastName, avgRating, username, quadrant, about, avatar}) => ({_id, firstName, lastName, avgRating, username, quadrant, about, avatar}))
         res.send(filteredClients);
       } catch (error) {
         console.error(error);
@@ -27,7 +27,7 @@ router.get("/client", async (req, res) => {
 router.get("/mt", async (req, res) => {
     try {
         const mts = await getAllSPs();
-        const filteredMTs = mts.map(({_id, firstName, lastName, avgRating, username}) => ({_id, firstName, lastName, avgRating, username}))
+        const filteredMTs = mts.map(({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed}) => ({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed}))
         res.send(filteredMTs);
       } catch (error) {
         console.error(error);
@@ -64,8 +64,8 @@ router.put("/", async(req,res) => {
    const user = req.body
    const username = user.username
   try {
-    const deletedUser = await updateUser(username, user)
-    res.send(deletedUser)
+    const updatedUser = await updateUser(username, user)
+    res.send(updatedUser)
   } catch (error) {
     console.error(error)
     res.status(500).send(error)
