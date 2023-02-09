@@ -79,7 +79,6 @@ const Profile = ({ value }) => {
         address,
         phoneNumber,
         username,
-        address
       };
       updateUser(updatedUser);
       updater(user.accessToken, user.displayName)
