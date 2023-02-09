@@ -64,8 +64,8 @@ router.put("/", async(req,res) => {
    const user = req.body
    const username = user.username
   try {
-    const deletedUser = await updateUser(username, user)
-    res.send(deletedUser)
+    const updatedUser = await updateUser(username, user)
+    res.send(updatedUser)
   } catch (error) {
     console.error(error)
     res.status(500).send(error)

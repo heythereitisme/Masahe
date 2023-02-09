@@ -79,7 +79,7 @@ const rateUser = async (u) => {
                 <>
                 <span className='text-3xl'>Upcoming appointments</span>
                 <div className="grid grid-cols-4 gap-2 mt-5">
-                {upcoming.map((u) => {
+                {upcoming.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
                   return(
@@ -121,7 +121,7 @@ const rateUser = async (u) => {
                 <>
                 <span className='text-3xl'>Recent Appointments, leave a rating?</span>
                 <div className="grid grid-cols-4 gap-2 mt-5">
-                {past.map((u) => {
+                {past.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
                   return(

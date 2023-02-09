@@ -65,7 +65,7 @@ const BookingCalendar = ({ mt }) => {
   const handleSelectSlot = async ({ start, end }) => {
     const title = window.prompt("New Event name");
     if (title) {
-      await createEvent({ start, end, title, resources: { user: muid} });
+      await createEvent({ start, end, title, resources: { user: muid} }, {username: auth.user.displayName, open:true});
       await getEvents();
     }
   };
