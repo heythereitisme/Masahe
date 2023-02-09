@@ -11,7 +11,7 @@ import {
 } from "./server-functions";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 
@@ -23,7 +23,9 @@ const BookingCalendar = ({ mt }) => {
   const [myEvents, setMyEvents] = useState([]);
   const auth = useContext(AuthContext)
   const muid = auth.muid
+  const address = auth.userInfo.address
   const uid = useParams();
+  const navigate = useNavigate()
 
   const getEvents = async () => {
     setMyEvents([]);
@@ -97,13 +99,18 @@ const BookingCalendar = ({ mt }) => {
       `${selectedEvent} \nWould you like to Book this time slot?`
     );
     if (r !== false) {
-      console.log(event);
-      console.log(uid);
-      await updateEvent({
-        id,
-        resources: { client: muid, user: uid.id },
-      });
-      await getEvents();
+      if(!address){
+        alert("Please add an address first.")
+        return navigate("/profile")
+      } else {
+        console.log(event);
+        console.log(uid);
+        await updateEvent({
+          id,
+          resources: { client: muid, user: uid.id },
+        });
+        await getEvents();
+      }
     }
   };
 

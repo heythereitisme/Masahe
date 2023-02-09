@@ -8,6 +8,7 @@ const Profile = ({ value }) => {
   const user = auth.user;
   const userInfo = auth.userInfo;
   let editorRef = useRef(null);
+  const updater = auth.permissionChecker
   const [quadrant, setQuadrant] = useState([]);
   const [about, setAbout] = useState("");
   const [ava, setAva] = useState("");
@@ -33,7 +34,7 @@ const Profile = ({ value }) => {
       setClientQuadrant(userInfo.quadrant[0]);
       setAva(userInfo.avatar);
     }
-  }, [auth]);
+  }, []);
 
   const checkbox = (e) => {
     const value = e.target.value;
@@ -78,8 +79,10 @@ const Profile = ({ value }) => {
         address,
         phoneNumber,
         username,
+        address
       };
       updateUser(updatedUser);
+      updater(user.accessToken, user.displayName)
     } else if (value === 2) {
       const updatedUser = {
         quadrant,
@@ -92,6 +95,7 @@ const Profile = ({ value }) => {
         username,
       };
       updateUser(updatedUser);
+      updater(user.accessToken, user.displayName)
     }
   };
 
@@ -211,7 +215,7 @@ const Profile = ({ value }) => {
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           placeholder="you@example.com"
                           defaultValue={about}
-                          onChange={(e) => setAbout(e.target.value)}
+                          onInput={(e) => setAbout(e.target.value)}
                         />
                       </div>
                       <p className="mt-2 text-sm text-gray-500">
@@ -283,7 +287,7 @@ const Profile = ({ value }) => {
                               autoComplete="given-name"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={firstName}
-                              onChange={(e) => setFirstName(e.target.value)}
+                              onInput={(e) => setFirstName(e.target.value)}
                             />
                           </div>
                           <div className="col-span-6 sm:col-span-3">
@@ -300,7 +304,7 @@ const Profile = ({ value }) => {
                               autoComplete="family-name"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={lastName}
-                              onChange={(e) => setLastName(e.target.value)}
+                              onInput={(e) => setLastName(e.target.value)}
                             />
                           </div>
 
@@ -318,7 +322,7 @@ const Profile = ({ value }) => {
                               autoComplete="email"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={email}
-                              onChange={(e) => setEmail(e.target.value)}
+                              onInput={(e) => setEmail(e.target.value)}
                             />
                           </div>
                           <div className="col-span-6">
@@ -335,7 +339,7 @@ const Profile = ({ value }) => {
                               autoComplete="street-address"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={address}
-                              onChange={(e) => setAddress(e.target.value)}
+                              onInput={(e) => setAddress(e.target.value)}
                             />
                           </div>
                           <div className="col-span-6">
@@ -354,7 +358,7 @@ const Profile = ({ value }) => {
                               placeholder="123-456-7890"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={phoneNumber}
-                              onChange={(e) => setPhoneNumber(e.target.value)}
+                              onInput={(e) => setPhoneNumber(e.target.value)}
                             />
                           </div>
                         </div>
@@ -456,7 +460,7 @@ const Profile = ({ value }) => {
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           placeholder="you@example.com"
                           defaultValue={about}
-                          onChange={(e) => setAbout(e.target.value)}
+                          onInput={(e) => setAbout(e.target.value)}
                         />
                       </div>
                       <p className="mt-2 text-sm text-gray-500">
@@ -528,7 +532,7 @@ const Profile = ({ value }) => {
                               autoComplete="given-name"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={firstName}
-                              onChange={(e) => setFirstName(e.target.value)}
+                              onInput={(e) => setFirstName(e.target.value)}
                             />
                           </div>
                           <div className="col-span-6 sm:col-span-3">
@@ -545,7 +549,7 @@ const Profile = ({ value }) => {
                               autoComplete="family-name"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={lastName}
-                              onChange={(e) => setLastName(e.target.value)}
+                              onInput={(e) => setLastName(e.target.value)}
                             />
                           </div>
 
@@ -563,7 +567,7 @@ const Profile = ({ value }) => {
                               autoComplete="email"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={email}
-                              onChange={(e) => setEmail(e.target.value)}
+                              onInput={(e) => setEmail(e.target.value)}
                             />
                           </div>
                           <div className="col-span-6">
@@ -580,7 +584,7 @@ const Profile = ({ value }) => {
                               autoComplete="street-address"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={address}
-                              onChange={(e) => setAddress(e.target.value)}
+                              onInput={(e) => setAddress(e.target.value)}
                             />
                           </div>
                           <div className="col-span-6">
@@ -599,7 +603,7 @@ const Profile = ({ value }) => {
                               placeholder="123-456-7890"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={phoneNumber}
-                              onChange={(e) => setPhoneNumber(e.target.value)}
+                              onInput={(e) => setPhoneNumber(e.target.value)}
                             />
                           </div>
                         </div>

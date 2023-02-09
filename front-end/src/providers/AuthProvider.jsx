@@ -119,7 +119,7 @@ export const AuthProvider = (props) => {
 			logout()
 
 	};
-	const theValues = { user, login, logout, error, register, regError, permission, muid, avatar, userInfo };
+	const theValues = { user, login, logout, error, register, permissionChecker, regError, permission, muid, avatar, userInfo };
 
 	return (
 		<AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>
