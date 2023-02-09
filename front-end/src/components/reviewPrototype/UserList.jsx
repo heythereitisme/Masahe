@@ -143,7 +143,7 @@ const UserList = ({ mt }) => {
 
   if (mt) {
     if (!pages[0]) {
-      return (
+      return ( // MT none found
         <div className="bg-white">
           <div className="flex flex-col gap-5">
             <button
@@ -183,7 +183,7 @@ const UserList = ({ mt }) => {
           <span className="text-3xl">Not Found</span>
         </div>
       );
-    } else {
+    } else { //MT
       return (
         <div>
           <div className="flex flex-col gap-5">
@@ -279,7 +279,7 @@ const UserList = ({ mt }) => {
         </div>
       );
     }
-  } else {
+  } else { //client no results found
     if (!pages[0]) {
       return (
         <div >
