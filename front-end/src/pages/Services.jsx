@@ -4,9 +4,9 @@ import Userlist from '../components/reviewPrototype/UserList'
 
 function Services() {
   return (
- <>
+ <div className='min-h-screen bg-white text-center'>
   <Userlist/>
-  </>
+  </div>
   )
 }
 

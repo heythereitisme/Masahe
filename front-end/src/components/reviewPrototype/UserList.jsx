@@ -186,7 +186,7 @@ const UserList = ({ mt }) => {
         </div>
           </div>
           <div className="mb-10 ml-4">
-            <span className="text-2xl">Sort By:</span>
+            <span className="text-2xl text-primary">Sort By:</span>
             <button
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
@@ -261,7 +261,7 @@ const UserList = ({ mt }) => {
 
           </div>
           <div className="mb-10 ml-4">
-            <span className="text-2xl">Sort By:</span>
+            <span className="text-2xl text-primary">Sort By:</span>
             <button
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
@@ -431,15 +431,15 @@ const UserList = ({ mt }) => {
     if (!pages[0]) {
       return (
         <div >
-        <div className="flex items-center ">
-            <div className="flex space-x-1">
+        <div className="flex items-center justify-center">
+            <div className="flex space-x-1 m-5">
                 <input
                     type="text"
                     className="block w-full px-4 py-2 text-accent bg-white border rounded-full focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-10"
                     placeholder="Search..."
                     onInput={(e) => setFilter(e.target.value)}
                 />
-                <button className="px-4 text-white bg-neutral rounded-full ">
+                <button className="px-4 text-white bg-secondary rounded-full ">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 h-5"
@@ -458,7 +458,7 @@ const UserList = ({ mt }) => {
             </div>
         </div>
         <div className="mb-10 ml-4">
-            <span className="text-2xl">Sort By:</span>
+            <span className="text-2xl text-primary">Sort By:</span>
             <button
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
@@ -500,22 +500,22 @@ const UserList = ({ mt }) => {
               Available
             </button>
           </div>
-          <span className="text-3xl">Not Found</span>
+          <span className="text-3xl font font-heading text-primary">Not Found</span>
         </div>
       );
       // CLIENT
     } else {
       return (
         <div className="bg-white min-h-screen">
-          <div className="flex items-center ">
-            <div className="flex space-x-1 m-4">
+          <div className="flex items-center justify-center">
+            <div className="flex space-x-1 m-5">
               <input
                 type="text"
                 className="block w-full px-4 py-2 text-accent bg-white border rounded-full focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-10"
                 placeholder="Search..."
                 onInput={(e) => setFilter(e.target.value)}
               />
-              <button className="px-4 text-white bg-neutral rounded-full ">
+              <button className="px-4 text-white bg-secondary rounded-full ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5"
@@ -535,7 +535,7 @@ const UserList = ({ mt }) => {
           </div>
 
           <div className="mb-10 ml-4">
-            <span className="text-2xl">Sort By:</span>
+            <span className="text-2xl text-primary">Sort By:</span>
             <button
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
@@ -583,14 +583,17 @@ const UserList = ({ mt }) => {
               return (
                 <div
                   key={u.username}
-                  className=" bg-slate-100 shadow-2xl flex flex-col rounded-lg p-4 ml-4"
+                  className=" bg-slate-100 shadow-2xl  rounded-lg p-4 ml-4 text-left "
                 >
+                  {/* this div for image */}
+                  <div className="flex justify-between">
+                  <div className="flex flex-col">
                   <span className="font-heading text-lg mb-3 text-primary">
                     {u.firstName} {u.lastName} 
                   </span>
                   <span className="font-title text-primary">{u.username}</span>
                   <span className="font-title text-primary">Quadrant(s):{u.quadrant.map((q) => <span className="ml-1 mr-1">{q}</span>)}</span>
-                  <span className=" font-title text-primary">
+                  <span className=" font-title text-primary mb-3">
                     <div className="rating">
                     <input
                         type="radio"
@@ -637,13 +640,16 @@ const UserList = ({ mt }) => {
                       />
                     </div>
                   </span>
+                  </div>
+                  <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+        </div>
                   {u.licensed && (
                     <span className="font-title text-primary mt-3 mb-1">
                       Licensed
                     </span>
                   )}
                   {u.open && (
-                    <span className="font-title text-primary font-bold mt-3 mb-1">
+                    <span className="font-title text-primary font-bold mt-3 mb-1 text-lg">
                       Appointments available!
                     </span>
                   )}
