@@ -403,7 +403,7 @@ const UserList = ({ mt }) => {
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("licensed")}
             >
-              Certification
+              Licensed
             </button>
             <button
               className="btn btn-secondary m-1 font-title"
@@ -465,6 +465,11 @@ const UserList = ({ mt }) => {
                       />
                     </div>
                   </span>
+                  {u.licensed && (
+                    <span className="font-title text-primary mt-3 mb-1">
+                      Licensed
+                    </span>
+                  )}
                   {u.open && (
                     <span className="font-title text-primary font-bold mt-3 mb-1">
                       Appointments available!
