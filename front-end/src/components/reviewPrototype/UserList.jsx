@@ -386,16 +386,16 @@ const UserList = ({ mt }) => {
                 className="dropdown-content menu p-2 shadow bg-white rounded-box w-48 text-primary"
               >
                 <li>
-                  <button onClick={() => sorter("ne")}>Northeast</button>{" "}
+                  <button onClick={() => sorter("NE")}>Northeast</button>{" "}
                 </li>
                 <li>
-                  <button onClick={() => sorter("nw")}>Northwest</button>{" "}
+                  <button onClick={() => sorter("NW")}>Northwest</button>{" "}
                 </li>
                 <li>
-                  <button onClick={() => sorter("se")}>Southeast</button>{" "}
+                  <button onClick={() => sorter("SE")}>Southeast</button>{" "}
                 </li>
                 <li>
-                  <button onClick={() => sorter("sw")}>Southwest</button>{" "}
+                  <button onClick={() => sorter("SW")}>Southwest</button>{" "}
                 </li>
               </ul>
             </div>
@@ -421,15 +421,14 @@ const UserList = ({ mt }) => {
                   className=" bg-slate-100 shadow-2xl flex flex-col rounded-lg p-4 ml-4"
                 >
                   <span className="font-heading text-lg mb-3 text-primary">
-                    {u.firstName} {u.lastName}
+                    {u.firstName} {u.lastName} 
                   </span>
                   <span className="font-title text-primary">{u.username}</span>
+                  <span className="font-title text-primary">Quadrant(s):{u.quadrant.map((q) => <span className="ml-1 mr-1">{q}</span>)}</span>
                   <span className=" font-title text-primary">
-                    Rating: {u.avgRating}
                     <div className="rating">
                       <input
                         type="radio"
-                        name="rating-2"
                         value={1}
                         className="mask mask-star-2 bg-orange-400"
                         checked={rating === 1}
@@ -437,7 +436,6 @@ const UserList = ({ mt }) => {
                       />
                       <input
                         type="radio"
-                        name="rating-2"
                         className="mask mask-star-2 bg-orange-400"
                         value={2}
                         checked={rating === 2}
@@ -453,7 +451,6 @@ const UserList = ({ mt }) => {
                       />
                       <input
                         type="radio"
-                        name="rating-2"
                         value={4}
                         className="mask mask-star-2 bg-orange-400"
                         checked={rating === 4}
@@ -461,7 +458,6 @@ const UserList = ({ mt }) => {
                       />
                       <input
                         type="radio"
-                        name="rating-2"
                         value={5}
                         className="mask mask-star-2 bg-orange-400"
                         checked={rating === 5}
