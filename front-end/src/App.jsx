@@ -26,11 +26,12 @@ function App() {
 				<Routes>
 					<Route element={<GuestPortal />}>
 						<Route path="/" element={<Home />} />
-						<Route path="/client/login" element={<Login permission={1}/>} />
-						<Route path="/mt/login" element={<Login permission={2}/>} />
+						<Route path="/client/login" element={<Login permission={1} role="client"/>} />
+						<Route path="/mt/login" element={<Login permission={2} role="mt"/>} />
 						<Route path="/profile" element={<ProfilePage/>} />
 					</Route>
 					<Route element={<ClientPortal />}>
+						<Route path="/client" element={<Home />} />
 						<Route path="/client/booking" element={<ClientBooking />} />
 						<Route path="/client/booking/:id" element={<BookUser />} />
 						<Route path="/client/search" element={<Search />} />
@@ -38,13 +39,15 @@ function App() {
 						<Route path="/client/services" element={<Services />} />
 						<Route path="/mt/user" element={<Details />} />
 						<Route path="/client/home" element={<ClientHome/>} />
+						<Route path="/client/profile" element={<ProfilePage/>} />
 					</Route>
 					<Route element={<MTPortal />}>
-						<Route path="/mt/home" element={<MTHome/>} />
+						<Route path="/mt" element={<MTHome/>} />
 						<Route path="/mt/schedule" element={<MTSchedule/>} />
 						<Route path="/mt/schedule/:id" element={<BookUser mt={true} />} />
 						<Route path="/mt/review" element={<SpReview />} />
 						<Route path="/client/user" element={<Details />} />
+						<Route path="/mt/profile" element={<ProfilePage/>} />
 					</Route>
 				</Routes>
 			</AuthProvider>
