@@ -9,7 +9,7 @@ export const RegisterForm = ({ permission }) => {
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [quadrant, setQuadrant] = useState("nw");
+  const [quadrant, setQuadrant] = useState("NW");
   const error = authContext.regError;
   
   const reg = (e) => {
