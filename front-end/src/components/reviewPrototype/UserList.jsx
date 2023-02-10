@@ -582,8 +582,11 @@ const UserList = ({ mt }) => {
               return (
                 <div
                   key={u.username}
-                  className=" bg-slate-100 shadow-2xl flex flex-col rounded-lg p-4 ml-4 text-left "
+                  className=" bg-slate-100 shadow-2xl  rounded-lg p-4 ml-4 text-left "
                 >
+                  {/* this div for image */}
+                  <div className="flex justify-between">
+                  <div className="flex flex-col">
                   <span className="font-heading text-lg mb-3 text-primary">
                     {u.firstName} {u.lastName} 
                   </span>
@@ -636,6 +639,9 @@ const UserList = ({ mt }) => {
                       />
                     </div>
                   </span>
+                  </div>
+                  <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+        </div>
                   {u.licensed && (
                     <span className="font-title text-primary mt-3 mb-1">
                       Licensed
