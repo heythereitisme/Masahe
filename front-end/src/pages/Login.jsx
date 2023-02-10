@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
-import { useEffect } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import { FirebaseContext } from "../providers/FirebaseProvider";
+import { useNavigate } from "react-router";
 import { LoginForm } from "../components/LoginForm";
 import { RegisterForm } from "../components/RegisterForm";
-import { useNavigate } from "react-router";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Login = ({permission, role}) => {
 	//const fbContext = useContext(FirebaseContext);
