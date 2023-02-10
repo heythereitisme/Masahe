@@ -18,6 +18,7 @@ const Profile = ({ value }) => {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [clientQuadrant, setClientQuadrant] = useState(["NE"]);
+  const [licensed, setLicensed] = useState(false)
   const [scale, setScale] = useState(1);
   const [preview, setPreview] = useState(null)
 
@@ -33,6 +34,7 @@ const Profile = ({ value }) => {
       setPhoneNumber(userInfo.phoneNumber);
       setClientQuadrant(userInfo.quadrant[0]);
       setAva(userInfo.avatar);
+      setLicensed(userInfo.licensed)
     }
   }, []);
 
@@ -42,6 +44,14 @@ const Profile = ({ value }) => {
       setQuadrant(quadrant.filter((v) => v !== value));
     } else {
       setQuadrant([...quadrant, value]);
+    }
+  };
+
+  const licenseBox = (e) => {
+    if (licensed === false) {
+      setLicensed(true);
+    } else {
+      setLicensed(false);
     }
   };
 
@@ -92,6 +102,7 @@ const Profile = ({ value }) => {
         address,
         phoneNumber,
         username,
+        licensed,
       };
       updateUser(updatedUser);
       updater(user.accessToken, user.displayName)
@@ -360,6 +371,19 @@ const Profile = ({ value }) => {
                               onInput={(e) => setPhoneNumber(e.target.value)}
                             />
                           </div>
+                          <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Licensed:
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              onChange={licenseBox}
+                              checked={licensed}
+                            />
+                          </label>
+                        </div>
                         </div>
                       </div>
                       <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">

@@ -363,6 +363,7 @@ const UserList = ({ mt }) => {
                     onSubmit={(e) => submitRating(e, u)}
                     className="flex justify-between m-5 items-center"
                   >
+                    <span>Rate: </span>
                     <div className="rating">
                       <input
                         type="radio"
@@ -669,6 +670,7 @@ const UserList = ({ mt }) => {
                     onSubmit={(e) => submitRating(e, u)}
                     className="flex justify-between m-5 items-center"
                   >
+                    <span>Rate: </span>
                     <div className="rating">
                       <input
                         type="radio"
