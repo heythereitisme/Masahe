@@ -351,11 +351,15 @@ const UserList = ({ mt }) => {
                       />
                     </div>
                   <div className="flex justify-center">
+                    {/* helpa */}
                     <button
                       onClick={() => detailPage(u.username)}
-                      className="btn btn-primary bg-white text-primary hover:text-white mb-3 font-title"
+                      className="btn btn-primary bg-white text-primary hover:text-white mb-3 font-title mt-3"
                     >
                       Details
+                    </button>
+                    <button className=" btn btn-primary ml-4 font-title bg-white text-primary hover:text-white mt-3">
+                      Message
                     </button>
                   </div>
                   <form
@@ -657,17 +661,17 @@ const UserList = ({ mt }) => {
                   <div className="button-holder flex justify-around ">
                     <button
                       onClick={() => mtDetailPage(u.username)}
-                      className="btn btn-primary font-title bg-white text-primary"
+                      className="btn btn-primary font-title bg-white text-primary hover:text-white"
                     >
                       Details
                     </button>
                     <button
                       onClick={() => bookingPage(u.username)}
-                      className="btn btn-primary ml-4 font-title bg-white text-primary"
+                      className="btn btn-primary ml-4 font-title bg-white text-primary hover:text-white"
                     >
                       Book
                     </button>
-                    <button className=" btn btn-primary ml-4 font-title bg-white text-primary">
+                    <button className=" btn btn-primary ml-4 font-title bg-white text-primary hover:text-white">
                       Message
                     </button>
                   </div>
