@@ -294,7 +294,7 @@ const UserList = ({ mt }) => {
           </div>
           <div className="grid grid-cols-4 gap-2 mt-5 ">
             {pages[currentPage].map((u) => {
-              const rating = Math.round(u.avgRating);
+              const uRating = Math.round(u.avgRating);
               return (
                 <div
                   key={u.username}
@@ -306,18 +306,25 @@ const UserList = ({ mt }) => {
                   <span className="text-primary ml-2">{u.username}</span>
                   <span className="text-primary ml-2">Quadrant: {u.quadrant[0].toUpperCase()}</span>
                   <div className="rating">
+                  <input
+                        type="radio"
+                        value={0}
+                        className="rating-hidden"
+                        checked={uRating < 1 || !uRating}
+                        readOnly
+                      />
                       <input
                         type="radio"
                         value={1}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 1 || !rating}
+                        checked={uRating === 1}
                         readOnly
                       />
                       <input
                         type="radio"
                         className="mask mask-star-2 bg-orange-400"
                         value={2}
-                        checked={rating === 2}
+                        checked={uRating === 2}
                         readOnly
                       />
                       <input
@@ -325,21 +332,21 @@ const UserList = ({ mt }) => {
                         name="rating-2"
                         value={3}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 3}
+                        checked={uRating === 3}
                         readOnly
                       />
                       <input
                         type="radio"
                         value={4}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 4}
+                        checked={uRating === 4}
                         readOnly
                       />
                       <input
                         type="radio"
                         value={5}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 5}
+                        checked={uRating === 5}
                         readOnly
                       />
                     </div>
@@ -571,7 +578,7 @@ const UserList = ({ mt }) => {
           </div>
           <div className="grid grid-cols-4 gap-2 mt-5">
             {pages[currentPage].map((u) => {
-              const rating = Math.round(u.avgRating);
+              const uRating = Math.round(u.avgRating);
               return (
                 <div
                   key={u.username}
@@ -584,18 +591,25 @@ const UserList = ({ mt }) => {
                   <span className="font-title text-primary">Quadrant(s):{u.quadrant.map((q) => <span className="ml-1 mr-1">{q}</span>)}</span>
                   <span className=" font-title text-primary">
                     <div className="rating">
+                    <input
+                        type="radio"
+                        value={0}
+                        className="rating-hidden"
+                        checked={uRating < 1 || !uRating}
+                        readOnly
+                      />
                       <input
                         type="radio"
                         value={1}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 1}
+                        checked={uRating === 1}
                         readOnly
                       />
                       <input
                         type="radio"
                         className="mask mask-star-2 bg-orange-400"
                         value={2}
-                        checked={rating === 2}
+                        checked={uRating === 2}
                         readOnly
                       />
                       <input
@@ -603,21 +617,21 @@ const UserList = ({ mt }) => {
                         name="rating-2"
                         value={3}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 3}
+                        checked={uRating === 3}
                         readOnly
                       />
                       <input
                         type="radio"
                         value={4}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 4}
+                        checked={uRating === 4}
                         readOnly
                       />
                       <input
                         type="radio"
                         value={5}
                         className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 5}
+                        checked={uRating === 5}
                         readOnly
                       />
                     </div>
