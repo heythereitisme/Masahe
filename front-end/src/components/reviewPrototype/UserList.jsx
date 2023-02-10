@@ -367,6 +367,7 @@ const UserList = ({ mt }) => {
                     onSubmit={(e) => submitRating(e, u)}
                     className="flex justify-between m-5 items-center"
                   >
+                    <span>Rate: </span>
                     <div className="rating">
                       <input
                         type="radio"
@@ -643,11 +644,8 @@ const UserList = ({ mt }) => {
                       />
                     </div>
                   </span>
-                  </div>
-                  <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
-        </div>
                   {u.licensed && (
-                    <span className="font-title text-primary mt-3 mb-1">
+                    <span className="font-title text-primary font-bold">
                       Licensed
                     </span>
                   )}
@@ -656,6 +654,10 @@ const UserList = ({ mt }) => {
                       Appointments available!
                     </span>
                   )}
+                  </div>
+                  <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+        </div>
+                  
                   <div className="button-holder flex justify-around ">
                     <button
                       onClick={() => mtDetailPage(u.username)}
@@ -679,6 +681,7 @@ const UserList = ({ mt }) => {
                     onSubmit={(e) => submitRating(e, u)}
                     className="flex justify-between m-5 items-center"
                   >
+                    <span>Rate: </span>
                     <div className="rating">
                       <input
                         type="radio"
