@@ -4,7 +4,8 @@ import { AuthContext } from '../providers/AuthProvider'
 import AuthFailure from './AuthFailure'
 import ChatBox from './ChatBox'
 import Footer from './Footer'
-import Navbar from './Navbar'
+import Navbar from './GuestNavbar'
+import ClientNavbar from './massageClients/ClientNavbar'
 
 const ClientPortal = () => {
   const authContext = useContext(AuthContext)
@@ -12,7 +13,7 @@ const ClientPortal = () => {
 
   if(permission === 1 || permission === 3) {
   return (<>
-    <Navbar />
+    <ClientNavbar />
     <Outlet />
     <ChatBox />
     <Footer />

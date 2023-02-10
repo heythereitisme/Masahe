@@ -4,7 +4,9 @@ import { AuthContext } from '../providers/AuthProvider'
 import AuthFailure from './AuthFailure'
 import ChatBox from './ChatBox'
 import Footer from './Footer'
-import Navbar from './Navbar'
+import GuestNavbar from './GuestNavbar'
+import MTNavbar from './massageTherapist/MTNavbar'
+
 
 const MTPortal = () => {
   const authContext = useContext(AuthContext)
@@ -12,7 +14,7 @@ const MTPortal = () => {
 
   if(permission >= 2) {
   return (<>
-    <Navbar />
+    <MTNavbar />
     <Outlet />
     <ChatBox />
     <Footer />
@@ -20,7 +22,7 @@ const MTPortal = () => {
   )
 } else{
   return(<>
-    <Navbar />
+    <GuestNavbar />
     <AuthFailure />
     <Footer />
   </>

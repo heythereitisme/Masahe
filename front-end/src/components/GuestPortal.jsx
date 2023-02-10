@@ -2,7 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import ChatBox from './ChatBox'
 import Footer from './Footer'
-import Navbar from './Navbar'
+import Navbar from './GuestNavbar'
 
 const GuestPortal = () => {
   return (<>

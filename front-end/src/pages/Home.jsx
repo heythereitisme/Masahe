@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import Hero from "../components/Hero";
-import MTHome from "../components/massageTherapist/MTHome";
 import { AuthContext } from "../providers/AuthProvider";
 
 const LandingPage = () => {
@@ -10,19 +9,12 @@ const LandingPage = () => {
 		console.log("Current permission level:", permission)
 	  }, [authContext])
 
-	if(permission === 2){
-		return(
-			<div>
-				<MTHome />
-			</div>
-		)
-	} else {		
 		return (
 			<div> 
 		<Hero/> 
 	</div>	
 	);
 }
-};
+
 
 export default LandingPage;
