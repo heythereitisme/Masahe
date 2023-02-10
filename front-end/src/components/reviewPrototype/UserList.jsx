@@ -8,7 +8,7 @@ const UserList = ({ mt }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [filter, setFilter] = useState("");
   const [maxPages, setMaxPages] = useState(0);
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
   const entriesPerPage = 12;
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
@@ -105,26 +105,23 @@ const UserList = ({ mt }) => {
         return b[f] - a[f];
       });
       setFilteredUsers(sort);
-    } else if (f === "open") {
+    } else if (f === "open" || f === "licensed") {
       const sort = filteredData.sort((a, b) => {
         return a[f] - b[f];
       });
       setFilteredUsers(sort);
+    } else {
+      const sort = filteredData.sort((a, b) => {
+        if (a.quadrant.includes(f)) {
+          return -1;
+        } else if (b.quadrant.includes(f)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      setFilteredUsers(sort);
     }
-    // else {
-    //   const sort = filteredData.sort((a, b) => {
-    //     let fa = a[f].toLowerCase(),
-    //       fb = b[f].toLowerCase();
-    //     if (fa < fb) {
-    //       return -1;
-    //     }
-    //     if (fa > fb) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   });
-    //   setFilteredUsers(sort);
-    // }
   };
 
   const detailPage = (u) => {
@@ -373,26 +370,43 @@ const UserList = ({ mt }) => {
           </div>
 
           <div className="mb-10 ml-4">
+            <span className="text-2xl">Sort By:</span>
             <button
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
             >
               Rating
             </button>
+            <div className="dropdown">
+              <label tabIndex={0} className="btn btn-secondary m-1 font-title">
+                Quadrant
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-white rounded-box w-48 text-primary"
+              >
+                <li>
+                  <button onClick={() => sorter("ne")}>Northeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("nw")}>Northwest</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("se")}>Southeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("sw")}>Southwest</button>{" "}
+                </li>
+              </ul>
+            </div>
             <button
-              className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
-              onClick={() => sorter("firstName")}
-            >
-              Quadrant
-            </button>
-            <button
-              className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
-              onClick={() => sorter("certification")}
+              className="btn btn-secondary m-1 font-title"
+              onClick={() => sorter("licensed")}
             >
               Certification
             </button>
             <button
-              className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
+              className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("open")}
             >
               Available
@@ -400,7 +414,7 @@ const UserList = ({ mt }) => {
           </div>
           <div className="grid grid-cols-4 gap-2 mt-5">
             {pages[currentPage].map((u) => {
-              const rating = Math.round(u.avgRating)
+              const rating = Math.round(u.avgRating);
               return (
                 <div
                   key={u.username}
@@ -412,7 +426,7 @@ const UserList = ({ mt }) => {
                   <span className="font-title text-primary">{u.username}</span>
                   <span className=" font-title text-primary">
                     Rating: {u.avgRating}
-                    <div className="rating" >
+                    <div className="rating">
                       <input
                         type="radio"
                         name="rating-2"
