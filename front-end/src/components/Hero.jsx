@@ -24,8 +24,8 @@ function Hero() {
             <p className="mb-5 font-body">Masahe is a safety practice management system that allows cleints receiving mobile services by massage therapists safely by reviewing the rating of their massage therapists prior to arriving at their location.</p>
            <p className='mb-5 font-title font-bold '>CONTINUE AS</p>
            <div className='flex flex-col gap-4 items-center md:flex md:flex-row justify-center md:mt-4'> 
-            <button className="btn btn-primary p-2 text-xs w-42 md:p-3 md:text-sm font-title"><Link to={"/client/login"}> Massage Client</Link></button>
-            <button className='btn btn-primary p-2 text-xs w-42 md:p-3 md:text-sm items-center font-title'><Link to={"/mt/login"}>Massage Therapist </Link></button>
+            <button className="btn btn-primary bg-white text-primary hover:text-white p-2 text-xs w-42 md:p-3 md:text-sm font-title"><Link to={"/client/login"}> Massage Client</Link></button>
+            <button className='btn btn-primary bg-white text-primary hover:text-white p-2 text-xs w-42 md:p-3 md:text-sm items-center font-title'><Link to={"/mt/login"}>Massage Therapist </Link></button>
             </div>
             </div>
           </div>
