@@ -185,25 +185,37 @@ const UserList = ({ mt }) => {
             </div>
         </div>
           </div>
-          <div className="mb-10">
+          <div className="mb-10 ml-4">
+            <span className="text-2xl">Sort By:</span>
             <button
-              className="btn btn-secondary bg-white text-primary hover:text-white mr-2 font-title"
+              className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
             >
-              Sort by rating
+              Rating
             </button>
-            <button
-              className="btn btn-secondary bg-white text-primary hover:text-white mr-2 font-title"
-              onClick={() => sorter("firstName")}
-            >
-              Sort by first name
-            </button>
-            <button
-              className="btn btn-secondary bg-white text-primary hover:text-white font-title"
-              onClick={() => sorter("lastName")}
-            >
-              Sort by last name
-            </button>
+            <div className="dropdown">
+              <label tabIndex={0} className="btn btn-secondary m-1 font-title">
+                Quadrant
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-white rounded-box w-48 text-primary"
+              >
+                <li>
+                  <button onClick={() => sorter("NE")}>Northeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("NW")}>Northwest</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("SE")}>Southeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("SW")}>Southwest</button>{" "}
+                </li>
+              </ul>
+            </div>
+            
           </div>
           <span className="text-3xl font-heading text-primary">Not Found</span>
         </div>
@@ -248,28 +260,41 @@ const UserList = ({ mt }) => {
         </div>
 
           </div>
-          <div>
+          <div className="mb-10 ml-4">
+            <span className="text-2xl">Sort By:</span>
             <button
-              className="btn btn-secondary bg-white text-primary hover:text-white mr-2 font-title"
+              className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
             >
-              Sort by rating
+              Rating
             </button>
-            <button
-              className="btn btn-secondary bg-white text-primary hover:text-white mr-2 font-title "
-              onClick={() => sorter("firstName")}
-            >
-              Sort by first name
-            </button>
-            <button
-              className="btn btn-secondary bg-white text-primary hover:text-white font-title"
-              onClick={() => sorter("lastName")}
-            >
-              Sort by last name
-            </button>
+            <div className="dropdown">
+              <label tabIndex={0} className="btn btn-secondary m-1 font-title">
+                Quadrant
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-white rounded-box w-48 text-primary"
+              >
+                <li>
+                  <button onClick={() => sorter("NE")}>Northeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("NW")}>Northwest</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("SE")}>Southeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("SW")}>Southwest</button>{" "}
+                </li>
+              </ul>
+            </div>
+            
           </div>
           <div className="grid grid-cols-4 gap-2 mt-5 ">
             {pages[currentPage].map((u) => {
+              const rating = Math.round(u.avgRating);
               return (
                 <div
                   key={u.username}
@@ -279,7 +304,45 @@ const UserList = ({ mt }) => {
                   {u.firstName} {u.lastName}
                   </span>
                   <span className="text-primary ml-2">{u.username}</span>
-                  <span className="text-primary ml-2">Rating: {u.avgRating} </span>
+                  <span className="text-primary ml-2">Quadrant: {u.quadrant[0].toUpperCase()}</span>
+                  <div className="rating">
+                      <input
+                        type="radio"
+                        value={1}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={rating === 1 || !rating}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        className="mask mask-star-2 bg-orange-400"
+                        value={2}
+                        checked={rating === 2}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={3}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={rating === 3}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={4}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={rating === 4}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={5}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={rating === 5}
+                        readOnly
+                      />
+                    </div>
                   <div className="flex justify-center">
                     <button
                       onClick={() => detailPage(u.username)}
@@ -289,25 +352,51 @@ const UserList = ({ mt }) => {
                     </button>
                   </div>
                   <form
+                    onChange={(e) => setRating(e.target.value)}
                     onSubmit={(e) => submitRating(e, u)}
                     className="flex justify-between m-5 items-center"
                   >
-                    
                     <div className="rating">
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-</div>
-     <div>
-                    <button
-                      type="submit"
-                      className="btn btn-secondary bg-white text-primary hover:text-white font-title"
-                    >
-                      Submit
-                    </button>
-      </div>
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={1}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={2}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={3}
+                        className="mask mask-star-2 bg-orange-400"
+                        defaultChecked
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={4}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={5}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                    </div>
+                    <div>
+                      <button
+                        type="submit"
+                        className="btn btn-secondary font-title"
+                      >
+                        Submit Rating
+                      </button>
+                    </div>
                   </form>
                 </div>
               );
@@ -360,24 +449,47 @@ const UserList = ({ mt }) => {
                 </button>
             </div>
         </div>
-          <div className="mb-10">
+        <div className="mb-10 ml-4">
+            <span className="text-2xl">Sort By:</span>
             <button
-              className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
+              className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
             >
-              Sort by rating
+              Rating
+            </button>
+            <div className="dropdown">
+              <label tabIndex={0} className="btn btn-secondary m-1 font-title">
+                Quadrant
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-white rounded-box w-48 text-primary"
+              >
+                <li>
+                  <button onClick={() => sorter("NE")}>Northeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("NW")}>Northwest</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("SE")}>Southeast</button>{" "}
+                </li>
+                <li>
+                  <button onClick={() => sorter("SW")}>Southwest</button>{" "}
+                </li>
+              </ul>
+            </div>
+            <button
+              className="btn btn-secondary m-1 font-title"
+              onClick={() => sorter("licensed")}
+            >
+              Licensed
             </button>
             <button
-              className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
-              onClick={() => sorter("firstName")}
+              className="btn btn-secondary m-1 font-title"
+              onClick={() => sorter("open")}
             >
-              Sort by first name
-            </button>
-            <button
-              className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
-              onClick={() => sorter("lastName")}
-            >
-              Sort by last name
+              Available
             </button>
           </div>
           <span className="text-3xl">Not Found</span>

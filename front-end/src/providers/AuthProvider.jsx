@@ -111,6 +111,7 @@ export const AuthProvider = (props) => {
 				}
 			} catch (err) {
 				alert("REGISTRATION FAILURE!", err.message);
+				console.error(err)
 				setRegError(true);
 			}
 			
