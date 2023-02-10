@@ -424,28 +424,6 @@ const UserList = ({ mt }) => {
             >
               Rating
             </button>
-            <div className="dropdown">
-              <label tabIndex={0} className="btn btn-secondary m-1 font-title">
-                Quadrant
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-white rounded-box w-48 text-primary"
-              >
-                <li>
-                  <button onClick={() => sorter("NE")}>Northeast</button>{" "}
-                </li>
-                <li>
-                  <button onClick={() => sorter("NW")}>Northwest</button>{" "}
-                </li>
-                <li>
-                  <button onClick={() => sorter("SE")}>Southeast</button>{" "}
-                </li>
-                <li>
-                  <button onClick={() => sorter("SW")}>Southwest</button>{" "}
-                </li>
-              </ul>
-            </div>
             <button
               className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
               onClick={() => sorter("firstName")}
@@ -456,7 +434,7 @@ const UserList = ({ mt }) => {
               className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
               onClick={() => sorter("certification")}
             >
-              Licensed
+              Certification
             </button>
             <button
               className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-24"
@@ -473,59 +451,19 @@ const UserList = ({ mt }) => {
                   className=" bg-slate-50 shadow-2xl flex flex-col rounded-lg p-4 ml-4"
                 >
                   <span className="font-heading text-lg mb-3 text-primary">
-                    {u.firstName} {u.lastName}
+                  {u.firstName} {u.lastName}
                   </span>
                   <span className="font-title text-primary">{u.username}</span>
-                  <span className=" font-title text-primary">
-                    Rating: {u.avgRating}
-                    <div className="rating">
-                      <input
-                        type="radio"
-                        name="rating-2"
-                        value={1}
-                        className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 1}
-                        readOnly
-                      />
-                      <input
-                        type="radio"
-                        name="rating-2"
-                        className="mask mask-star-2 bg-orange-400"
-                        value={2}
-                        checked={rating === 2}
-                        readOnly
-                      />
-                      <input
-                        type="radio"
-                        name="rating-2"
-                        value={3}
-                        className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 3}
-                        readOnly
-                      />
-                      <input
-                        type="radio"
-                        name="rating-2"
-                        value={4}
-                        className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 4}
-                        readOnly
-                      />
-                      <input
-                        type="radio"
-                        name="rating-2"
-                        value={5}
-                        className="mask mask-star-2 bg-orange-400"
-                        checked={rating === 5}
-                        readOnly
-                      />
-                    </div>
-                  </span>
-                  {u.open && (
-                    <span className="font-title text-primary font-bold mt-3 mb-1">
-                      Appointments available!
-                    </span>
-                  )}
+                  <span className=" font-title text-primary">Rating: {u.avgRating} 
+                  <div className="rating">
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+</div>
+</span>
+                  {u.open && <span className="font-title text-primary font-bold mt-3 mb-1">Appointments available!</span>}
                   <div className="button-holder flex justify-around ">
                     <button
                       onClick={() => mtDetailPage(u.username)}
