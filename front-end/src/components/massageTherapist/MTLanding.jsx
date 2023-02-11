@@ -60,9 +60,9 @@ const rateUser = async (u) => {
 };
 
   return (
-    <div className='min-h-screen bg-white text-center flex flex-col'>
+    <div className='min-h-screen bg-white text-center flex flex-col '>
         <Link to={`/mt/schedule/${un}`}>
-        <button className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/3 h-24 mx-auto">
+        <button className="btn btn-primary w-48 h-18 font-heading font-bold text-lg bg-white text-primary hover:text-white mt-5 ">
               Set Schedule
             </button>
                 </Link>
@@ -77,38 +77,42 @@ const rateUser = async (u) => {
                 })}
                 {upcoming[0] && 
                 <>
-                <span className='text-3xl'>Upcoming appointments</span>
+                <span className='text-3xl font-heading text-primary mt-5'>Upcoming appointments</span>
                 <div className="grid grid-cols-4 gap-2 mt-5">
                 {upcoming.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
                   return(
-                    <div key={u._id} className="bg-purple-200 flex flex-col rounded-lg">
-                      <span>User: {u.resources.client.username}</span>
-                      <span>Name: {u.resources.client.firstName} {u.resources.client.lastName}</span>
-                      <span>Rating: {u.resources.client.avgRating}</span>
-                      <span>Quadrant: {u.resources.client.quadrant[0]}</span>
-                      <span>Address: {u.resources.client.address}</span>
-                      <span>At: {readableDate}</span>
-                      <div className='flex'>
-
+                    <div key={u._id} className="bg-slate-50 shadow-2xl rounded-lg p-4 ml-4 mr-4 text-left text-primary">
+                     <div className='flex justify-between'>
+                      <div className='flex flex-col'>
+                      <span className='text-lg'>{u.resources.client.firstName} {u.resources.client.lastName}</span>
+                      <span>{u.resources.client.username}</span>
+                      <span>{u.resources.client.avgRating}</span>
+                      <span>{u.resources.client.quadrant[0]}</span>
+                      <span>{u.resources.client.address}</span>
+                      <span>{readableDate}</span>
+                      </div>
+                      <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+                      </div>
+                      <div className='flex mt-3 justify-between'>
                       <button
                       onClick={() => detailPage(u.resources.client.username)}
-                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/2"
+                      className="btn btn-secondary font-title text-xs"
                       >
                       Details
                     </button>
                     <button
                       onClick={() => navigate(`/mt/schedule/${un}`)}
-                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/2"
+                      className="btn btn-secondary font-title text-xs"
                       >
                       Reschedule
                     </button>
                     <button
                       onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${u.resources.client.address}`)}
-                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-1/2"
+                      className="btn btn-secondary font-title text-xs"
                       >
-                      Get Directions
+                     Directions
                     </button>
                       </div>
                     </div>
@@ -119,17 +123,22 @@ const rateUser = async (u) => {
                 }
                 {past[0] && 
                 <>
-                <span className='text-3xl'>Recent Appointments, leave a rating?</span>
-                <div className="grid grid-cols-4 gap-2 mt-5">
+                <span className='text-3xl font-heading text-primary'>Recent Appointments, leave a rating?</span>
+                <div className="grid grid-cols-3 gap-2 mt-5 mb-5">
                 {past.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
                   return(
-                    <div key={u._id} className="bg-purple-200 flex flex-col rounded-lg">
+                    <div key={u._id} className="bg-slate-50 shadow-2xl rounded-lg p-4 ml-4 mr-4 text-left text-primary flex flex-col">
+                      <div className='flex justify-between'>
+                      <div className='flex flex-col'>
                       <span>User: {u.resources.client.username}</span>
                       <span>Name: {u.resources.client.firstName} {u.resources.client.lastName}</span>
                       <span>Rating: {u.resources.client.avgRating}</span>
                       <span>Was at: {readableDate}</span>
+                      </div>
+                      <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+                      </div>
                       <div className='flex'>
                       <form
                     onSubmit={(e) => submitRating(e, u)}
@@ -143,7 +152,7 @@ const rateUser = async (u) => {
                     />
                     <button
                       type="submit"
-                      className="bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl"
+                      className="btn btn-secondary text-xs"
                     >
                       Submit Rating
                     </button>

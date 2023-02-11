@@ -292,14 +292,18 @@ const UserList = ({ mt }) => {
             </div>
             
           </div>
+          
           <div className="grid grid-cols-4 gap-2 mt-5 ">
             {pages[currentPage].map((u) => {
               const uRating = Math.round(u.avgRating);
               return (
+
                 <div
                   key={u.username}
                   className="bg-slate-50 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left "
-                >
+                > 
+                  <div className="flex justify-between items">
+                  <div className="flex flex-col">
                   <span className="text-primary ml-2 mb-3 font-heading text-lg">
                   {u.firstName} {u.lastName}
                   </span>
@@ -350,8 +354,11 @@ const UserList = ({ mt }) => {
                         readOnly
                       />
                     </div>
+                    </div>
+                    <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+                    </div>
                   <div className="flex justify-center">
-                    {/* helpa */}
+                    
                     <button
                       onClick={() => detailPage(u.username)}
                       className="btn btn-primary bg-white text-primary hover:text-white mb-3 font-title mt-3"
@@ -656,7 +663,7 @@ const UserList = ({ mt }) => {
                   )}
                   </div>
                   <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
-        </div>
+                 </div>
                   
                   <div className="button-holder flex justify-around ">
                     <button
