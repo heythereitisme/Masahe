@@ -5,6 +5,7 @@ import { AuthContext } from "../providers/AuthProvider";
 const LandingPage = () => {
 	const authContext = useContext(AuthContext)
 	const permission = authContext.permission
+
 	  useEffect(() => {
 		console.log("Current permission level:", permission)
 	  }, [authContext])
@@ -15,6 +16,7 @@ const LandingPage = () => {
 	</div>	
 	);
 }
+
 
 
 export default LandingPage;

@@ -603,7 +603,7 @@ const UserList = ({ mt }) => {
                     {u.firstName} {u.lastName} 
                   </span>
                   <span className="font-title text-primary">{u.username}</span>
-                  <span className="font-title text-primary">Quadrant(s):{u.quadrant.map((q) => <span className="ml-1 mr-1">{q}</span>)}</span>
+                  <span className="font-title text-primary">Quadrant(s):{u.quadrant.map((q) => <span key={q} className="ml-1 mr-1">{q}</span>)}</span>
                   <span className=" font-title text-primary mb-3">
                     <div className="rating">
                     <input
