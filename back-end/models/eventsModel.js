@@ -59,3 +59,11 @@ export const showBookedEvents = async(uid) => {
     console.log("Found appointments")
     return foundEvents
 }
+
+export const showClientsEvents = async(uid) => {
+    const foundEvents = await Event.find({'resources.client': uid})
+    .populate({path: 'resources.user', select: "_id avgRating firstName lastName username quadrant address phoneNumber"})
+    .sort({'start': 1})
+    console.log("Found client's appointments")
+    return foundEvents
+}

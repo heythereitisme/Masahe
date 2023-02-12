@@ -46,6 +46,17 @@ router.get("/appointment/:id", async (req, res) => {
   }
 })
 
+router.get("/booked/:id", async (req, res) => {
+  const id = req.params.id
+  try{
+    const events = await showBookedEvents(id)
+    res.send(events)
+  } catch (error){
+    console.error(error)
+    res.status(500).send(error)
+  }
+})
+
 router.post("/", async (req, res) => {
   try {
     const event = req.body;
