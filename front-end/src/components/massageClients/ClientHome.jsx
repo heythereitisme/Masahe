@@ -60,7 +60,90 @@ const rateUser = async (u) => {
 };
 
   return (
-    <div className='min-h-screen bg-white text-center flex flex-col '>
+    <div className='min-h-screen bg-white text-center flex flex-col'>
+      <div>
+        <span className='text-3xl font-heading text-primary'>Services</span>
+        <div className="grid grid-cols-4 gap-2 mt-10">
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Swedish Massage</h2>
+    <p className=' font-body text-primary mb-2'>A gentle full-body massage.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Hot Stone Massage</h2>
+    <p className=' font-body text-primary mb-2'>This type of massage involves the use and placement of basalt River rock on different points of the body.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Deep tissue massage</h2>
+    <p className=' font-body text-primary mb-2'>Applying sustained pressure using slow, deep strokes to target the inner layers of your muscles and connective tissues.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Aromatherapy</h2>
+    <p className=' font-body text-primary mb-2'>Using essential oils for therapeutic benefit.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Sports massage</h2>
+    <p className=' font-body text-primary mb-2'>Those with repetitive use injury to a muscle, generally use to ease sports injuries.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Reflexology</h2>
+    <p className=' font-body text-primary mb-2'>Reflexology uses gentle to firm pressure on different pressure points of the feet, hands, and ears.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Lymphatic drainage massage</h2>
+    <p className=' font-body text-primary mb-2'>Gentle massage that encourages the lymph fluids to circulate through the body.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+        </div>
+      </div>
                 {userList && 
                 userList.forEach((u) => {
                   const date = new Date(u.start)

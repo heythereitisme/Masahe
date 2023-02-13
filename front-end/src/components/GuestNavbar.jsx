@@ -64,7 +64,7 @@ function Navbar() {
           {" "}
           <Link to="/">
             <div className="btn bg-primary btn-primary">
-              <img src="/Logo-H.svg" className="w-32 m-1 rounded-lg " alt="" />
+              <img src="/Masahe-White-H.svg" className="w-32 m-1 rounded-lg " alt="" />
             </div>
           </Link>
         </ul>
