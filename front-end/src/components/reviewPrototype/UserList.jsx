@@ -105,9 +105,14 @@ const UserList = ({ mt }) => {
         return b[f] - a[f];
       });
       setFilteredUsers(sort);
-    } else if (f === "open" || f === "licensed") {
+    } else if (f === "open") {
       const sort = filteredData.sort((a, b) => {
         return b[f] - a[f];
+      });
+      setFilteredUsers(sort);
+    } else if(f === "licensed"){
+      const sort = filteredData.sort((a, b) => {
+        return b[f].reg - a[f].reg;
       });
       setFilteredUsers(sort);
     } else {
@@ -649,7 +654,7 @@ const UserList = ({ mt }) => {
                       />
                     </div>
                   </span>
-                  {u.licensed && (
+                  {u.licensed.reg && (
                     <span className="font-title text-primary font-bold">
                       Registered
                     </span>
