@@ -3,7 +3,8 @@ module.exports = {
   plugins: [require("daisyui")],
   theme: {
     screens: {
-      sm: "480px",
+      xsm: "480px",
+      sm: "610px",
       md: "768px",
       lg: "976px",
       xl: "1440px",

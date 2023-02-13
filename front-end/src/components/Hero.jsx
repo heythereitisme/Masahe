@@ -16,7 +16,7 @@ function Hero() {
      </div>
     
      {/* Hero section */}
-      <div className='md:hero md:flex md:flex-col md:justify-center '>      
+      <div className='md:hero sm:flex sm:flex-col sm:justify-center '>      
          <div className="hero-content text-center text-align-center text-neutral-content m-5 md:flex md:justify-center">
           <div className="max-w-sm flex flex-col items-center mt-12">
             <h2 className=" mb-10 text-7xl font-bold font-heading">Welcome to Masahe</h2>
