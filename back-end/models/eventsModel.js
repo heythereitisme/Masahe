@@ -54,7 +54,7 @@ export const updateEvent = async(event) => {
 
 export const showBookedEvents = async(uid) => {
     const foundEvents = await Event.find({'resources.user': uid, 'resources.client': {$exists: true, $ne: null}})
-    .populate({path: 'resources.client', select: "_id avgRating firstName lastName username quadrant address phoneNumber"})
+    .populate({path: 'resources.client', select: "_id avgRating firstName lastName username quadrant address phoneNumber avatar"})
     .sort({'start': 1})
     console.log("Found appointments")
     return foundEvents
@@ -62,7 +62,7 @@ export const showBookedEvents = async(uid) => {
 
 export const showClientsEvents = async(uid) => {
     const foundEvents = await Event.find({'resources.client': uid})
-    .populate({path: 'resources.user', select: "_id avgRating firstName lastName username quadrant address phoneNumber"})
+    .populate({path: 'resources.user', select: "_id avgRating firstName lastName username quadrant address phoneNumber avatar"})
     .sort({'start': 1})
     console.log("Found client's appointments")
     return foundEvents

@@ -5,7 +5,8 @@ import {
   getBookingEvents,
   updateEvent,
   getUserEvents,
-  showBookedEvents
+  showBookedEvents,
+  showClientsEvents
 } from "../models/eventsModel.js";
 import { getUserByUserName } from "../models/userModel.js";
 
@@ -49,7 +50,7 @@ router.get("/appointment/:id", async (req, res) => {
 router.get("/booked/:id", async (req, res) => {
   const id = req.params.id
   try{
-    const events = await showBookedEvents(id)
+    const events = await showClientsEvents(id)
     res.send(events)
   } catch (error){
     console.error(error)

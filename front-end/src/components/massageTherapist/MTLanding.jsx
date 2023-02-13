@@ -82,18 +82,63 @@ const rateUser = async (u) => {
                 {upcoming.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
+                  const uRating = Math.round(u.resources.client.avgRating)
                   return(
                     <div key={u._id} className="bg-slate-50 shadow-2xl rounded-lg p-4 ml-4 mr-4 text-left text-primary">
                      <div className='flex justify-between'>
                       <div className='flex flex-col'>
                       <span className='text-lg'>{u.resources.client.firstName} {u.resources.client.lastName}</span>
                       <span>{u.resources.client.username}</span>
-                      <span>{u.resources.client.avgRating}</span>
+                      <div className="rating">
+                  <input
+                        type="radio"
+                        value={0}
+                        className="rating-hidden"
+                        checked={uRating < 1 || !uRating}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={1}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 1}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        className="mask mask-star-2 bg-orange-400"
+                        value={2}
+                        checked={uRating === 2}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={3}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 3}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={4}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 4}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={5}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 5}
+                        readOnly
+                      />
+                    </div>
                       <span>{u.resources.client.quadrant[0]}</span>
                       <span>{u.resources.client.address}</span>
                       <span>{readableDate}</span>
                       </div>
-                      <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+                      <div> <img src={u.resources.client.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
                       </div>
                       <div className='flex mt-3 justify-between'>
                       <button
@@ -128,34 +173,110 @@ const rateUser = async (u) => {
                 {past.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
+                  const uRating = Math.round(u.resources.client.avgRating)
                   return(
                     <div key={u._id} className="bg-slate-50 shadow-2xl rounded-lg p-4 ml-4 mr-4 text-left text-primary flex flex-col">
                       <div className='flex justify-between'>
                       <div className='flex flex-col'>
                       <span>User: {u.resources.client.username}</span>
                       <span>Name: {u.resources.client.firstName} {u.resources.client.lastName}</span>
-                      <span>Rating: {u.resources.client.avgRating}</span>
+                      <div className="rating">
+                  <input
+                        type="radio"
+                        value={0}
+                        className="rating-hidden"
+                        checked={uRating < 1 || !uRating}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={1}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 1}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        className="mask mask-star-2 bg-orange-400"
+                        value={2}
+                        checked={uRating === 2}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={3}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 3}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={4}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 4}
+                        readOnly
+                      />
+                      <input
+                        type="radio"
+                        value={5}
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={uRating === 5}
+                        readOnly
+                      />
+                    </div>
                       <span>Was at: {readableDate}</span>
                       </div>
-                      <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
+                      <div> <img src={u.resources.client.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
                       </div>
                       <div className='flex'>
                       <form
+                    onChange={(e) => setRating(e.target.value)}
                     onSubmit={(e) => submitRating(e, u)}
-                    className="container mx-auto"
+                    className="flex justify-between m-5 items-center gap-2"
                   >
-                    <input
-                      type="text"
-                      placeholder="Enter rating number"
-                      onInput={(e) => setRating(e.target.value)}
-                      className="w-1/2"
-                    />
-                    <button
-                      type="submit"
-                      className="btn btn-secondary text-xs"
-                    >
-                      Submit Rating
-                    </button>
+                    <span>Rate: </span>
+                    <div className="rating">
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={1}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={2}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={3}
+                        className="mask mask-star-2 bg-orange-400"
+                        defaultChecked
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={4}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                      <input
+                        type="radio"
+                        name="rating-2"
+                        value={5}
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                    </div>
+                    <div>
+                      <button
+                        type="submit"
+                        className="btn btn-secondary font-title"
+                      >
+                        Submit Rating
+                      </button>
+                    </div>
                   </form>
                       </div>
                     </div>

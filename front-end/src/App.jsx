@@ -18,6 +18,7 @@ import { FirebaseProvider } from "./providers/FirebaseProvider";
 import Services from "./pages/Services";
 import MTHome from "./components/massageTherapist/MTHome";
 import ClientHome from "./pages/ClientHome";
+import DashboardClient from "./components/massageClients/DashboardClient";
 
 function App() {
 	return (
@@ -31,7 +32,7 @@ function App() {
 						<Route path="/profile" element={<ProfilePage/>} />
 					</Route>
 					<Route element={<ClientPortal />}>
-						<Route path="/client" element={<Home />} />
+						<Route path="/client" element={<DashboardClient />} />
 						<Route path="/client/booking" element={<ClientBooking />} />
 						<Route path="/client/booking/:id" element={<BookUser />} />
 						<Route path="/client/search" element={<Search />} />
