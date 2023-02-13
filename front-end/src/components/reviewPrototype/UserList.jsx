@@ -579,7 +579,7 @@ const UserList = ({ mt }) => {
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("licensed")}
             >
-              Licensed
+              Registered
             </button>
             <button
               className="btn btn-secondary m-1 font-title"
@@ -653,7 +653,7 @@ const UserList = ({ mt }) => {
                   </span>
                   {u.licensed && (
                     <span className="font-title text-primary font-bold">
-                      Licensed
+                      Registered
                     </span>
                   )}
                   {u.open && (

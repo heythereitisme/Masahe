@@ -374,7 +374,7 @@ const Profile = ({ value }) => {
                           <div className="form-control">
                           <label className="cursor-pointer label">
                             <span className="label-text font-title text-neutral">
-                              Licensed:
+                              Registered:
                             </span>
                             <input
                               type="checkbox"
