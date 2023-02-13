@@ -11,9 +11,9 @@ export const LoginForm = () => {
 	const error = authContext.error;
 	return (
 		<div className="flex flex-col items-center">
-		<div className="text-center bg-secondary rounded-md shadow-xl ml-10 mr-10 p-6 flex flex-col gap-10 mt-5
+		<div className="text-center bg-primary rounded-md drop-shadow-xl ml-10 mr-10 p-6 flex flex-col gap-10 mt-10
 		md:w-96 md:content-center">
-			<h1 className=" text-xl font-heading text-accent font-bold">Sign in</h1>
+			<h1 className=" text-2xl font-heading text-white font-bold">Sign in</h1>
 			<input className=" drop-shadow-md w-4/5 h-8 rounded-md p-2 mx-auto md:w-64 font-title"
 				name="email"
 				placeholder="Email"
@@ -28,7 +28,7 @@ export const LoginForm = () => {
 				type="password"
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<button onClick={() => loginFn(email, password)} className=" rounded-xl bg-primary p-3 mb-5 text-white mx-auto font-title">LOGIN</button>
+			<button onClick={() => loginFn(email, password)} className=" btn btn-secondary bg-white hover:text-white p-3 mb-5 text-primary mx-auto font-title">LOGIN</button>
 			{error && <span>Wrong email or password</span>}
 
 		</div>
