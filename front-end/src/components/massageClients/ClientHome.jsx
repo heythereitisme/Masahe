@@ -63,7 +63,7 @@ const rateUser = async (u) => {
     <div className='min-h-screen bg-white text-center flex flex-col'>
       <div>
         <span className='text-3xl font-heading text-primary'>Services</span>
-        <div className="grid grid-cols-4 gap-2 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-10">
 
 <div className="card w-96 bg-slate-50 shadow-xl ml-4">
     <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Massage" /></figure>
@@ -156,7 +156,7 @@ const rateUser = async (u) => {
                 {upcoming[0] && 
                 <>
                 <span className='text-3xl font-heading text-primary mt-5'>Upcoming appointments</span>
-                <div className="grid grid-cols-4 gap-2 mt-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-5">
                 {upcoming.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
@@ -236,7 +236,7 @@ const rateUser = async (u) => {
                 {past[0] && 
                 <>
                 <span className='text-3xl font-heading text-primary'>Recent Appointments, leave a rating?</span>
-                <div className="grid grid-cols-3 gap-2 mt-5 mb-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-5 mb-5">
                 {past.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
                   const readableDate = date.toLocaleDateString('en-US', options);
