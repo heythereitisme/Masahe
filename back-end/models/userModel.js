@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     avgRating: {type: Number, default: 0},
     username: {type: String, required: true, unique: true},
     uid: {type: String, required: true, unique: true},
-    licensed: Boolean,
+    licensed: {reg: Boolean, date: Date},
     phoneNumber: String,
     quadrant: [{ type: String}],
     about: String,

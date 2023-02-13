@@ -154,7 +154,6 @@ const UserList = ({ mt }) => {
               onClick={() => schedulePage(un)}
               className="btn btn-primary w-48 h-18 font-heading font-bold text-lg bg-white text-primary hover:text-white "
             >
-              
               Set Schedule
             </button>
             </div>
@@ -297,7 +296,6 @@ const UserList = ({ mt }) => {
             {pages[currentPage].map((u) => {
               const uRating = Math.round(u.avgRating);
               return (
-
                 <div
                   key={u.username}
                   className="bg-slate-50 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left "

@@ -18,7 +18,8 @@ const Profile = ({ value }) => {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [clientQuadrant, setClientQuadrant] = useState(["NE"]);
-  const [licensed, setLicensed] = useState(false)
+  const [registered, setRegistered] = useState(false)
+  const [regDate, setRegDate] = useState(null)
   const [scale, setScale] = useState(1);
   const [preview, setPreview] = useState(null)
 
@@ -34,7 +35,8 @@ const Profile = ({ value }) => {
       setPhoneNumber(userInfo.phoneNumber);
       setClientQuadrant(userInfo.quadrant[0]);
       setAva(userInfo.avatar);
-      setLicensed(userInfo.licensed)
+      setRegistered(userInfo.licensed.reg)
+      setRegDate(new Date(userInfo.licensed.date).toLocaleDateString())
     }
   }, []);
 
@@ -47,11 +49,11 @@ const Profile = ({ value }) => {
     }
   };
 
-  const licenseBox = (e) => {
-    if (licensed === false) {
-      setLicensed(true);
+  const licenseBox = () => {
+    if (registered === false) {
+      setRegistered( true);
     } else {
-      setLicensed(false);
+      setRegistered(false);
     }
   };
 
@@ -102,7 +104,7 @@ const Profile = ({ value }) => {
         address,
         phoneNumber,
         username,
-        licensed,
+        licensed:{reg: registered, date: regDate}
       };
       updateUser(updatedUser);
       updater(user.accessToken, user.displayName)
@@ -371,8 +373,9 @@ const Profile = ({ value }) => {
                               onInput={(e) => setPhoneNumber(e.target.value)}
                             />
                           </div>
-                          <div className="form-control">
-                          <label className="cursor-pointer label">
+                          <div className="form-control col-span-6">
+                            <div className="flex gap-2">
+                          
                             <span className="label-text font-title text-neutral">
                               Registered:
                             </span>
@@ -380,9 +383,13 @@ const Profile = ({ value }) => {
                               type="checkbox"
                               className="checkbox checkbox-primary"
                               onChange={licenseBox}
-                              checked={licensed}
-                            />
-                          </label>
+                              checked={registered}
+                              />
+                              <span className="label-text font-title text-neutral ml-5">
+                              Date:
+                            </span>
+                          <input type="date" defaultValue={regDate} onChange={(e) => setRegDate(e.target.value)}/>
+                              </div>
                         </div>
                         </div>
                       </div>
