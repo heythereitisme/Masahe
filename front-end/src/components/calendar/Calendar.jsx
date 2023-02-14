@@ -151,7 +151,7 @@ const BookingCalendar = ({ mt }) => {
 
   if (mt) {
     return (
-      <div className="h-screen bg-stone-400 border-1">
+      <div className="h-screen bg-white border-1 text-primary">
         <DnDCalendar
           localizer={myLocalizer}
           dayLayoutAlgorithm={dayLayoutAlgorithm}
@@ -171,7 +171,7 @@ const BookingCalendar = ({ mt }) => {
     );
   } else {
     return (
-      <div className="h-screen bg-stone-400 border-1">
+      <div className="h-screen bg-white border-1 text-primary border-1">
         <Calendar
           localizer={myLocalizer}
           dayLayoutAlgorithm={dayLayoutAlgorithm}
