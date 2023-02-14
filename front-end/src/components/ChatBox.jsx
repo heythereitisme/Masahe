@@ -71,8 +71,8 @@ const ChatBox = () => {
 	}
 
 	return (
-		<div>
-			<label htmlFor="my-modal-3" className="btn">
+		<div className="bg-white flex justify-end">
+			<label htmlFor="my-modal-3" className="btn btn-secondary m-2 mr-4">
 				Open Chat
 			</label>
 			{/* Put this part before </body> tag */}
