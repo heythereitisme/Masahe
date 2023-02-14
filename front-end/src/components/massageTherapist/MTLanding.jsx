@@ -272,7 +272,7 @@ const rateUser = async (u) => {
                     <div>
                       <button
                         type="submit"
-                        className="btn btn-secondary font-title"
+                        className="btn btn-secondary font-title text-xs"
                       >
                         Submit Rating
                       </button>
