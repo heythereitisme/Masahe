@@ -87,7 +87,7 @@ const UserDetails = () => {
 
       if(!user.ratedUser){
           return (
-              <div className='bg-stone 200 min-h-screen text-center'>Loading user</div>
+              <div className='bg-white min-h-screen text-center font-heading text-primary'>Loading user...</div>
               )
             } else {
               if(user.ratedUser.permission === permission){
@@ -95,18 +95,20 @@ const UserDetails = () => {
               }
               if(user.ratedUser.permission === 1){
                 return (
-                  <div className='bg-stone-200 min-h-screen text-center flex flex-col'>
-                          <h1 className='text-3xl m-1'>User Details: {user.ratedUser.username}</h1>
-                          <h3 className='text-5xl m-1'>Name: {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
-                      <span className='text-xl m-1'>
-                          Rating: {user.ratedUser.avgRating}   
+                  <div className='bg-white min-h-screen text-center flex flex-col'>
+                          {/* <h1 className='text-3xl m-1 mt-10 font-heading text-primary'>{user.ratedUser.username}</h1> */}
+                          <h3 className='text-5xl m-1 font-heading text-primary'> {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
+                      <span className='text-xl m-1 text-primary'>
+                          {user.ratedUser.avgRating}   
                       </span>
-                      <form onSubmit={formSubmit} className='flex flex-col w-screen mb-2'>
-                          <span>Notes:</span>
-                          <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='w-2/3 min-h-[50vh] mx-auto'/>
-                          <button type='submit' className='bg-green-400 hover:bg-blue-400 p-1 m-1 rounded-2xl w-2/3 mx-auto'>Save</button>
+                      <form onSubmit={formSubmit} className='flex flex-col w-screen mb-2 '>
+                          <span className='text-5xl m-5 font-heading text-secondary'>Notes</span>
+                          <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='w-2/3 min-h-[50vh] mx-auto bg-slate-100 rounded-lg drop-shadow-xl text-primary p-5'/>
+                          <div>
+                          <button type='submit' className='btn btn-primary font-title p-4 bg-white text-primary hover:text-white mt-5'>Save</button>
+                          </div>
                       </form>
-                      <button onClick={returnPage} className='bg-red-400 hover:bg-blue-400 p-1 m-1 rounded-2xl'>Back</button>
+                     <div> <button onClick={returnPage} className='btn btn-secondary font-title p-3 bg-white text-primary hover:text-white mt-2'>Back</button> </div>
                   </div>
               )
               } else if (user.ratedUser.permission === 2) {
