@@ -67,7 +67,7 @@ export const updateReview = async(r) => {
 
 export const getNotes = async(r) => {
     const notes = await Rating.findOne({ratedUser: r})
-    .populate({path: "ratedUser", select: "_id avgRating firstName lastName permission username"})
+    .populate({path: "ratedUser", select: "_id avgRating firstName lastName permission username quadrant licesnsed phoneNumber open avatar"})
     console.log("Sent details!")
     return notes
 }
@@ -78,4 +78,11 @@ export const updateNotes = async(r) => {
     const notes = await Rating.findOneAndUpdate({_id: id}, {notes: content})
     console.log("Updated Notes!")
     return notes
+}
+
+export const getPastRated = async(id) => {
+    const ratings = await Rating.find({ratingUser: id})
+    .populate({path: "ratedUser", select: "_id avgRating firstName lastName permission username licensed open avatar licensed phoneNumber quadrant"})
+    console.log("found past ratings")
+    return ratings
 }

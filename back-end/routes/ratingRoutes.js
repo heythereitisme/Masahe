@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { avgRating, addReview, deleteReview, updateReview, getNotes, updateNotes } from "../models/ratingModel.js";
+import { avgRating, addReview, deleteReview, updateReview, getNotes, updateNotes, getPastRated } from "../models/ratingModel.js";
 import { getUserByUserName, updateRating } from "../models/userModel.js";
 
 const router = Router()
@@ -74,6 +74,17 @@ router.post("/notes", async(req, res) => {
     try{
         const body = await updateNotes(user)
         res.send(body)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send(err)
+    }
+})
+
+router.get("/:id", async(req, res) => {
+    const id = req.params.id
+    try{
+        const ratings = await getPastRated(id)
+        res.send(ratings)
     } catch (err) {
         console.error(err)
         res.status(500).send(err)
