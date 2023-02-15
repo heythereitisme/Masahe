@@ -71,44 +71,28 @@ const ChatBox = () => {
 	}
 
 	return (
-		<div className="bg-white flex justify-end">
+		<div className="bg-white flex justify-end truncate">
 			<label htmlFor="my-modal-3" className="btn btn-secondary m-2 mr-4">
 				Open Chat
 			</label>
 			{/* Put this part before </body> tag */}
 			<input type="checkbox" id="my-modal-3" className="modal-toggle" />
-			<div className="modal modal-bottom sm:modal-middle">
-				<div className="modal-box ">
+			<div className="modal modal-bottom flex justify-end">
+				<div className=" modal-box w-[25rem] h-[42rem] bg-slate-100 rounded-lg p-3 truncate">
 					<label
 						htmlFor="my-modal-3"
-						className="btn btn-sm btn-circle absolute right-2 top-2"
+						className="btn btn-sm btn-primary bg-white btn-circle relative  text-black hover:text-white"
 					>
 						✕
 					</label>
 
 					<div>
-						<div className="flex flex-row items-center  space-y-4 flex-wrap">
+						<div className=""	>
 							<br />
-							<div className="flex flex-col items-center flex-wrap">
-								<form onSubmit={!joined ? joinChat : leaveChat}>
-									{/* <input */}
-									{/* placeholder="username" */}
-									{/* className="input input-bordered input-secondary w-full max-w-xs " */}
-									{/* onChange={(e) => setHandle(e.target.value)} */}
-									{/* //onInput={(e) => setHandle(e.target.value)} */}
-									{/* /> */}
-									<br />
-									{/* <button onClick={() => joinFn()}>JOIN</button> */}
-									{/* <input type="submit" value="Join" /> */}
-									{/* <button className="btn btn-primary" type="submit" value="Join"> */}
-									{/* Join */}
-									{/* </button> */}
-									<button className="btn btn-primary">
-										{!joined ? "Join Chat " : "Leave Chat"}
-									</button>
-								</form>
+							<div className="">
+								
 
-								<div className="card w-80 bg-neutral text-neutral-content">
+								<div className="card w-96 h-80 bg-white text-neutral-content">
 									<div className="card-body items-center text-center">
 										<h2 className="card-title">Chat</h2>
 										{/* <p>{msgFrmSrvr}</p> */}
@@ -123,8 +107,8 @@ const ChatBox = () => {
 										<div className="card-actions justify-end"></div>
 									</div>
 								</div>
-
-								<form onSubmit={btn}>
+								
+								<form onSubmit={btn} className="flex justify-around mt-2">
 									<br />
 									{/*<input
 					placeholder="chatBuddy"
@@ -132,19 +116,38 @@ const ChatBox = () => {
 					onChange={(e) => setChatBuddy(e.target.value)}
 	/>*/}
 									<br />
+									
 									<input
 										placeholder="message"
-										className="input input-bordered input-secondary w-full max-w-xs"
+										className="input input-bordered input-secondary w-72 max-w-xs bg-white text-primary"
 										onChange={(e) => setMessage(e.target.value)}
 									/>
 									<br />
 									{/* <input type="submit" value="Send" /> */}
 									<button
-										className="btn btn-primary"
+										className="btn btn-primary bg-white text-primary hover:text-white"
 										type="submit"
 										value="Send"
 									>
 										Send
+									</button>
+								</form>
+								
+								<form onSubmit={!joined ? joinChat : leaveChat}>
+									{/* <input */}
+									{/* placeholder="username" */}
+									{/* className="input input-bordered input-secondary w-full max-w-xs " */}
+									{/* onChange={(e) => setHandle(e.target.value)} */}
+									{/* //onInput={(e) => setHandle(e.target.value)} */}
+									{/* /> */}
+									<br />
+									{/* <button onClick={() => joinFn()}>JOIN</button> */}
+									{/* <input type="submit" value="Join" /> */}
+									{/* <button className="btn btn-primary" type="submit" value="Join"> */}
+									{/* Join */}
+									{/* </button> */}
+									<button className="btn btn-primary bg-white	text-primary hover:text-white ml-1">
+										{!joined ? "Join Chat " : "Leave Chat"}
 									</button>
 								</form>
 							</div>
