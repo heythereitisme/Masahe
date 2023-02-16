@@ -27,7 +27,7 @@ router.get("/client", async (req, res) => {
 router.get("/mt", async (req, res) => {
     try {
         const mts = await getAllSPs();
-        const filteredMTs = mts.map(({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed}) => ({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed}))
+        const filteredMTs = mts.map(({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed, services}) => ({_id, firstName, lastName, avgRating, username, open, quadrant, avatar, licensed, services}))
         res.send(filteredMTs);
       } catch (error) {
         console.error(error);

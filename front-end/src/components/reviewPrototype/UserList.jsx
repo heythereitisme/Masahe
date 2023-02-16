@@ -97,10 +97,11 @@ const UserList = ({ mt, sort }) => {
     }
   };
 
-  const sorter = async (f) => {
+  const sorter = (f) => {
     const filteredData = filtered();
     setMaxPages(Math.ceil(filteredData.length / entriesPerPage) - 1);
     if (f === "avgRating" || f === "open") {
+      console.log('rating/open')
       const sort = filteredData.sort((a, b) => {
         return b[f] - a[f];
       });
@@ -111,10 +112,13 @@ const UserList = ({ mt, sort }) => {
           return 1
         } else if(a[f].reg){
           return -1
-        } else return 0
+        } else {
+          return 0
+        }
       });
       setFilteredUsers(sort);
-    } else if(f === 'NW', "SW", "NE", "SE") {
+    } else if(f === 'NW' || f === "SW" || f === "NE" || f === "SE") {
+      console.log('quadrant sort')
       const sort = filteredData.sort((a, b) => {
         if (a.quadrant.includes(f)) {
           return -1;
@@ -126,11 +130,14 @@ const UserList = ({ mt, sort }) => {
       });
       setFilteredUsers(sort);
     } else {
-      if (a.services.toLowerCase().includes(f.toLowerCase())){
-        return -1
-      } else if (b.services.toLowerCase().includes(f.toLowerCase())){
-        return 1
-      } else return 0
+      const sort = filteredData.sort((a, b) => {
+        if (a.services.includes(f)){
+          return -1
+        } else if (b.services.includes(f)){
+          return 1
+        } else return 0
+      })
+      setFilteredUsers(sort)
     }
   };
 
