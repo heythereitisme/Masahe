@@ -95,10 +95,14 @@ const UserDetails = () => {
               }
                 return (
                   <div className='bg-white min-h-screen text-center flex flex-col'>
-                          <h3 className='text-5xl m-1 font-heading text-primary'> {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>
+                          <h3 className='text-5xl m-1 font-heading text-primary'> {user.ratedUser.firstName} {user.ratedUser.lastName}</h3>   
                       <span className='text-xl m-1 text-primary'>
-                          Rating: {Math.round((user.ratedUser.avgRating * 100) /100)}   
+                          Rating: {Math.round(user.ratedUser.avgRating * 10) /10}   
                       </span>
+                      <span>Quadrant(s): {user.ratedUser.quadrant.map((u) => <span key={u}>{u.toUpperCase()}</span>)}</span>
+                      <span>{user.ratedUser.address}</span>
+                      {user.ratedUser.licensed && <span>Registered until {new Date(user.ratedUser.licensed.date).toLocaleDateString()}</span>}
+                      <img src={user.ratedUser.avatar} alt="avatar"  className=' w-[6rem] h-[6rem] rounded-full shadow-xl mx-auto'/>
                       <form onSubmit={formSubmit} className='flex flex-col w-screen mb-2 '>
                           <span className='text-5xl m-5 font-heading text-secondary'>Notes</span>
                           <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className='w-2/3 min-h-[50vh] mx-auto bg-slate-100 rounded-lg drop-shadow-xl text-primary p-5'/>

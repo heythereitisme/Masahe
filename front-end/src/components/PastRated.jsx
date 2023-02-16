@@ -31,7 +31,7 @@ const PastRated = () => {
     <span className='text-3xl font-heading text-primary mt-5 text-center'>Recently Rated</span>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-2 mt-5">
         {userList[0] && 
-        userList.map((u) => {
+        userList.slice(0, 8).map((u) => {
             const uRating = Math.round(u.ratedUser.avgRating)
             return(
                 <div key={u._id} className="bg-slate-50 shadow-2xl rounded-lg p-4 ml-4 mr-4 text-left text-primary">

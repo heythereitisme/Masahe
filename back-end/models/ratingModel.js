@@ -67,7 +67,7 @@ export const updateReview = async(r) => {
 
 export const getNotes = async(r) => {
     const notes = await Rating.findOne({ratedUser: r})
-    .populate({path: "ratedUser", select: "_id avgRating firstName lastName permission username quadrant licesnsed phoneNumber open avatar"})
+    .populate({path: "ratedUser", select: "_id avgRating firstName lastName permission username quadrant licensed phoneNumber open avatar address"})
     console.log("Sent details!")
     return notes
 }

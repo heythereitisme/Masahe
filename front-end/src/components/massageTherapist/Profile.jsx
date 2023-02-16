@@ -386,7 +386,7 @@ const Profile = ({ value }) => {
                               checked={registered}
                               />
                               <span className="label-text font-title text-neutral ml-5">
-                              Date:
+                              Expiration date:
                             </span>
                           <input type="date" defaultValue={regDate} onChange={(e) => setRegDate(e.target.value)}/>
                               </div>
