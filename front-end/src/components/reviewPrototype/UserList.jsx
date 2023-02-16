@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
-const UserList = ({ mt }) => {
+const UserList = ({ mt, sort }) => {
   const [userList, setUserList] = useState([]);
   const [rating, setRating] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -32,7 +32,7 @@ const UserList = ({ mt }) => {
 
   useEffect(() => {
     if (userList[0]) {
-      sorter("open");
+      sorter(sort);
     }
   }, [userList[0]]);
 
@@ -100,12 +100,7 @@ const UserList = ({ mt }) => {
   const sorter = async (f) => {
     const filteredData = filtered();
     setMaxPages(Math.ceil(filteredData.length / entriesPerPage) - 1);
-    if (f === "avgRating") {
-      const sort = filteredData.sort((a, b) => {
-        return b[f] - a[f];
-      });
-      setFilteredUsers(sort);
-    } else if (f === "open") {
+    if (f === "avgRating" || f === "open") {
       const sort = filteredData.sort((a, b) => {
         return b[f] - a[f];
       });
@@ -119,7 +114,7 @@ const UserList = ({ mt }) => {
         } else return 0
       });
       setFilteredUsers(sort);
-    } else {
+    } else if(f === 'NW', "SW", "NE", "SE") {
       const sort = filteredData.sort((a, b) => {
         if (a.quadrant.includes(f)) {
           return -1;
@@ -130,6 +125,12 @@ const UserList = ({ mt }) => {
         }
       });
       setFilteredUsers(sort);
+    } else {
+      if (a.services.toLowerCase().includes(f.toLowerCase())){
+        return -1
+      } else if (b.services.toLowerCase().includes(f.toLowerCase())){
+        return 1
+      } else return 0
     }
   };
 
@@ -525,6 +526,7 @@ const UserList = ({ mt }) => {
     } else {
       return (
         <div className="bg-white min-h-screen">
+          
           <div className="flex items-center justify-center">
             <div className="flex space-x-1 m-5">
               <input

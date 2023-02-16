@@ -1,11 +1,12 @@
 import React from 'react'
-import ServicesList from '../components/ServicesList'
+import { useParams } from 'react-router-dom'
 import Userlist from '../components/reviewPrototype/UserList'
 
 function Services() {
+  const defaultSort = useParams().service
   return (
  <div className='min-h-screen bg-white text-center'>
-  <Userlist/>
+  <Userlist sort={defaultSort}/>
   </div>
   )
 }

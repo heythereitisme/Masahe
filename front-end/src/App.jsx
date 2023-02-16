@@ -37,7 +37,7 @@ function App() {
 						<Route path="/client/booking/:id" element={<BookUser />} />
 						<Route path="/client/search" element={<Search />} />
 						<Route path="/client/review" element={<ClientReview />} />
-						<Route path="/client/services" element={<Services />} />
+						<Route path="/client/services/:service" element={<Services />} />
 						<Route path="/mt/user" element={<Details />} />
 						<Route path="/client/home" element={<ClientHome/>} />
 						<Route path="/client/profile" element={<ProfilePage/>} />
