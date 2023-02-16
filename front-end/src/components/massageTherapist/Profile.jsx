@@ -20,6 +20,7 @@ const Profile = ({ value }) => {
   const [clientQuadrant, setClientQuadrant] = useState(["NE"]);
   const [registered, setRegistered] = useState(false)
   const [regDate, setRegDate] = useState(null)
+  const [services, setServices] = useState([])
   const [scale, setScale] = useState(1);
   const [preview, setPreview] = useState(null)
 
@@ -37,6 +38,7 @@ const Profile = ({ value }) => {
       setAva(userInfo.avatar);
       setRegistered(userInfo.licensed.reg)
       setRegDate(new Date(userInfo.licensed.date).toLocaleDateString())
+      userInfo.services && setServices(userInfo.services)
     }
   }, []);
 
@@ -48,6 +50,15 @@ const Profile = ({ value }) => {
       setQuadrant([...quadrant, value]);
     }
   };
+
+  const serviceBox = (e) => {
+    const value = e.target.value;
+    if (services.includes(value)) {
+      setServices(services.filter((v) => v !== value));
+    } else {
+      setServices([...services, value]);
+    }
+  }
 
   const licenseBox = () => {
     if (registered === false) {
@@ -104,7 +115,8 @@ const Profile = ({ value }) => {
         address,
         phoneNumber,
         username,
-        licensed:{reg: registered, date: regDate}
+        licensed:{reg: registered, date: regDate},
+        services
       };
       updateUser(updatedUser);
       updater(user.accessToken, user.displayName)
@@ -142,8 +154,25 @@ const Profile = ({ value }) => {
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="shadow sm:overflow-hidden sm:rounded-md">
-                  <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+                  <div className="space-y-6 bg-white px-4 py-5 sm:p-6"> 
                     <div className="grid grid-cols-3 gap-6">
+                    <div className="form-control col-span-6">
+                            <div className="flex gap-2">
+                            <span className="label-text font-title text-neutral">
+                              Registered:
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              onChange={licenseBox}
+                              checked={registered}
+                              />
+                              <span className="label-text font-title text-neutral ml-5">
+                              Expiration date:
+                            </span>
+                          <input type="date" defaultValue={regDate} onChange={(e) => setRegDate(e.target.value)}/>
+                              </div>
+                        </div>
                       <div className="col-span-3 sm:col-span-2">
                         <label
                           htmlFor="company-website"
@@ -373,24 +402,128 @@ const Profile = ({ value }) => {
                               onInput={(e) => setPhoneNumber(e.target.value)}
                             />
                           </div>
-                          <div className="form-control col-span-6">
-                            <div className="flex gap-2">
-                          
+                          <div className="grid grid-cols-2 col-span-6 gap-y-2 gap-x-20 lg:grid-cols-4">
+                          <div className="form-control">
+                          <label className="cursor-pointer label">
                             <span className="label-text font-title text-neutral">
-                              Registered:
+                              Swedish Massage
                             </span>
                             <input
                               type="checkbox"
                               className="checkbox checkbox-primary"
-                              onChange={licenseBox}
-                              checked={registered}
-                              />
-                              <span className="label-text font-title text-neutral ml-5">
-                              Expiration date:
-                            </span>
-                          <input type="date" defaultValue={regDate} onChange={(e) => setRegDate(e.target.value)}/>
-                              </div>
+                              value="swedish"
+                              onChange={serviceBox}
+                              checked={services.includes("swedish")}
+                            />
+                          </label>
                         </div>
+
+                        <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Hot Stone Massage
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              value="hotstone"
+                              onChange={serviceBox}
+                              checked={services.includes("hotstone")}
+                            />
+                          </label>
+                        </div>
+
+                        <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Deep Tissue Massage
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              value="deeptissue"
+                              onChange={serviceBox}
+                              checked={services.includes("deeptissue")}
+                            />
+                          </label>
+                        </div>
+
+                        <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Aromatherapy 
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              value="aroma"
+                              onChange={serviceBox}
+                              checked={services.includes("aroma")}
+                            />
+                          </label>
+                        </div>
+
+                        <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Sports Massage
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              value="sports"
+                              onChange={serviceBox}
+                              checked={services.includes("sports")}
+                            />
+                          </label>
+                        </div>
+
+                        <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Reflexology
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              value="reflexology"
+                              onChange={serviceBox}
+                              checked={services.includes("reflexology")}
+                            />
+                          </label>
+                        </div>
+
+                        <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Lymphatic Drainage Massage
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              value="lymphatic"
+                              onChange={serviceBox}
+                              checked={services.includes("lymphatic")}
+                            />
+                          </label>
+                        </div>
+
+                        <div className="form-control">
+                          <label className="cursor-pointer label">
+                            <span className="label-text font-title text-neutral">
+                              Acupuncture
+                            </span>
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-primary"
+                              value="acupuncture"
+                              onChange={serviceBox}
+                              checked={services.includes("acupuncture")}
+                            />
+                          </label>
+                        </div>
+                       
+                          </div>
                         </div>
                       </div>
                       <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">

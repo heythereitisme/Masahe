@@ -62,6 +62,7 @@ app.post("/api/auth", async (req, res) => {
 			permission,
 			address,
 			phoneNumber,
+			services,
 		} = user;
 		const filteredUser = {
 			_id,
@@ -76,6 +77,7 @@ app.post("/api/auth", async (req, res) => {
 			permission,
 			address,
 			phoneNumber,
+			services
 		};
 		if (verify.uid === key2) {
 			console.log("Authenticated user! Permission level:", permission);
