@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     about: String,
     address: String,
     avatar: {type: String, default: "/Default_pfp.svg"},
-    open: Boolean,
+    open: {type: Boolean, default: false}
 })
 
 const User = mongoose.model("Users", userSchema,)

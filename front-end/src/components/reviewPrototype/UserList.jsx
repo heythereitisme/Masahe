@@ -112,7 +112,11 @@ const UserList = ({ mt }) => {
       setFilteredUsers(sort);
     } else if(f === "licensed"){
       const sort = filteredData.sort((a, b) => {
-        return b[f].reg - a[f].reg;
+        if(b[f].reg) {
+          return 1
+        } else if(a[f].reg){
+          return -1
+        } else return 0
       });
       setFilteredUsers(sort);
     } else {
