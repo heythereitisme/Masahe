@@ -60,8 +60,8 @@ const rateUser = async (u) => {
 };
 
   return (
-    <div className='min-h-screen bg-white text-center flex flex-col'>
-      <div>
+    <div className='min-h-screen bg-white text-center'>
+      <div className='bg-white'>
         <span className='text-3xl font-heading text-primary'>Services</span>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-10">
 
@@ -136,6 +136,17 @@ const rateUser = async (u) => {
     <div className="card-body">
     <h2 className="card-title flex justify-center text-primary">Lymphatic drainage massage</h2>
     <p className=' font-body text-primary mb-2'>Gentle massage that encourages the lymph fluids to circulate through the body.</p>
+    <div className="card-actions justify-end">
+    <button className="btn btn-secondary">Find</button>
+    </div>
+    </div>
+</div>
+
+<div className="card w-96 bg-slate-50 shadow-xl ml-4">
+    <figure><img src="/services/Acupuncture.jpg" alt="Massage" className='bg-cover bg-scroll'/></figure>
+    <div className="card-body">
+    <h2 className="card-title flex justify-center text-primary">Acupuncture</h2>
+    <p className=' font-body text-primary mb-2'> Insertion of very thin needles through your skin at strategic points on your body.</p>
     <div className="card-actions justify-end">
     <button className="btn btn-secondary">Find</button>
     </div>
