@@ -101,7 +101,6 @@ const UserList = ({ mt, sort }) => {
     const filteredData = filtered();
     setMaxPages(Math.ceil(filteredData.length / entriesPerPage) - 1);
     if (f === "avgRating" || f === "open") {
-      console.log('rating/open')
       const sort = filteredData.sort((a, b) => {
         return b[f] - a[f];
       });
@@ -315,7 +314,7 @@ const UserList = ({ mt, sort }) => {
               return (
                 <div
                   key={u.username}
-                  className="bg-slate-50 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left "
+                  className='bg-red-400 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left' 
                 > 
                   <div className="flex justify-between items">
                   <div className="flex flex-col">
@@ -610,7 +609,7 @@ const UserList = ({ mt, sort }) => {
               return (
                 <div
                   key={u.username}
-                  className=" bg-slate-100 shadow-2xl  rounded-lg p-4 ml-4 text-left "
+                  className={u.services.includes(sort) ? 'bg-red-50 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left' : 'bg-slate-50 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left' } 
                 >
                   {/* this div for image */}
                   <div className="flex justify-between">

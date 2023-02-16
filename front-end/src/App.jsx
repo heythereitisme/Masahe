@@ -19,6 +19,8 @@ import Services from "./pages/Services";
 import MTHome from "./components/massageTherapist/MTHome";
 import ClientHome from "./pages/ClientHome";
 import DashboardClient from "./components/massageClients/DashboardClient";
+import ServiceList from "./components/massageClients/ServiceList";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
 	return (
@@ -38,6 +40,7 @@ function App() {
 						<Route path="/client/search" element={<Search />} />
 						<Route path="/client/review" element={<ClientReview />} />
 						<Route path="/client/services/:service" element={<Services />} />
+						<Route path="/client/services/" element={<ServiceList />} />
 						<Route path="/mt/user" element={<Details />} />
 						<Route path="/client/home" element={<ClientHome/>} />
 						<Route path="/client/profile" element={<ProfilePage/>} />
@@ -51,6 +54,7 @@ function App() {
 						<Route path="/mt/profile" element={<ProfilePage/>} />
 					</Route>
 				</Routes>
+				<ScrollToTop />
 			</AuthProvider>
 		</FirebaseProvider>
 	);

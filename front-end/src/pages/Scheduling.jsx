@@ -4,7 +4,7 @@ import UserList from '../components/reviewPrototype/UserList'
 const MTSchedule = () => {
     return (
       <div className="bg-white text-center min-h-screen p-1"> 
-      <UserList mt={true}/> 
+      <UserList mt={true} sort={'avgRating'}/> 
       </div>
       )
   }
