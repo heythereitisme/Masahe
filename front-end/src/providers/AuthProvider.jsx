@@ -43,6 +43,16 @@ export const AuthProvider = (props) => {
 		
 	  };
 
+	  const updateUser = async (u) => {
+		const req = await fetch("/api/user", {
+		  method: "PUT",
+		  headers: {
+			"Content-Type": "application/json",
+		  },
+		  body: JSON.stringify(u),
+		});
+	  };
+
 	  const permissionChecker = async (key, username) => {
 		const req = await fetch("/api/auth", {
 		  method: "POST",
@@ -56,6 +66,8 @@ export const AuthProvider = (props) => {
 			const url = await getDownloadURL(ref(storage, `avatars/${perm.user.username}.png`))
 			if(url){
 				setAvatar(url)
+				const avaUpdate = {username: perm.user.username, avatar: url}
+				updateUser(avaUpdate)
 			}
 			setPermission(perm.user.permission)
 			setMuid(perm.user._id)
@@ -94,6 +106,7 @@ export const AuthProvider = (props) => {
 	const logout = async () => {
 		await signOut(auth);
 		setPermission(0)
+		setAvatar("/Default_pfp.svg")
 		navigate("/")
 	};
 
