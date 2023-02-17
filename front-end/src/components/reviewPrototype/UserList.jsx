@@ -314,7 +314,7 @@ const UserList = ({ mt, sort }) => {
               return (
                 <div
                   key={u.username}
-                  className='bg-red-400 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left' 
+                  className='bg-slate-50 shadow-2xl flex flex-col rounded-lg p-4 ml-4 mr-4 text-left' 
                 > 
                   <div className="flex justify-between items">
                   <div className="flex flex-col">
