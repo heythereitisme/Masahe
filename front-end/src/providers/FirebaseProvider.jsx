@@ -1,6 +1,7 @@
 import React from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 //const firebaseConfig = {
 //	apiKey: "AIzaSyAuCLlU1mEBDoQiA0mNaOf-XdWebLBW6I0",
@@ -24,12 +25,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const storage = getStorage(app)
 
 export const FirebaseContext = React.createContext();
 
 export const FirebaseProvider = (props) => {
 	const { children } = props;
-	const theValues = { app, auth };
+	const theValues = { app, auth, storage };
 	return (
 		<FirebaseContext.Provider value={theValues}>
 			{children}

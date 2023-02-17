@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import AvatarEditor from "react-avatar-editor";
+import { uploadBytes, ref } from "firebase/storage";
+import { FirebaseContext } from "../../providers/FirebaseProvider";
 
 const Profile = ({ value }) => {
   const auth = useContext(AuthContext);
+  const fb = useContext(FirebaseContext)
+  const storage = fb.storage
   const logout = auth.logout;
   const user = auth.user;
   const userInfo = auth.userInfo;
@@ -12,6 +16,7 @@ const Profile = ({ value }) => {
   const [quadrant, setQuadrant] = useState([]);
   const [about, setAbout] = useState("");
   const [ava, setAva] = useState("");
+  let avaRef = useRef(null)
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -89,6 +94,10 @@ const Profile = ({ value }) => {
     editorRef = ed
   }
 
+  const setAvaRef = (ed) => {
+    avaRef = ed
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const username = user.displayName;
@@ -135,6 +144,30 @@ const Profile = ({ value }) => {
     alert(updated.message);
   };
 
+  function dataURLtoBlob(dataURL) {
+    const parts = dataURL.split(';base64,');
+    const contentType = parts[0].split(':')[1];
+    const raw = window.atob(parts[1]);
+    const rawLength = raw.length;
+    const uInt8Array = new Uint8Array(rawLength);
+    for (let i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
+    }
+    return new Blob([uInt8Array], { type: contentType });
+  }
+
+  const imageUpload = async(e) => {
+    e.preventDefault()
+    const avatarRef = ref(storage, `avatars/${user.displayName}.png`);
+    const croppedImageBlob = dataURLtoBlob(avaRef.src);
+    try{
+      await uploadBytes(avatarRef, croppedImageBlob);
+      alert("Avatar Uploaded")
+    }catch(err) {
+      console.error(err)
+    }
+  }
+
   if (value >= 2) {
     return (
       <>
@@ -150,11 +183,67 @@ const Profile = ({ value }) => {
                   you share.
                 </p>
               </div>
-            </div>
+              </div>
             <div className="mt-5 md:col-span-2 md:mt-0">
-              <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="shadow sm:overflow-hidden sm:rounded-md">
+                <form onSubmit={imageUpload}>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Photo
+                      </label>
+                      <div className="mt-1 flex items-center gap-5">
+                        <AvatarEditor
+                        ref={setEditorRef}
+                          image={ava}
+                          width={200}
+                          height={200}
+                          border={50}
+                          borderRadius={200}
+                          color={[255, 255, 255, 0.6]} // RGBA
+                          scale={scale}
+                          rotate={0}
+                        />
+
+                        <button
+                          type="button"
+                          onClick={handlePreview}
+                          className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          Change
+                        </button>
+                        {preview && 
+                        <>
+                        <img src={preview} ref={setAvaRef} alt="Preview" className="rounded-full"/>
+                        <button
+                          type="submit"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ml-5"
+                        >
+                          Save
+                        </button>
+                        </>}
+                      </div>
+                      <div>
+                        <input
+                          type="file"
+                          className="ml-3"
+                          onChange={fileChange}
+                          accept="image/png,image/jpeg,image/gif"
+                        />
+                      </div>
+                      <div>
+                        Zoom:
+                        <input
+                          name="scale"
+                          type="range"
+                          onChange={handleScale}
+                          min="1"
+                          max="2.5"
+                          step="0.01"
+                          defaultValue="1"
+                        />
+                      </div>
+                    </form>
                   <div className="space-y-6 bg-white px-4 py-5 sm:p-6"> 
+              <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="grid grid-cols-3 gap-6">
                     <div className="form-control col-span-6">
                             <div className="flex gap-2">
@@ -263,53 +352,6 @@ const Profile = ({ value }) => {
                         Brief description for your profile. URLs are
                         hyperlinked.
                       </p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">
-                        Photo
-                      </label>
-                      <div className="mt-1 flex items-center gap-5">
-                        <AvatarEditor
-                        ref={setEditorRef}
-                          image={ava}
-                          width={200}
-                          height={200}
-                          border={50}
-                          borderRadius={200}
-                          color={[255, 255, 255, 0.6]} // RGBA
-                          scale={scale}
-                          rotate={0}
-                        />
-
-                        <button
-                          type="button"
-                          onClick={handlePreview}
-                          className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                          Change
-                        </button>
-                        {preview && <img src={preview} alt="Preview" className="rounded-full"/>}
-                      </div>
-                      <div>
-                        <input
-                          type="file"
-                          className="ml-3"
-                          onChange={fileChange}
-                          accept="image/png,image/jpeg,image/gif"
-                        />
-                      </div>
-                      <div>
-                        Zoom:
-                        <input
-                          name="scale"
-                          type="range"
-                          onChange={handleScale}
-                          min="1"
-                          max="2.5"
-                          step="0.01"
-                          defaultValue="1"
-                        />
-                      </div>
                     </div>
                     <div className="mt-5 md:col-span-2 md:mt-0">
                       <div className="bg-white px-4 py-5 sm:p-6">
@@ -543,9 +585,9 @@ const Profile = ({ value }) => {
                         </button>
                       </div>
                     </div>
+              </form>
                   </div>
                 </div>
-              </form>
             </div>
           </div>
         </div>
@@ -568,9 +610,65 @@ const Profile = ({ value }) => {
               </div>
             </div>
             <div className="mt-5 md:col-span-2 md:mt-0">
-              <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="shadow sm:overflow-hidden sm:rounded-md">
+                <form onSubmit={imageUpload}>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Photo
+                      </label>
+                      <div className="mt-1 flex items-center gap-5">
+                        <AvatarEditor
+                        ref={setEditorRef}
+                          image={ava}
+                          width={200}
+                          height={200}
+                          border={50}
+                          borderRadius={200}
+                          color={[255, 255, 255, 0.6]} // RGBA
+                          scale={scale}
+                          rotate={0}
+                        />
+
+                        <button
+                          type="button"
+                          onClick={handlePreview}
+                          className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          Change
+                        </button>
+                        {preview && 
+                        <>
+                        <img src={preview} ref={setAvaRef} alt="Preview" className="rounded-full"/>
+                        <button
+                          type="submit"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ml-5"
+                        >
+                          Save
+                        </button>
+                        </>}
+                      </div>
+                      <div>
+                        <input
+                          type="file"
+                          className="ml-3"
+                          onChange={fileChange}
+                          accept="image/png,image/jpeg,image/gif"
+                        />
+                      </div>
+                      <div>
+                        Zoom:
+                        <input
+                          name="scale"
+                          type="range"
+                          onChange={handleScale}
+                          min="1"
+                          max="2.5"
+                          step="0.01"
+                          defaultValue="1"
+                        />
+                      </div>
+                    </form>
                   <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+              <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
                         <label
@@ -630,53 +728,6 @@ const Profile = ({ value }) => {
                         Brief description for your profile. URLs are
                         hyperlinked.
                       </p>
-                    </div>
-                    <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                        Photo
-                      </label>
-                      <div className="mt-1 flex items-center gap-5">
-                        <AvatarEditor
-                        ref={setEditorRef}
-                          image={ava}
-                          width={200}
-                          height={200}
-                          border={50}
-                          borderRadius={200}
-                          color={[255, 255, 255, 0.6]} // RGBA
-                          scale={scale}
-                          rotate={0}
-                        />
-
-                        <button
-                          type="button"
-                          onClick={handlePreview}
-                          className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                          Change
-                        </button>
-                        {preview && <img src={preview} alt="Preview" className="rounded-full"/>}
-                      </div>
-                      <div>
-                        <input
-                          type="file"
-                          className="ml-3"
-                          onChange={fileChange}
-                          accept="image/png,image/jpeg,image/gif"
-                        />
-                      </div>
-                      <div>
-                        Zoom:
-                        <input
-                          name="scale"
-                          type="range"
-                          onChange={handleScale}
-                          min="1"
-                          max="2.5"
-                          step="0.01"
-                          defaultValue="1"
-                        />
-                      </div>
                     </div>
                     <div className="mt-5 md:col-span-2 md:mt-0">
                       <div className="bg-white px-4 py-5 sm:p-6">
@@ -788,9 +839,9 @@ const Profile = ({ value }) => {
                         </button>
                       </div>
                     </div>
+              </form>
                   </div>
                 </div>
-              </form>
             </div>
           </div>
         </div>
