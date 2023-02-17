@@ -63,11 +63,13 @@ export const AuthProvider = (props) => {
 		});
 		const perm = await req.json();
 		if(perm.user){
-			const url = await getDownloadURL(ref(storage, `avatars/${perm.user.username}.png`))
-			if(url){
-				setAvatar(url)
-				const avaUpdate = {username: perm.user.username, avatar: url}
-				updateUser(avaUpdate)
+			if(perm.user.avatar === "/Default_pfp.svg"){
+				const url = await getDownloadURL(ref(storage, `avatars/${perm.user.username}.png`))
+				if(url){
+					setAvatar(url)
+					const avaUpdate = {username: perm.user.username, avatar: url}
+					updateUser(avaUpdate)
+				}
 			}
 			setPermission(perm.user.permission)
 			setMuid(perm.user._id)
