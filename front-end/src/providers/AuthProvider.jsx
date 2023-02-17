@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { FirebaseContext } from "./FirebaseProvider";
+import { ref, getDownloadURL } from "firebase/storage";
+
 import {
 	signInWithEmailAndPassword,
 	signOut,
@@ -18,6 +20,7 @@ export const AuthProvider = (props) => {
 
 	const fbContext = useContext(FirebaseContext);
 	const auth = fbContext.auth;
+	const storage = fbContext.storage
 
 	const [error, setError] = useState(false);
 	const [regError, setRegError] = useState(false);
@@ -50,14 +53,17 @@ export const AuthProvider = (props) => {
 		});
 		const perm = await req.json();
 		if(perm.user){
-			if(perm.user.avatar){
-				setAvatar(perm.user.avatar)
+			const url = await getDownloadURL(ref(storage, `avatars/${perm.user.username}.png`))
+			if(url){
+				setAvatar(url)
 			}
 			setPermission(perm.user.permission)
 			setMuid(perm.user._id)
 			setUserInfo({firstName: perm.user.firstName, lastName: perm.user.lastName, quadrant: perm.user.quadrant, address: perm.user.address, about: perm.user.about, phoneNumber: perm.user.phoneNumber, avatar, licensed: perm.user.licensed, services: perm.user.services})
 		}
 	  };
+
+
 
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
