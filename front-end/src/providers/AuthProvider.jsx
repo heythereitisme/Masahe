@@ -66,16 +66,17 @@ export const AuthProvider = (props) => {
 			if(perm.user.avatar === "/Default_pfp.svg"){
 				const url = await getDownloadURL(ref(storage, `avatars/${perm.user.username}.png`))
 				if(url){
-					setAvatar(url)
 					const avaUpdate = {username: perm.user.username, avatar: url}
 					updateUser(avaUpdate)
-				}
-			}
+				}}
+
 			setPermission(perm.user.permission)
 			setMuid(perm.user._id)
+			setAvatar(perm.user.avatar)
 			setUserInfo({firstName: perm.user.firstName, lastName: perm.user.lastName, quadrant: perm.user.quadrant, address: perm.user.address, about: perm.user.about, phoneNumber: perm.user.phoneNumber, avatar, licensed: perm.user.licensed, services: perm.user.services})
-		}
 	  };
+	}
+	
 
 
 
