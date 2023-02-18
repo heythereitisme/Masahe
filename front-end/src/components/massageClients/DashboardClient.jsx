@@ -4,10 +4,10 @@ import ClientHome from './ClientHome'
 
 function DashboardClient() {
   return (
-<>
+<div className='bg-white'>
     <ClientHome />
     <PastRated />    
-</>
+</div>
   )
 }
 

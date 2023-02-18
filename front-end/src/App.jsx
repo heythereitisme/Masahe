@@ -21,6 +21,7 @@ import ClientHome from "./pages/ClientHome";
 import DashboardClient from "./components/massageClients/DashboardClient";
 import ServiceList from "./components/massageClients/ServiceList";
 import ScrollToTop from "./components/ScrollToTop";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 						<Route path="/client/login" element={<Login permission={1} role="client"/>} />
 						<Route path="/mt/login" element={<Login permission={2} role="mt"/>} />
 						<Route path="/profile" element={<ProfilePage/>} />
+						<Route path="/aboutus" element={<AboutUs/>} />
 					</Route>
 					<Route element={<ClientPortal />}>
 						<Route path="/client" element={<DashboardClient />} />

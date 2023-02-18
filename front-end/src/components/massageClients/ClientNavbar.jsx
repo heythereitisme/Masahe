@@ -69,6 +69,11 @@ function ClientNavbar() {
               Services{" "}
             </Link>{" "}
           </li>
+          <li>
+            <Link to="/aboutus" className=" font-heading">
+              About Us
+            </Link>
+          </li>
         </ul>
       </div>
 
