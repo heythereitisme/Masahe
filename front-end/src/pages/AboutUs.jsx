@@ -11,7 +11,7 @@ function AboutUs() {
     </div>
     <div className="w-full bg-gray-100 px-10 pt-10">
         <div className="container mx-auto">
-            <div className="lg:flex md:flex sm:flex items-center xl:justify-between flex-wrap md:justify-around sm:justify-around lg:justify-around">
+            <div className="lg:flex md:flex sm:flex items-center xl:justify-around flex-wrap md:justify-around sm:justify-around lg:justify-around">
                 <div className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
                     <div className="rounded overflow-hidden shadow-md bg-white">
                         <div className="absolute -mt-20 w-full flex justify-center">
@@ -20,9 +20,9 @@ function AboutUs() {
                             </div>
                         </div>
                         <div className="px-6 mt-16">
-                            <div className="font-bold text-3xl text-center pb-1">Steven Ha</div>
-                            <p className="text-gray-800 text-sm text-center">Chief Executive Officer</p>
-                            <p className="text-center text-gray-600 text-base pt-3 font-normal">The CEO's role in raising a company's corporate IQ is to establish an atmosphere that promotes knowledge sharing and collaboration.</p>
+                            <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Cobi Reeves</div>
+                            <p className="text-black text-sm text-center font-title">Backend Developer</p>
+                            <p className="text-center text-gray-600 text-base pt-3 font-normal font-body">The CEO's role in raising a company's corporate IQ is to establish an atmosphere that promotes knowledge sharing and collaboration.</p>
                             <div className="w-full flex justify-center pt-5 pb-5">
                                 <a href="javascript:void(0)" className="mx-5">
                                     <div>
@@ -60,9 +60,9 @@ function AboutUs() {
                             </div>
                         </div>
                         <div className="px-6 mt-16">
-                            <div className="font-bold text-3xl text-center pb-1">Steven Ha</div>
-                            <p className="text-gray-800 text-sm text-center">Product Design Head</p>
-                            <p className="text-center text-gray-600 text-base pt-3 font-normal">The emphasis on innovation and technology in our companies has resulted in a few of them establishing global benchmarks in product design and development.</p>
+                            <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Abneet Pabyal</div>
+                            <p className="text-black text-sm text-center font-title">Frontend Developer</p>
+                            <p className="text-center text-black text-base pt-3 font-normal font-body">The emphasis on innovation and technology in our companies has resulted in a few of them establishing global benchmarks in product design and development.</p>
                             <div className="w-full flex justify-center pt-5 pb-5">
                                 <a href="javascript:void(0)" className="mx-5">
                                     <div>
@@ -100,9 +100,9 @@ function AboutUs() {
                             </div>
                         </div>
                         <div className="px-6 mt-16">
-                            <div className="font-bold text-3xl text-center pb-1">Steven Ha</div>
-                            <p className="text-gray-800 text-sm text-center">Manager Development</p>
-                            <p className="text-center text-gray-600 text-base pt-3 font-normal">Our services encompass the assessment and repair of property damage caused by water, fire, smoke, or mold. We can also be a part of the restoration.</p>
+                            <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Dhaneesh Kuniyil</div>
+                            <p className="text-black text-sm text-center font-title">Backend Developer</p>
+                            <p className="text-center text-black text-base pt-3 font-normal font-body">Our services encompass the assessment and repair of property damage caused by water, fire, smoke, or mold. We can also be a part of the restoration.</p>
                             <div className="w-full flex justify-center pt-5 pb-5">
                                 <a href="javascript:void(0)" className="mx-5">
                                     <div>
@@ -139,9 +139,9 @@ function AboutUs() {
                             </div>
                         </div>
                         <div className="px-6 mt-16">
-                            <div className="font-bold text-3xl text-center pb-1">Steven Ha</div>
-                            <p className="text-gray-800 text-sm text-center">Principal Software Engineer</p>
-                            <p className="text-center text-gray-600 text-base pt-3 font-normal">An avid open-source developer who loves to be creative and inventive. I have 20 years of experience in the field.</p>
+                            <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Carol Sun</div>
+                            <p className="text-black text-sm text-center font-title">Product Owner</p>
+                            <p className="text-center text-black text-base pt-3 font-normal font-body">An avid open-source developer who loves to be creative and inventive. I have 20 years of experience in the field.</p>
                             <div className="w-full flex justify-center pt-5 pb-5">
                                 <a href="javascript:void(0)" className="mx-5">
                                     <div>
@@ -178,9 +178,9 @@ function AboutUs() {
                             </div>
                         </div>
                         <div className="px-6 mt-16">
-                            <div className="font-bold text-3xl text-center pb-1">Steven Ha</div>
-                            <p className="text-gray-800 text-sm text-center">Product Design Head</p>
-                            <p className="text-center text-gray-600 text-base pt-3 font-normal">Product designer with interests in immersive computing and XR, political ventures, and emerging technologies. Able to take ideas and give them a life.</p>
+                            <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Al Del Degan</div>
+                            <p className="text-black text-sm text-center font-title">Scrum Master</p>
+                            <p className="text-center text-black text-base pt-3 font-normal font-body">Product designer with interests in immersive computing and XR, political ventures, and emerging technologies. Able to take ideas and give them a life.</p>
                             <div className="w-full flex justify-center pt-5 pb-5">
                                 <a href="javascript:void(0)" className="mx-5">
                                     <div>
