@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import AvatarEditor from "react-avatar-editor";
-import { uploadBytes, ref } from "firebase/storage";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import { FirebaseContext } from "../../providers/FirebaseProvider";
 
 const Profile = ({ value }) => {
@@ -32,6 +32,7 @@ const Profile = ({ value }) => {
   
   useEffect(() => {
     if (auth) {
+      console.log(auth)
       setFirstName(userInfo.firstName);
       setLastName(userInfo.lastName);
       setQuadrant(userInfo.quadrant);
@@ -40,7 +41,7 @@ const Profile = ({ value }) => {
       setEmail(user.email);
       setPhoneNumber(userInfo.phoneNumber);
       setClientQuadrant(userInfo.quadrant[0]);
-      setAva(userInfo.avatar);
+      setAva(auth.avatar);
       setRegistered(userInfo.licensed.reg)
       setRegDate(new Date(userInfo.licensed.date).toLocaleDateString())
       userInfo.services && setServices(userInfo.services)
@@ -162,7 +163,9 @@ const Profile = ({ value }) => {
     const croppedImageBlob = dataURLtoBlob(avaRef.src);
     try{
       await uploadBytes(avatarRef, croppedImageBlob);
-      alert("Avatar Uploaded")
+      const url = await getDownloadURL(ref(storage, `avatars/${user.displayName}.png`))
+      const avaUpdate = {username: user.displayName, avatar: url}
+						updateUser(avaUpdate)
     }catch(err) {
       console.error(err)
     }
