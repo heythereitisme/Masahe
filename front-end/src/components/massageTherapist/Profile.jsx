@@ -32,7 +32,6 @@ const Profile = ({ value }) => {
   
   useEffect(() => {
     if (auth) {
-      console.log(auth)
       setFirstName(userInfo.firstName);
       setLastName(userInfo.lastName);
       setQuadrant(userInfo.quadrant);

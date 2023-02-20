@@ -80,9 +80,6 @@ export const AuthProvider = (props) => {
 	}
 	
 	
-
-
-
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
 				setUser(user);
