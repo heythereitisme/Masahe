@@ -558,7 +558,7 @@ const UserList = ({ mt, sort }) => {
           </div>
 
           <div className="mb-10 ml-4">
-            <span className="text-2xl text-primary">Sort By:</span>
+            <span className="text-2xl text-primary m-2">Sort By:</span>
             <button
               className="btn btn-secondary m-1 font-title"
               onClick={() => sorter("avgRating")}
@@ -677,7 +677,7 @@ const UserList = ({ mt, sort }) => {
                   <div> <img src={u.avatar} className=' w-[6rem] h-[6rem] rounded-full shadow-xl ' /> </div> 
                  </div>
                   
-                  <div className="button-holder flex justify-around ">
+                  <div className="button-holder flex mt-2">
                     <button
                       onClick={() => mtDetailPage(u.username)}
                       className="btn btn-primary font-title bg-white text-primary hover:text-white"
@@ -691,13 +691,13 @@ const UserList = ({ mt, sort }) => {
                       Book
                     </button>
                   </div>
-
+                      <div className="flex justify-around">
                   <form
                     onChange={(e) => setRating(e.target.value)}
                     onSubmit={(e) => submitRating(e, u)}
                     className="flex justify-between m-5 items-center"
                   >
-                    <span>Rate: </span>
+                    <span className="text-primary font-heading m-2">Rate: </span>
                     <div className="rating">
                       <input
                         type="radio"
@@ -740,6 +740,7 @@ const UserList = ({ mt, sort }) => {
                       </button>
                     </div>
                   </form>
+                  </div>
                 </div>
               );
             })}
