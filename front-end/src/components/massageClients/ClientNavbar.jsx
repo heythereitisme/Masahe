@@ -37,12 +37,15 @@ function ClientNavbar() {
             </li>
             <li>
               <Link to="/client/booking"> Booking </Link>{" "}
-              <li>
+            </li>
+            <li>
+              <Link to="/client/calendar"> Calendar </Link>{" "}
+            </li>
+            <li>
             <Link to="/aboutus" className=" font-heading">
               About Us
             </Link>
           </li>
-            </li>
           </ul>
         </div>
         <ul>
@@ -69,9 +72,9 @@ function ClientNavbar() {
             </Link>{" "}
           </li>
           <li>
-            <Link to="/client/services" className=" font-heading">
+            <Link to="/client/calendar" className=" font-heading">
               {" "}
-              Services{" "}
+              Calendar{" "}
             </Link>{" "}
           </li>
           <li>

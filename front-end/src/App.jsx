@@ -22,6 +22,7 @@ import DashboardClient from "./components/massageClients/DashboardClient";
 import ServiceList from "./components/massageClients/ServiceList";
 import ScrollToTop from "./components/ScrollToTop";
 import AboutUs from "./pages/AboutUs";
+import ClientCalendar from "./components/massageClients/ClientCalendar";
 
 function App() {
 	return (
@@ -42,7 +43,7 @@ function App() {
 						<Route path="/client/search" element={<Search />} />
 						<Route path="/client/review" element={<ClientReview />} />
 						<Route path="/client/services/:service" element={<Services />} />
-						<Route path="/client/services/" element={<ServiceList />} />
+						<Route path="/client/calendar/" element={<ClientCalendar />} />
 						<Route path="/mt/user" element={<Details />} />
 						<Route path="/client/home" element={<ClientHome/>} />
 						<Route path="/client/profile" element={<ProfilePage/>} />
