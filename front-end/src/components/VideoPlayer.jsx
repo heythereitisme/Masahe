@@ -6,7 +6,8 @@ const VideoPlayer = ({ vidLink }) => (
       width="853"
       height="480"
       src={`${vidLink}`}
-      controls
+      autoPlay
+      loop
       className="flex w-full h-[30rem] object-cover auto-pla"
     />
   </div>
