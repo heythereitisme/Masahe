@@ -379,9 +379,6 @@ const UserList = ({ mt, sort }) => {
                     >
                       Details
                     </button>
-                    <button className=" btn btn-primary ml-4 font-title bg-white text-primary hover:text-white mt-3">
-                      Message
-                    </button>
                   </div>
                   <form
                     onChange={(e) => setRating(e.target.value)}
@@ -692,9 +689,6 @@ const UserList = ({ mt, sort }) => {
                       className="btn btn-primary ml-4 font-title bg-white text-primary hover:text-white"
                     >
                       Book
-                    </button>
-                    <button className=" btn btn-primary ml-4 font-title bg-white text-primary hover:text-white">
-                      Message
                     </button>
                   </div>
 
