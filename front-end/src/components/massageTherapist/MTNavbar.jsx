@@ -77,7 +77,7 @@ function MTNavbar() {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-white rounded-box w-52 text-primary"
+            className="dropdown-content menu p-2 shadow bg-white rounded-box w-52 text-primary hover:z-50"
           >
             <li>
               <Link to="/mt/profile">Profile</Link>

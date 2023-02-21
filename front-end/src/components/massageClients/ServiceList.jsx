@@ -10,7 +10,9 @@ const ServiceList = () => {
 
   return (
     <div className='bg-white'>
+        <div className='bg-slate-100 p-5 drop-shadow-xl text-center'>
         <span className='text-3xl font-heading text-primary'>Services</span>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-10">
 
 <div className="card w-96 bg-slate-50 shadow-xl ml-1 md:ml-4">

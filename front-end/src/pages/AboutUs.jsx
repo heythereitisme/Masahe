@@ -22,7 +22,7 @@ function AboutUs() {
                         <div className="px-6 mt-16 mb-5">
                             <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Cobi Reeves</div>
                             <p className="text-black text-sm text-center font-title">Backend Developer</p>
-                            <p className="text-center text-gray-600 text-base pt-3 font-normal font-body">Cobi's interests in technology gears towards research and structural data. His greatest strengths is determining the root cause of the challenges that come my way. Recently he's completed an intensive full stack development program with InceptionU and he is looking forward to continuing as an active member in Calgarys tech community!</p>
+                            <p className="text-center text-black text-base pt-3 font-normal font-body">Cobi's interests in technology gears towards research and structural data. His greatest strengths is determining the root cause of the challenges that come my way. Recently he's completed an intensive full stack development program with InceptionU and he is looking forward to continuing as an active member in Calgarys tech community!</p>
                            
                         </div>
                     </div>
@@ -38,7 +38,7 @@ function AboutUs() {
                         <div className="px-6 mt-16">
                             <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Abneet Pabyal</div>
                             <p className="text-black text-sm text-center font-title">Frontend Developer</p>
-                            <p className="text-center text-black text-base pt-3 font-normal font-body">The emphasis on innovation and technology in our companies has resulted in a few of them establishing global benchmarks in product design and development.</p>
+                            <p className="text-center text-black text-base pt-3 font-normal font-body"> Abneet is a supportive, and caring man. Honouring work-ethics passed down from his father, he embodies family values. A curious learner, who applies himself towards building a career as a well-versed and competent front-end developer, coupling it with his skillset in strategic planning, and marketing.</p>
                             <div className="w-full flex justify-center pt-5 pb-5">
                                 <a href="javascript:void(0)" className="mx-5">
                                     <div>
@@ -156,7 +156,7 @@ function AboutUs() {
                         <div className="px-6 mt-16">
                             <div className="font-bold text-3xl text-center font-heading pb-1 text-secondary">Al Del Degan</div>
                             <p className="text-black text-sm text-center font-title">Scrum Master</p>
-                            <p className="text-center text-black text-base pt-3 font-normal font-body">Product designer with interests in immersive computing and XR, political ventures, and emerging technologies. Able to take ideas and give them a life.</p>
+                            <p className="text-center text-black text-base pt-3 font-normal font-body">As a well-known leader in Calgary's innovation ecosystem, Al Del Degan has a background in computer science with a diverse career working as a software developer, business analyst, and project manager. He has held various leadership roles, started multiple entrepreneurial ventures, and is the creator and producer of the Leaders, Innovators, and Big Ideas podcast for Rainforest Alberta.</p>
                             <div className="w-full flex justify-center pt-5 pb-5">
                                 <a href="javascript:void(0)" className="mx-5">
                                     <div>

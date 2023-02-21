@@ -76,8 +76,10 @@ const rateUser = async (u) => {
                   }
                 })}
                 {upcoming[0] && 
-                <>
+                <> 
+               <div className='bg-slate-100 p-5 drop-shadow-xl text-center mt-5'>
                 <span className='text-3xl font-heading text-primary mt-5'>Upcoming appointments</span>
+               </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-2 mt-5">
                 {upcoming.slice(0, 8).map((u) => {
                   const date = new Date(u.start)
@@ -168,7 +170,9 @@ const rateUser = async (u) => {
                 }
                 {past[0] && 
                 <>
+                 <div className='bg-slate-100 p-5 drop-shadow-xl text-center'>
                 <span className='text-3xl font-heading text-primary'>Recent Appointments, leave a rating?</span>
+                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-2 mt-5 mb-5">
                 {past.slice(0, 8).map((u) => {
                   const date = new Date(u.start)

@@ -98,7 +98,7 @@ function Navbar() {
       </div>
 
       <div className="navbar-end">
-        <div className="dropdown dropdown-end mr-2">
+        <div className="dropdown dropdown-end mr-2 hover:z-50">
           <label className="btn btn-primary">
           <Link to="profile">
             <img src={ava} alt="avatar" className="h-12 rounded-full " />
