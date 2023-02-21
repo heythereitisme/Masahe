@@ -32,11 +32,16 @@ function ClientNavbar() {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
           >
-            <li className=" font-heading">
+            <li className=" font-heading text-primary">
               <Link to="/client">Home</Link>
             </li>
             <li>
               <Link to="/client/booking"> Booking </Link>{" "}
+              <li>
+            <Link to="/aboutus" className=" font-heading">
+              About Us
+            </Link>
+          </li>
             </li>
           </ul>
         </div>

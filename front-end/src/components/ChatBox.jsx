@@ -71,14 +71,14 @@ const ChatBox = () => {
 	}
 
 	return (
-		<div className="bg-white flex justify-end truncate">
+		<div className="bg-white flex justify-end">
 			<label htmlFor="my-modal-3" className="btn btn-secondary m-2 mr-4">
 				Open Chat
 			</label>
 			{/* Put this part before </body> tag */}
 			<input type="checkbox" id="my-modal-3" className="modal-toggle" />
 			<div className="modal modal-bottom flex justify-end">
-				<div className=" modal-box w-[25rem] h-[42rem] bg-slate-100 rounded-lg p-3 truncate">
+				<div className=" modal-box w-[25rem] h-screen md:h-[42rem] bg-slate-100 rounded-lg p-3 overflow-y-scroll">
 					<label
 						htmlFor="my-modal-3"
 						className="btn btn-sm btn-primary bg-white btn-circle relative  text-black hover:text-white"
@@ -87,14 +87,14 @@ const ChatBox = () => {
 					</label>
 
 					<div>
-						<div className=""	>
+						<div>
 							<br />
-							<div className="">
+							<div>
 								
 
-								<div className="card w-96 h-80 bg-white text-neutral-content">
-									<div className="card-body items-center text-center">
-										<h2 className="card-title">Chat</h2>
+								<div className="card w-96 h-80 bg-white text-neutral-content p-4">
+									<div className="card-body items-center text-center overflow-y-scroll">
+										<h2 className="card-title "></h2>
 										{/* <p>{msgFrmSrvr}</p> */}
 
 										{msgFrmSrvr &&
@@ -155,21 +155,21 @@ const ChatBox = () => {
 
 							<div className="collapse">
 								<input type="checkbox" />
-								<div className="collapse-title text-xl font-medium">
+								<div className="collapse-title text-primary text-xl font-medium font-title">
 									Online Users
 								</div>
 								<div className="collapse-content">
 									{/*    */}
 
-									<div className="card w-40 bg-primary text-primary-content">
-										<div className="card-body items-center text-center">
+									<div className="card bg-white text-primary-content min-w-full">
+										<div className="card-body text-left">
 											{/* <h2 className="card-title">Online Users</h2> */}
 											<p>
 												{onlineUsr.map((e) => (
 													<>
 														{
 															<button
-																className="btn rounded-full"
+																className="btn btn-primary bg-white text-primary hover:text-white rounded-2xl flex"
 																onClick={() => setChatBuddy(e)}
 															>
 																{e}
