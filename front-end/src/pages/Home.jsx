@@ -14,7 +14,6 @@ const LandingPage = () => {
 
 		return (
 			<div> 
-				<YoutubeEmbed embedId={'3X-iqFRGqbc'} />
 				<VideoPlayer vidLink={`/Videos/pexels-anna-tarazevich-6750874.mp4`}/>
 		<Hero/> 
 	</div>	
