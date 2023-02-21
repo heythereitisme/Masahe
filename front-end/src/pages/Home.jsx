@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Hero from "../components/Hero";
+import VideoPlayer from "../components/VideoPlayer";
+import YoutubeEmbed from "../components/YoutubeEmbed";
 import { AuthContext } from "../providers/AuthProvider";
 
 const LandingPage = () => {
@@ -12,6 +14,8 @@ const LandingPage = () => {
 
 		return (
 			<div> 
+				<YoutubeEmbed embedId={'3X-iqFRGqbc'} />
+				<VideoPlayer vidLink={`/Videos/pexels-anna-tarazevich-6750874.mp4`}/>
 		<Hero/> 
 	</div>	
 	);
