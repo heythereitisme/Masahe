@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import io from "socket.io-client";
 import { AuthContext } from "../providers/AuthProvider";
+import os from "os"
+
+
 
 let socket;
 
@@ -18,7 +21,7 @@ const ChatBox = () => {
 	const [joined, setJoined] = useState(false);
 	useEffect(() => {
 		//setSocket(io.connect("http://localhost:6010"));
-		const newSocket = io.connect("http://localhost:6010");
+		const newSocket = io.connect("ws://localhost:6010" );	
 		setSocket(newSocket);
 		function usersOnline(userList) {
 			console.log("online users", userList);
@@ -99,7 +102,7 @@ const ChatBox = () => {
 
 										{msgFrmSrvr &&
 											msgFrmSrvr.map((u) => (
-												<p>
+												<p key={u}>
 													{u.userName} : {u.msg}
 												</p>
 											))}
@@ -164,9 +167,9 @@ const ChatBox = () => {
 									<div className="card bg-white text-primary-content min-w-full">
 										<div className="card-body text-left">
 											{/* <h2 className="card-title">Online Users</h2> */}
-											<p>
+											<div>
 												{onlineUsr.map((e) => (
-													<>
+													<div key={e}>
 														{
 															<button
 																className="btn btn-primary bg-white text-primary hover:text-white rounded-2xl flex"
@@ -175,9 +178,9 @@ const ChatBox = () => {
 																{e}
 															</button>
 														}
-													</>
+													</div>
 												))}
-											</p>
+											</div>
 
 											<div className="card-actions justify-end"></div>
 										</div>
