@@ -82,7 +82,7 @@ const ServiceList = () => {
 </div>
 
 <div className="card w-96 bg-slate-50 shadow-xl ml-1 md:ml-4">
-    <figure><img src="/services/Back-Massage.jpg" alt="Massage" className='w-full h-60 object-cover' /></figure>
+    <figure><img src="/services/Deep.png" alt="Massage" className='w-full h-60 object-cover' /></figure>
     <div className="card-body">
     <h2 className="card-title flex justify-center text-primary">Lymphatic drainage massage</h2>
     <p className=' font-body text-primary mb-2'>Gentle massage that encourages the lymph fluids to circulate through the body.</p>
@@ -93,7 +93,7 @@ const ServiceList = () => {
 </div>
 
 <div className="card w-96 bg-slate-50 shadow-xl ml-1 md:ml-4">
-    <figure><img src="/services/Acupuncture.jpg" alt="Massage" className='w-full h-60 object-cover'/></figure>
+    <figure><img src="/services/Hand.jpg" alt="Massage" className='w-full h-60 object-cover'/></figure>
     <div className="card-body">
     <h2 className="card-title flex justify-center text-primary">Acupuncture</h2>
     <p className=' font-body text-primary mb-2'> Insertion of very thin needles through your skin at strategic points on your body.</p>
