@@ -70,7 +70,7 @@ export const AuthProvider = (props) => {
 						const avaUpdate = {username: perm.user.username, avatar: url}
 						updateUser(avaUpdate)
 					}} catch(err) {
-					console.error(err)
+					
 				}}
 			setPermission(perm.user.permission)
 			setMuid(perm.user._id)

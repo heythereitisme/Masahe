@@ -41,8 +41,10 @@ const Profile = ({ value }) => {
       setPhoneNumber(userInfo.phoneNumber);
       setClientQuadrant(userInfo.quadrant[0]);
       setAva(auth.avatar);
-      setRegistered(userInfo.licensed.reg)
-      setRegDate((userInfo.licensed.date).split('T')[0])
+      if(value === 2){
+        setRegistered(userInfo.licensed.reg)
+        setRegDate((userInfo.licensed.date).split('T')[0])
+      }
       userInfo.services && setServices(userInfo.services)
     }
   }, []);
