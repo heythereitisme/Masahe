@@ -135,7 +135,7 @@ const rateUser = async (u) => {
                         readOnly
                       />
                     </div>
-                      <span>Works in: {u.resources.user.quadrant.map((q) => <span key={q}>{q}</span>)}</span>
+                      <span>Works in: {u.resources.user.quadrant.map((q) => <span key={q} className='mx-1'>{q}</span>)}</span>
                       <span>{u.resources.user.address}</span>
                       <span>{readableDate}</span>
                       </div>

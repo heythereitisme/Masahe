@@ -42,7 +42,7 @@ const Profile = ({ value }) => {
       setClientQuadrant(userInfo.quadrant[0]);
       setAva(auth.avatar);
       setRegistered(userInfo.licensed.reg)
-      setRegDate(new Date(userInfo.licensed.date).toLocaleDateString())
+      setRegDate((userInfo.licensed.date).split('T')[0])
       userInfo.services && setServices(userInfo.services)
     }
   }, []);
@@ -261,6 +261,7 @@ const Profile = ({ value }) => {
                               <span className="label-text font-title text-neutral ml-5">
                               Expiration date:
                             </span>
+                          {console.log(regDate)}
                           <input type="date" defaultValue={regDate} onChange={(e) => setRegDate(e.target.value)}/>
                               </div>
                         </div>
